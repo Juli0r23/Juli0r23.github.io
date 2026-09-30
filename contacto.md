@@ -25,7 +25,7 @@ permalink: /contacto/
     <span class="contact-icon">🐙</span>
     <div>
       <div class="contact-label">github</div>
-      <div class="contact-value">github.com/julior23</div>
+      <div class="contact-value">github.com/Juli0r23</div>
     </div>
     <span class="contact-arrow">→</span>
   </a>
@@ -33,7 +33,7 @@ permalink: /contacto/
     <span class="contact-icon">💼</span>
     <div>
       <div class="contact-label">linkedin</div>
-      <div class="contact-value">linkedin.com/in/julior23</div>
+      <div class="contact-value">linkedin.com/in/juli0r23</div>
     </div>
     <span class="contact-arrow">→</span>
   </a>
