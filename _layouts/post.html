@@ -1,0 +1,177 @@
+---
+layout: default
+---
+
+<main class="page-wrap">
+
+  <article class="post-full">
+
+    <!-- Cabecera del post -->
+    <header class="post-header">
+      <div class="post-meta-top">
+        <a href="{{ '/blog/' | relative_url }}" class="back-link">← volver al blog</a>
+        <span class="tag tag-{{ page.tag_color | default: 'green' }}">{{ page.categories | first }}</span>
+      </div>
+      <h1 class="post-title">{{ page.title }}</h1>
+      <div class="post-meta">
+        <span class="post-date">
+          <span class="mono-label">fecha:</span>
+          {{ page.date | date: "%d %b %Y" }}
+        </span>
+        {% if page.reading_time %}
+        <span class="post-read">
+          <span class="mono-label">lectura:</span>
+          {{ page.reading_time }} min
+        </span>
+        {% endif %}
+      </div>
+      {% if page.excerpt %}
+      <p class="post-excerpt">{{ page.excerpt }}</p>
+      {% endif %}
+    </header>
+
+    <!-- Contenido del post -->
+    <div class="post-content glass-card">
+      {{ content }}
+    </div>
+
+    <!-- Navegación entre posts -->
+    <nav class="post-nav">
+      {% if page.previous.url %}
+      <a href="{{ page.previous.url | relative_url }}" class="post-nav-link prev">
+        <span class="mono-label">← anterior</span>
+        <span>{{ page.previous.title }}</span>
+      </a>
+      {% endif %}
+      {% if page.next.url %}
+      <a href="{{ page.next.url | relative_url }}" class="post-nav-link next">
+        <span class="mono-label">siguiente →</span>
+        <span>{{ page.next.title }}</span>
+      </a>
+      {% endif %}
+    </nav>
+
+  </article>
+
+</main>
+
+<style>
+.post-header {
+  margin-bottom: 2.5rem;
+}
+.post-meta-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.back-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text2);
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--green); }
+.post-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #e6edf3;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+.post-meta {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 13px;
+  color: var(--text2);
+}
+.mono-label {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--muted);
+  font-size: 11px;
+}
+.post-excerpt {
+  margin-top: 1rem;
+  font-size: 15px;
+  color: var(--text2);
+  border-left: 2px solid var(--green);
+  padding-left: 1rem;
+}
+.post-content {
+  font-size: 15px;
+  line-height: 1.85;
+}
+.post-content h2 {
+  font-size: 1.3rem;
+  color: #e6edf3;
+  margin: 2rem 0 0.75rem;
+  font-weight: 500;
+}
+.post-content h3 {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin: 1.5rem 0 0.5rem;
+  font-weight: 500;
+}
+.post-content p { margin-bottom: 1rem; }
+.post-content ul, .post-content ol {
+  margin: 0.75rem 0 1rem 1.5rem;
+}
+.post-content li { margin-bottom: 0.3rem; }
+.post-content code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  background: rgba(0,255,136,0.06);
+  border: 1px solid rgba(0,255,136,0.12);
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: var(--green);
+}
+.post-content pre {
+  background: rgba(8,12,16,0.8);
+  border: 1px solid rgba(0,255,136,0.1);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  margin: 1.25rem 0;
+}
+.post-content pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 13px;
+  color: var(--text);
+}
+.post-content blockquote {
+  border-left: 2px solid var(--green);
+  padding-left: 1rem;
+  color: var(--text2);
+  margin: 1.25rem 0;
+  font-style: italic;
+}
+.post-content a { color: var(--green); }
+.post-content a:hover { text-decoration: underline; }
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+.post-nav-link {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: rgba(13,24,36,0.5);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1.1rem;
+  color: var(--text);
+  font-size: 13px;
+  transition: border-color 0.2s;
+  max-width: 48%;
+}
+.post-nav-link:hover { border-color: var(--glass-border-h); color: var(--text); }
+.post-nav-link.next { text-align: right; margin-left: auto; }
+</style>

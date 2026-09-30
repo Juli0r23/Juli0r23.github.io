@@ -1,0 +1,31 @@
+title: "Julio Romero"
+description: "Estudiante de ASIR · Redes, Linux & Administración de Sistemas"
+author: "Julio Romero"
+email: "contacto@julior23.com"
+url: "https://juli0r23.github.io"
+baseurl: ""
+
+github_username: Juli0r23
+linkedin_username: julior23
+
+# Opciones de posts
+permalink: /blog/:year/:month/:day/:title/
+paginate: 5
+
+# Excluir de la build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Datos del CV
+cv:
+  disponible: true
+  ubicacion: "Extremadura, España"
+  curso: "ASIR · 2º Año"

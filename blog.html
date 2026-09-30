@@ -1,0 +1,59 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+---
+
+<main class="page-wrap">
+
+  <div class="section-label">// blog</div>
+  <h1 style="font-size:1.8rem;font-weight:600;color:#e6edf3;margin-bottom:.5rem">Notas &amp; apuntes</h1>
+  <p style="color:var(--text2);font-size:14px;margin-bottom:2.5rem;font-family:'JetBrains Mono',monospace">
+    {{ site.posts | size }} entradas · redes, linux, sistemas y más
+  </p>
+
+  <div class="posts-list">
+    {% for post in site.posts %}
+    <a href="{{ post.url | relative_url }}" class="post-item-full">
+      <div class="pif-left">
+        <span class="tag tag-{{ post.tag_color | default: 'green' }}">{{ post.categories | first }}</span>
+        <h2 class="pif-title">{{ post.title }}</h2>
+        {% if post.excerpt %}
+        <p class="pif-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+        {% endif %}
+      </div>
+      <div class="pif-right">
+        <span class="pif-date">{{ post.date | date: "%d %b %Y" }}</span>
+        <span class="pif-arrow">→</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+</main>
+
+<style>
+.posts-list { display:flex;flex-direction:column;gap:.75rem; }
+.post-item-full {
+  background: rgba(13,24,36,0.5);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  color: var(--text);
+  transition: border-color 0.2s, transform 0.15s;
+}
+.post-item-full:hover { border-color:var(--glass-border-h);transform:translateX(4px);color:var(--text); }
+.pif-left { display:flex;flex-direction:column;gap:.4rem;flex:1; }
+.pif-title { font-size:14.5px;font-weight:500;color:#e6edf3; }
+.pif-excerpt { font-size:12.5px;color:var(--text2);line-height:1.5; }
+.pif-right { display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;flex-shrink:0; }
+.pif-date { font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap; }
+.pif-arrow { color:var(--muted);transition:color 0.2s; }
+.post-item-full:hover .pif-arrow { color:var(--green); }
+</style>

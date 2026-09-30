@@ -1,0 +1,283 @@
+---
+layout: default
+title: Inicio
+---
+
+<main class="page-wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">
+        <span class="dot-pulse"></span>
+        disponible para prácticas · {{ site.cv.ubicacion }}
+      </div>
+
+      <h1 class="hero-name">{{ site.author }} <span class="name-hl">.</span></h1>
+
+      <div class="hero-sub">
+        <div class="hero-line">{{ site.cv.curso }}</div>
+        <div class="hero-line">Redes, Linux &amp; Administración de Sistemas</div>
+        <div class="hero-line">Apasionado por la infraestructura y la ciberseguridad</div>
+      </div>
+
+      <div class="hero-btns">
+        <a href="{{ '/cv/' | relative_url }}" class="btn btn-primary">ver mi CV</a>
+        <a href="{{ '/contacto/' | relative_url }}" class="btn btn-ghost">contacto</a>
+      </div>
+    </div>
+
+    <div class="terminal hero-terminal">
+      <div class="terminal-bar">
+        <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+        <span class="terminal-title">bash — julio@server:~</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-cmd">whoami</div>
+        <div class="t-ok">{{ site.github_username }}</div>
+        <div style="height:.4rem"></div>
+        <div class="t-cmd">cat about.txt</div>
+        <div class="t-out">{{ site.cv.curso }}</div>
+        <div class="t-out">Redes &amp; Sistemas Linux</div>
+        <div class="t-out">{{ site.cv.ubicacion }}</div>
+        <div style="height:.4rem"></div>
+        <div class="t-cmd">ping 8.8.8.8 -c 1</div>
+        <div class="t-ok">64 bytes: time=12.4ms</div>
+        <div style="height:.4rem"></div>
+        <div class="t-cmd">uptime</div>
+        <div class="t-warn">aprendiendo... 100%</div>
+        <div style="height:.4rem"></div>
+        <div class="t-cmd"><span style="color:var(--muted)">█</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOBRE MÍ -->
+  <section class="home-section">
+    <div class="section-label">// sobre mí</div>
+    <div class="cards-grid">
+      <div class="glass-card">
+        <div class="card-icon">🌐</div>
+        <h3>Redes</h3>
+        <p>Configuración de switches, routers y VLANs. Protocolos TCP/IP, routing estático y dinámico con OSPF y RIP.</p>
+      </div>
+      <div class="glass-card">
+        <div class="card-icon">🐧</div>
+        <h3>Linux &amp; Servidores</h3>
+        <p>Administración Debian/Ubuntu. Configuración de servicios: SSH, DNS, DHCP, Apache, Nginx.</p>
+      </div>
+      <div class="glass-card">
+        <div class="card-icon">🔒</div>
+        <h3>Seguridad</h3>
+        <p>Fundamentos de ciberseguridad, firewalls, VPNs y hardening básico de sistemas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="home-section">
+    <div class="section-label">// stack técnico</div>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <span class="skill-dot" style="background:#00ff88"></span>
+        <span>Cisco IOS</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-dot" style="background:#39d0d8"></span>
+        <span>Linux</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-dot" style="background:#58a6ff"></span>
+        <span>Windows Server</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-dot" style="background:#f78166"></span>
+        <span>Bash / scripting</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:60%"></div></div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-dot" style="background:#00ff88"></span>
+        <span>TCP/IP &amp; DNS</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-dot" style="background:#e3b341"></span>
+        <span>Virtualización</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÚLTIMOS POSTS -->
+  <section class="home-section">
+    <div class="section-label">// últimas entradas</div>
+    <div class="posts-list">
+      {% for post in site.posts limit:4 %}
+      <a href="{{ post.url | relative_url }}" class="post-item">
+        <span class="post-date">{{ post.date | date: "%d %b %Y" }}</span>
+        <span class="tag tag-{{ post.tag_color | default: 'green' }}">{{ post.categories | first }}</span>
+        <span class="post-item-title">{{ post.title }}</span>
+        <span class="post-arrow">→</span>
+      </a>
+      {% endfor %}
+    </div>
+    <div style="margin-top:1.25rem">
+      <a href="{{ '/blog/' | relative_url }}" class="btn btn-ghost">ver todos los posts →</a>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="home-section">
+    <div class="section-label">// contacto</div>
+    <div class="contact-glass">
+      <div>
+        <h3 style="font-size:1.1rem;font-weight:500;color:#e6edf3;margin-bottom:.3rem">¿Hablamos?</h3>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text2)">{{ site.email }}</p>
+      </div>
+      <div class="hero-btns" style="margin:0">
+        <a href="mailto:{{ site.email }}" class="btn btn-primary">enviar email</a>
+        {% if site.github_username %}
+        <a href="https://github.com/{{ site.github_username }}" class="btn btn-ghost" target="_blank">GitHub</a>
+        {% endif %}
+        {% if site.linkedin_username %}
+        <a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="btn btn-ghost" target="_blank">LinkedIn</a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<style>
+.hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: start;
+  margin-bottom: 4rem;
+}
+.hero-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--green);
+  background: rgba(0,255,136,0.06);
+  border: 1px solid rgba(0,255,136,0.15);
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 1.25rem;
+}
+.dot-pulse {
+  width: 6px; height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+.hero-name {
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #e6edf3;
+  margin-bottom: 0.5rem;
+}
+.name-hl { color: var(--green); }
+.hero-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13.5px;
+  color: var(--text2);
+  margin-bottom: 1.5rem;
+  line-height: 2;
+}
+.hero-line::before { content: '> '; color: var(--green); font-weight: 500; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-terminal { min-width: 260px; }
+.home-section { margin-bottom: 3.5rem; }
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.glass-card .card-icon {
+  width: 36px; height: 36px;
+  background: rgba(0,255,136,0.08);
+  border: 1px solid rgba(0,255,136,0.15);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px;
+  margin-bottom: 1rem;
+}
+.glass-card h3 { font-size: 14px; font-weight: 500; color: #e6edf3; margin-bottom: .35rem; }
+.glass-card p  { font-size: 13px; color: var(--text2); line-height: 1.6; }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+.skill-item {
+  background: rgba(13,24,36,0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: .9rem 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: border-color 0.2s;
+}
+.skill-item:hover { border-color: var(--glass-border-h); }
+.skill-dot { width:7px;height:7px;border-radius:50%;flex-shrink:0; }
+.skill-item span { font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--text); }
+.skill-bar-wrap { flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden;margin-left:auto;min-width:48px; }
+.skill-bar { height:100%;border-radius:99px;background:linear-gradient(to right,var(--green-dim),var(--green)); }
+.posts-list { display: flex; flex-direction: column; gap: .75rem; }
+.post-item {
+  background: rgba(13,24,36,0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: border-color 0.2s, transform 0.15s;
+  color: var(--text);
+}
+.post-item:hover { border-color: var(--glass-border-h); transform: translateX(4px); color: var(--text); }
+.post-date { font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);min-width:80px; }
+.post-item-title { font-size:13.5px;color:var(--text);flex:1; }
+.post-arrow { color:var(--muted);font-size:16px;transition:color 0.2s; }
+.post-item:hover .post-arrow { color:var(--green); }
+.contact-glass {
+  background: rgba(13,24,36,0.5);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(0,255,136,0.1);
+  border-radius: 14px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.contact-glass::before {
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,transparent,rgba(0,255,136,.25),transparent);
+}
+@media (max-width:640px) {
+  .hero { grid-template-columns:1fr; }
+  .hero-terminal { display:none; }
+  .hero-name { font-size:2rem; }
+}
+</style>

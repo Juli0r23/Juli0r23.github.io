@@ -1,0 +1,12 @@
+<nav class="site-nav">
+  <a href="{{ '/' | relative_url }}" class="nav-logo">
+    <span class="prompt">~/</span>{{ site.github_username }}<span class="nav-cursor"></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active"{% endif %}>inicio</a></li>
+    <li><a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog' %} class="active"{% endif %}>blog</a></li>
+    <li><a href="{{ '/proyectos/' | relative_url }}"{% if page.url contains '/proyectos' %} class="active"{% endif %}>proyectos</a></li>
+    <li><a href="{{ '/cv/' | relative_url }}"{% if page.url contains '/cv' %} class="active"{% endif %}>cv</a></li>
+    <li><a href="{{ '/contacto/' | relative_url }}"{% if page.url contains '/contacto' %} class="active"{% endif %}>contacto</a></li>
+  </ul>
+</nav>
