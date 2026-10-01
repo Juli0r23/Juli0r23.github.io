@@ -21,7 +21,7 @@ permalink: /contacto/
     </div>
     <span class="contact-arrow">→</span>
   </a>
-  <a href="https://github.com/julior23" target="_blank" class="contact-link glass-card">
+  <a href="https://github.com/Juli0r23" target="_blank" class="contact-link glass-card">
     <span class="contact-icon">🐙</span>
     <div>
       <div class="contact-label">github</div>
@@ -29,7 +29,7 @@ permalink: /contacto/
     </div>
     <span class="contact-arrow">→</span>
   </a>
-  <a href="https://linkedin.com/in/julior23" target="_blank" class="contact-link glass-card">
+  <a href="https://linkedin.com/in/juli0r23" target="_blank" class="contact-link glass-card">
     <span class="contact-icon">💼</span>
     <div>
       <div class="contact-label">linkedin</div>
