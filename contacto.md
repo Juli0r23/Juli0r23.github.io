@@ -33,7 +33,7 @@ permalink: /contacto/
     <span class="contact-icon">💼</span>
     <div>
       <div class="contact-label">linkedin</div>
-      <div class="contact-value">linkedin.com/in/juli0r23</div>
+      <div class="contact-value">linkedin.com/in/juli0r23/</div>
     </div>
     <span class="contact-arrow">→</span>
   </a>
