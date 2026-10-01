@@ -39,7 +39,7 @@ permalink: /cv/
       <span class="cv-title">SMR</span>
       <span class="cv-date">2023 – 2025</span>
     </div>
-    <div class="cv-subtitle">IES-Suarez de Figueroa/div>
+    <div class="cv-subtitle">IES-Suarez de Figueroa</div>
   </div>
   </div>
 
