@@ -36,7 +36,7 @@ permalink: /cv/
 
   <div class="cv-item glass-card">
     <div class="cv-item-header">
-      <span class="cv-title">SMR/span>
+      <span class="cv-title">SMR</span>
       <span class="cv-date">2023 – 2025</span>
     </div>
     <div class="cv-subtitle">IES-Suarez de Figueroa/div>
