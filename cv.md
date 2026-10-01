@@ -13,7 +13,7 @@ permalink: /cv/
   <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--green);margin-bottom:.75rem">Estudiante ASIR · Extremadura, España</p>
   <div style="display:flex;gap:1.5rem;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2)">
     <span>📧 contacto@julior23.com</span>
-    <span>🐙 github.com/julior23</span>
+    <span>🐙 github.com/Juli0r23</span>
     <span>📍 Extremadura, ES</span>
   </div>
 </div>
@@ -36,10 +36,10 @@ permalink: /cv/
 
   <div class="cv-item glass-card">
     <div class="cv-item-header">
-      <span class="cv-title">Bachillerato Tecnológico</span>
+      <span class="cv-title">SMR/span>
       <span class="cv-date">2023 – 2025</span>
     </div>
-    <div class="cv-subtitle">IES — Extremadura</div>
+    <div class="cv-subtitle">IES-Suarez de Figueroa/div>
   </div>
   </div>
 
