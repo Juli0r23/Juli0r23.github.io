@@ -15,7 +15,7 @@ permalink: /contacto/
 <!-- FORMULARIO -->
 <div class="glass-card" style="margin-bottom:2rem">
   <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:1.25rem">$ send_message</div>
-  <form action="https://formspree.io/f/TU_ID_FORMSPREE" method="POST" class="contact-form">
+  <form action="https://formspree.io/f/xoevoajz" method="POST" class="contact-form">
     <div class="form-group">
       <label class="form-label">nombre</label>
       <input type="text" name="nombre" placeholder="Tu nombre" required class="form-input">
