@@ -9,10 +9,10 @@ permalink: /cv/
 <div class="section-label">// curriculum vitae</div>
 
 <div class="cv-header glass-card" style="margin-bottom:1.5rem">
-  <h1 style="font-size:1.8rem;font-weight:600;color:#e6edf3;margin-bottom:.3rem">Julio Romero</h1>
+  <h1 style="font-size:1.8rem;font-weight:600;color:#e6edf3;margin-bottom:.3rem">Julio A. Romero Ramírez</h1>
   <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--green);margin-bottom:.75rem">Estudiante ASIR · Extremadura, España</p>
   <div style="display:flex;gap:1.5rem;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2)">
-    <span>📧 contacto@julior23.com</span>
+    <span>📧 contacto@julior23.es</span>
     <span>🐙 github.com/Juli0r23</span>
     <span>📍 Extremadura, ES</span>
   </div>
@@ -30,16 +30,16 @@ permalink: /cv/
       <span class="cv-title">Técnico Superior en ASIR</span>
       <span class="cv-date">2025 – actualidad</span>
     </div>
-    <div class="cv-subtitle">Administración de Sistemas Informáticos en Red</div>
+    <div class="cv-subtitle">IES-Suarez de Figueroa · Administración de Sistemas Informáticos en Red</div>
     <div class="cv-desc">2º año · Módulos: Redes Locales, SRI, Seguridad, Administración de Sistemas Operativos</div>
   </div>
 
   <div class="cv-item glass-card">
     <div class="cv-item-header">
-      <span class="cv-title">SMR</span>
+      <span class="cv-title">Técnico en SMR</span>
       <span class="cv-date">2023 – 2025</span>
     </div>
-    <div class="cv-subtitle">IES-Suarez de Figueroa</div>
+    <div class="cv-subtitle">IES-Suarez de Figueroa · Sistemas Microinformáticos y Redes</div>
   </div>
   </div>
 
@@ -48,18 +48,50 @@ permalink: /cv/
 
   <div class="cv-item glass-card">
     <div class="cv-item-header">
-      <span class="cv-title">Configuración red Debian 13</span>
-      <span class="tag tag-cyan">SRI</span>
+      <span class="cv-title">Servidor Debian 13 con IP estática</span>
+      <span class="cv-date">Sep 2026</span>
     </div>
-    <div class="cv-desc">Instalación y configuración de servidor Debian 13 con IP estática, gateway y DNS. Puesto 14.</div>
+    <div style="display:flex;gap:.4rem;margin-bottom:.5rem;flex-wrap:wrap">
+      <span class="tag tag-cyan">SRI</span>
+      <span class="tag tag-blue">Linux</span>
+    </div>
+    <div class="cv-desc">Instalación y configuración desde cero de un servidor Debian 13: IP estática, gateway, DNS personalizado y verificación de conectividad. Documentado en el blog.</div>
+  </div>
+
+  <div class="cv-item glass-card">
+    <div class="cv-item-header">
+      <span class="cv-title">SSH Hardening en servidor Linux</span>
+      <span class="cv-date">Sep 2026</span>
+    </div>
+    <div style="display:flex;gap:.4rem;margin-bottom:.5rem;flex-wrap:wrap">
+      <span class="tag tag-cyan">Seguridad</span>
+      <span class="tag tag-blue">Linux</span>
+    </div>
+    <div class="cv-desc">Configuración de sshd_config para endurecer el acceso remoto: cambio de puerto, deshabilitación de root, autenticación por clave ed25519 e instalación de Fail2ban.</div>
+  </div>
+
+  <div class="cv-item glass-card">
+    <div class="cv-item-header">
+      <span class="cv-title">Segmentación de red con VLANs Cisco</span>
+      <span class="cv-date">Sep 2026</span>
+    </div>
+    <div style="display:flex;gap:.4rem;margin-bottom:.5rem;flex-wrap:wrap">
+      <span class="tag tag-red">Redes</span>
+      <span class="tag tag-green">Cisco IOS</span>
+    </div>
+    <div class="cv-desc">Configuración de VLANs en switch Cisco: creación de VLANs, asignación de puertos en modo access y configuración de trunk entre switches.</div>
   </div>
 
   <div class="cv-item glass-card">
     <div class="cv-item-header">
       <span class="cv-title">Prácticas PHP — Variables y Operadores</span>
-      <span class="tag tag-blue">PHP</span>
+      <span class="cv-date">2024 – 2025</span>
     </div>
-    <div class="cv-desc">36 ejercicios sobre variables, tipos de datos y operadores en PHP. Entrega por repositorio Git.</div>
+    <div style="display:flex;gap:.4rem;margin-bottom:.5rem;flex-wrap:wrap">
+      <span class="tag tag-green">PHP</span>
+      <span class="tag tag-yellow">Git</span>
+    </div>
+    <div class="cv-desc">36 ejercicios progresivos sobre variables, tipos de datos, operadores aritméticos, lógicos y de comparación en PHP. Entregados mediante repositorio Git.</div>
   </div>
 
   </div>
@@ -109,13 +141,20 @@ permalink: /cv/
   </div>
 
   <div class="cv-section">
-  <div class="section-label">// certificaciones</div>
+  <div class="section-label">// formación complementaria</div>
   <div class="cv-item glass-card">
     <div class="cv-item-header">
-      <span class="cv-title">En progreso...</span>
-      <span class="tag tag-yellow">2026</span>
+      <span class="cv-title">Cisco NetAcad — Introduction to Networks</span>
+      <span class="cv-date">2025</span>
     </div>
-    <div class="cv-desc">CCNA, CompTIA Network+ · Objetivo para 2027</div>
+    <div class="cv-desc">Fundamentos de redes: modelo OSI, TCP/IP, direccionamiento IPv4/IPv6 y configuración básica de dispositivos Cisco.</div>
+  </div>
+  <div class="cv-item glass-card">
+    <div class="cv-item-header">
+      <span class="cv-title">Objetivo 2027</span>
+      <span class="tag tag-yellow">En curso</span>
+    </div>
+    <div class="cv-desc">Preparando CCNA (Cisco Certified Network Associate) y CompTIA Network+.</div>
   </div>
   </div>
 
