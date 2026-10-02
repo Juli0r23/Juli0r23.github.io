@@ -90,7 +90,3 @@ Contenido en Markdown...
 | yellow    | Amarillo | Seguridad, alertas |
 
 ---
-
-> **Topics sugeridos para el repo:** `jekyll` `github-pages` `portfolio` `asir` `sysadmin` `linux` `networking`
-> 
-> Añádelos en GitHub → Settings del repo → Topics
