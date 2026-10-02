@@ -4,6 +4,8 @@ title: "SSH hardening: cómo securizar tu servidor en 10 minutos"
 categories: [sysadmin]
 tag_color: cyan
 date: 2026-09-15
+reading_time: 4
+description: "Configuración básica para endurecer SSH y evitar accesos no autorizados a tu servidor Linux: cambio de puerto, claves ed25519 y Fail2ban."
 excerpt: "Configuración básica para endurecer SSH y evitar accesos no autorizados a tu servidor Linux."
 ---
 
