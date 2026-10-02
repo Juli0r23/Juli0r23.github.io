@@ -1,19 +1,39 @@
-<nav class="site-nav">
-  <a href="{{ '/' | relative_url }}" class="nav-logo">
+<nav class="site-nav" role="navigation" aria-label="Navegación principal">
+  <a href="{{ '/' | relative_url }}" class="nav-logo" aria-label="Inicio">
     <span class="prompt">~/</span>{{ site.github_username }}<span class="nav-cursor"></span>
   </a>
 
   <!-- Menú escritorio -->
   <ul class="nav-links">
-    <li><a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active"{% endif %}>inicio</a></li>
-    <li><a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog' %} class="active"{% endif %}>blog</a></li>
-    <li><a href="{{ '/proyectos/' | relative_url }}"{% if page.url contains '/proyectos' %} class="active"{% endif %}>proyectos</a></li>
-    <li><a href="{{ '/cv/' | relative_url }}"{% if page.url contains '/cv' %} class="active"{% endif %}>cv</a></li>
-    <li><a href="{{ '/contacto/' | relative_url }}"{% if page.url contains '/contacto' %} class="active"{% endif %}>contacto</a></li>
+    <li>
+      <a href="{{ '/' | relative_url }}"
+         {% if page.url == '/' %}class="active" aria-current="page"{% endif %}
+         title="$ cd ~/">inicio</a>
+    </li>
+    <li>
+      <a href="{{ '/blog/' | relative_url }}"
+         {% if page.url contains '/blog' %}class="active" aria-current="page"{% endif %}
+         title="$ ls ./blog">blog</a>
+    </li>
+    <li>
+      <a href="{{ '/proyectos/' | relative_url }}"
+         {% if page.url contains '/proyectos' %}class="active" aria-current="page"{% endif %}
+         title="$ ls ./proyectos">proyectos</a>
+    </li>
+    <li>
+      <a href="{{ '/cv/' | relative_url }}"
+         {% if page.url contains '/cv' %}class="active" aria-current="page"{% endif %}
+         title="$ cat cv.md">cv</a>
+    </li>
+    <li>
+      <a href="{{ '/contacto/' | relative_url }}"
+         {% if page.url contains '/contacto' %}class="active" aria-current="page"{% endif %}
+         title="$ ping contacto">contacto</a>
+    </li>
   </ul>
 
   <!-- Botón hamburguesa (solo móvil) -->
-  <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú">
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
     <span></span>
     <span></span>
     <span></span>
@@ -21,26 +41,48 @@
 </nav>
 
 <!-- Menú móvil desplegable -->
-<div class="nav-mobile" id="nav-mobile">
-  <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active"{% endif %}>inicio</a>
-  <a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog' %} class="active"{% endif %}>blog</a>
-  <a href="{{ '/proyectos/' | relative_url }}"{% if page.url contains '/proyectos' %} class="active"{% endif %}>proyectos</a>
-  <a href="{{ '/cv/' | relative_url }}"{% if page.url contains '/cv' %} class="active"{% endif %}>cv</a>
-  <a href="{{ '/contacto/' | relative_url }}"{% if page.url contains '/contacto' %} class="active"{% endif %}>contacto</a>
+<div class="nav-mobile" id="nav-mobile" aria-hidden="true">
+  <a href="{{ '/' | relative_url }}"
+     {% if page.url == '/' %}class="active" aria-current="page"{% endif %}>inicio</a>
+  <a href="{{ '/blog/' | relative_url }}"
+     {% if page.url contains '/blog' %}class="active" aria-current="page"{% endif %}>blog</a>
+  <a href="{{ '/proyectos/' | relative_url }}"
+     {% if page.url contains '/proyectos' %}class="active" aria-current="page"{% endif %}>proyectos</a>
+  <a href="{{ '/cv/' | relative_url }}"
+     {% if page.url contains '/cv' %}class="active" aria-current="page"{% endif %}>cv</a>
+  <a href="{{ '/contacto/' | relative_url }}"
+     {% if page.url contains '/contacto' %}class="active" aria-current="page"{% endif %}>contacto</a>
 </div>
 
 <script>
-  const btn = document.getElementById('nav-hamburger');
+  const btn  = document.getElementById('nav-hamburger');
   const menu = document.getElementById('nav-mobile');
+
   btn.addEventListener('click', () => {
-    btn.classList.toggle('open');
-    menu.classList.toggle('open');
+    const isOpen = menu.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
+    menu.setAttribute('aria-hidden', !isOpen);
   });
+
   // Cerrar al hacer clic en un enlace
   menu.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
       btn.classList.remove('open');
       menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', false);
+      menu.setAttribute('aria-hidden', true);
     });
+  });
+
+  // Cerrar al pulsar Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.classList.contains('open')) {
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', false);
+      menu.setAttribute('aria-hidden', true);
+      btn.focus();
+    }
   });
 </script>
