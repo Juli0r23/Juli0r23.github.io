@@ -4,6 +4,8 @@ title: "Servidor Debian 13: instalación desde cero paso a paso"
 categories: [linux]
 tag_color: blue
 date: 2026-09-22
+reading_time: 3
+description: "Guía de instalación y configuración básica de Debian 13 como servidor: IP estática, gateway, DNS y verificación de conectividad."
 excerpt: "Guía de instalación y configuración básica de Debian 13 como servidor, con IP estática y servicios esenciales."
 ---
 
