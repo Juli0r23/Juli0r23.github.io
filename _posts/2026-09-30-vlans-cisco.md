@@ -4,6 +4,8 @@ title: "Configurando VLANs en Cisco: apuntes de clase"
 categories: [redes]
 tag_color: red
 date: 2026-09-30
+reading_time: 3
+description: "Cómo crear y asignar VLANs en un switch Cisco paso a paso: puertos access, trunk y verificación con show vlan brief."
 excerpt: "Cómo crear y asignar VLANs en un switch Cisco paso a paso, con los comandos que más uso en clase."
 ---
 
