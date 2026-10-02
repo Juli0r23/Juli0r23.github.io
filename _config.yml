@@ -1,16 +1,16 @@
 title: "Julior23"
 description: "Estudiante de ASIR · Redes, Linux & Administración de Sistemas"
 author: "Julio A. Romero Ramírez"
-email: "contacto@julior23.com"
+email: "contacto@julior23.es"
 url: "https://juli0r23.github.io"
 baseurl: ""
+
+lang: es
 
 github_username: Juli0r23
 linkedin_username: julior23
 
-# Opciones de posts
-permalink: /blog/:year/:month/:day/:title/
-paginate: 5
+og_image: "/assets/img/og-preview.png"
 
 # Excluir de la build
 exclude:
@@ -23,6 +23,7 @@ exclude:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 # Datos del CV
 cv:
