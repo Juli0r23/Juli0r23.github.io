@@ -1,8 +1,8 @@
 ---
 ---
- 
+
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap');
- 
+
 /* ============================================================
    VARIABLES — MODO OSCURO (por defecto)
    ============================================================ */
@@ -29,7 +29,7 @@
   --radius:           12px;
   --radius-sm:        8px;
 }
- 
+
 /* ============================================================
    VARIABLES — MODO CLARO
    Detecta preferencia del sistema O clase manual en <html>
@@ -57,7 +57,7 @@
     --card-bg:          rgba(255,255,255,0.6);
   }
 }
- 
+
 /* Toggle manual — clase en <html data-theme="light"> */
 :root[data-theme="light"] {
   --bg:               #f0f4f8;
@@ -80,7 +80,7 @@
   --terminal-bg:      rgba(255,255,255,0.8);
   --card-bg:          rgba(255,255,255,0.6);
 }
- 
+
 /* Toggle manual — clase en <html data-theme="dark"> */
 :root[data-theme="dark"] {
   --bg:               #080c10;
@@ -103,17 +103,17 @@
   --terminal-bg:      rgba(13,17,23,0.75);
   --card-bg:          rgba(13,24,36,0.5);
 }
- 
+
 /* ============================================================
    RESET & BASE
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
 html {
   scroll-behavior: smooth;
   transition: background 0.3s, color 0.3s;
 }
- 
+
 body {
   font-family: 'Inter', sans-serif;
   background: var(--bg);
@@ -123,13 +123,13 @@ body {
   line-height: 1.7;
   transition: background 0.3s, color 0.3s;
 }
- 
+
 /* Scrollbar personalizada */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: rgba(0,255,136,0.2); border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(0,255,136,0.4); }
- 
+
 /* Grid background */
 body::before {
   content: '';
@@ -142,7 +142,7 @@ body::before {
   pointer-events: none;
   z-index: 0;
 }
- 
+
 /* Scanline — solo en modo oscuro */
 :root:not([data-theme="light"]) body::after {
   content: '';
@@ -155,10 +155,10 @@ body::before {
   pointer-events: none;
   z-index: 0;
 }
- 
+
 a { color: var(--green); text-decoration: none; }
 img { max-width: 100%; }
- 
+
 /* ============================================================
    NAV
    ============================================================ */
@@ -177,7 +177,7 @@ img { max-width: 100%; }
   z-index: 100;
   transition: background 0.3s, border-color 0.3s;
 }
- 
+
 .nav-logo {
   font-family: 'JetBrains Mono', monospace;
   font-size: 14px;
@@ -199,7 +199,7 @@ img { max-width: 100%; }
   margin-left: 2px;
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
- 
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -228,7 +228,7 @@ img { max-width: 100%; }
 .nav-links a.active::after { transform: scaleX(1); }
 .nav-links a:hover,
 .nav-links a.active { color: var(--green); }
- 
+
 /* Toggle modo claro/oscuro */
 .theme-toggle {
   background: none;
@@ -255,14 +255,12 @@ img { max-width: 100%; }
   justify-content: center;
   font-size: 9px;
 }
-:root[data-theme="light"] .theme-toggle-thumb,
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) .theme-toggle-thumb {
-    transform: translateX(20px);
-  }
-}
 :root[data-theme="light"] .theme-toggle-thumb { transform: translateX(20px); }
- 
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .theme-toggle-thumb { transform: translateX(20px); }
+}
+
 /* Hamburger button */
 .nav-hamburger {
   display: none;
@@ -284,7 +282,7 @@ img { max-width: 100%; }
 .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
- 
+
 /* Mobile menu overlay */
 .nav-mobile {
   display: none;
@@ -320,7 +318,7 @@ img { max-width: 100%; }
   background: var(--glass-border);
   padding-left: 2.5rem;
 }
- 
+
 /* Toggle en móvil */
 .nav-mobile-theme {
   display: flex;
@@ -333,7 +331,7 @@ img { max-width: 100%; }
   border-bottom: 1px solid var(--glass-border);
 }
 .nav-mobile-theme span::before { content: './'; color: var(--muted); }
- 
+
 /* ============================================================
    LAYOUT
    ============================================================ */
@@ -344,7 +342,7 @@ img { max-width: 100%; }
   margin: 0 auto;
   padding: 96px 2rem 4rem;
 }
- 
+
 /* ============================================================
    SECTION HEADER
    ============================================================ */
@@ -365,7 +363,7 @@ img { max-width: 100%; }
   height: 1px;
   background: linear-gradient(to right, var(--glass-border-h), transparent);
 }
- 
+
 /* ============================================================
    GLASS CARD
    ============================================================ */
@@ -392,7 +390,7 @@ img { max-width: 100%; }
   box-shadow: 0 8px 32px rgba(0,0,0,0.15), 0 0 0 1px var(--glass-border) inset;
   transform: translateY(-2px);
 }
- 
+
 /* ============================================================
    BUTTONS
    ============================================================ */
@@ -430,7 +428,7 @@ img { max-width: 100%; }
   color: var(--text);
   transform: translateY(-1px);
 }
- 
+
 /* ============================================================
    POST TAGS
    ============================================================ */
@@ -447,7 +445,7 @@ img { max-width: 100%; }
 .tag-cyan   { color: var(--cyan);   border-color: rgba(57,208,216,0.3);  background: rgba(57,208,216,0.06); }
 .tag-green  { color: var(--green);  border-color: rgba(0,145,110,0.2);   background: rgba(0,145,110,0.05); }
 .tag-yellow { color: var(--yellow); border-color: rgba(227,179,65,0.3);  background: rgba(227,179,65,0.06); }
- 
+
 /* ============================================================
    TERMINAL WIDGET
    ============================================================ */
@@ -492,7 +490,7 @@ img { max-width: 100%; }
 .t-ok  { color: var(--cyan);  padding-left: 1.4rem; }
 .t-warn{ color: var(--yellow);padding-left: 1.4rem; }
 .t-err { color: var(--red);   padding-left: 1.4rem; }
- 
+
 /* ============================================================
    FOOTER
    ============================================================ */
@@ -511,7 +509,7 @@ img { max-width: 100%; }
   transition: border-color 0.3s;
 }
 .site-footer b { color: var(--green); font-weight: 400; }
- 
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
