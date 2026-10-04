@@ -1,0 +1,104 @@
+---
+layout: default
+title: 404
+permalink: /404.html
+---
+
+<main class="page-wrap" style="max-width:640px">
+
+  <div class="terminal" style="margin-bottom:2rem">
+    <div class="terminal-bar">
+      <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+      <span class="terminal-title">bash — julio@server:~</span>
+    </div>
+    <div class="terminal-body" id="terminal-404"></div>
+  </div>
+
+  <div style="text-align:center">
+    <a href="{{ '/' | relative_url }}" class="btn btn-primary">← volver al inicio</a>
+    <a href="{{ '/blog/' | relative_url }}" class="btn btn-ghost" style="margin-left:1rem">ir al blog</a>
+  </div>
+
+</main>
+
+<script>
+(function() {
+  const container = document.getElementById('terminal-404');
+  const path = window.location.pathname;
+
+  const lines = [
+    { type: 'cmd',  text: 'cd ' + path },
+    { type: 'err',  text: 'bash: cd: ' + path + ': No such file or directory' },
+    { type: 'cmd',  text: 'ls -la' + path },
+    { type: 'err',  text: 'ls: cannot access \'' + path + '\': No such file or directory' },
+    { type: 'cmd',  text: 'echo $?' },
+    { type: 'warn', text: '404' },
+    { type: 'cmd',  text: 'cat /etc/motd' },
+    { type: 'ok',   text: 'Página no encontrada. Puede que hayas escrito mal la URL.' },
+    { type: 'ok',   text: 'Pulsa el botón de abajo para volver al inicio.' },
+    { type: 'cursor', text: '' }
+  ];
+
+  function makeLine(type) {
+    const div = document.createElement('div');
+    if      (type === 'cmd')    div.className = 't-cmd';
+    else if (type === 'ok')     div.className = 't-ok';
+    else if (type === 'out')    div.className = 't-out';
+    else if (type === 'warn')   div.className = 't-warn';
+    else if (type === 'err')    div.className = 't-err';
+    else if (type === 'cursor') div.innerHTML = '<span style="color:var(--muted)">█</span>';
+    return div;
+  }
+
+  function typeText(el, text, cb) {
+    let i = 0;
+    function tick() {
+      if (i <= text.length) {
+        el.textContent = text.slice(0, i);
+        i++;
+        setTimeout(tick, 40 + Math.random() * 25);
+      } else {
+        if (cb) setTimeout(cb, 150);
+      }
+    }
+    tick();
+  }
+
+  function renderLines(index) {
+    if (index >= lines.length) return;
+    const line = lines[index];
+
+    if (line.type === 'cmd' && index > 0) {
+      const spacer = document.createElement('div');
+      spacer.style.height = '.4rem';
+      container.appendChild(spacer);
+    }
+
+    const el = makeLine(line.type);
+    container.appendChild(el);
+
+    if (line.type === 'cmd') {
+      typeText(el, line.text, () => renderLines(index + 1));
+    } else if (line.type === 'cursor') {
+      // nada, ya está el innerHTML
+    } else {
+      setTimeout(() => {
+        if (line.type !== 'cursor') el.textContent = line.text;
+        renderLines(index + 1);
+      }, 100);
+    }
+  }
+
+  setTimeout(() => renderLines(0), 400);
+})();
+</script>
+
+<style>
+.t-err {
+  color: var(--red);
+  padding-left: 1.4rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.9;
+}
+</style>
