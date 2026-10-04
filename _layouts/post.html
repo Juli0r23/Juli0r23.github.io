@@ -55,10 +55,53 @@ layout: default
 
 </main>
 
+<!-- BOTÓN COPIAR EN BLOQUES DE CÓDIGO -->
+<script>
+document.querySelectorAll('.post-content pre').forEach(function(pre) {
+  // Crear wrapper
+  const wrapper = document.createElement('div');
+  wrapper.className = 'code-block-wrap';
+  pre.parentNode.insertBefore(wrapper, pre);
+  wrapper.appendChild(pre);
+
+  // Detectar lenguaje si lo hay
+  const code = pre.querySelector('code');
+  const lang = code ? (code.className.match(/language-(\w+)/) || [])[1] : null;
+
+  // Label de lenguaje
+  if (lang) {
+    const label = document.createElement('span');
+    label.className = 'code-lang';
+    label.textContent = lang;
+    wrapper.insertBefore(label, pre);
+  }
+
+  // Botón copiar
+  const btn = document.createElement('button');
+  btn.className = 'copy-btn';
+  btn.textContent = 'copiar';
+  btn.setAttribute('aria-label', 'Copiar código');
+  wrapper.appendChild(btn);
+
+  btn.addEventListener('click', function() {
+    const text = code ? code.innerText : pre.innerText;
+    navigator.clipboard.writeText(text).then(function() {
+      btn.textContent = '✓ copiado';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = 'copiar';
+        btn.classList.remove('copied');
+      }, 2000);
+    }).catch(function() {
+      btn.textContent = 'error';
+      setTimeout(function() { btn.textContent = 'copiar'; }, 2000);
+    });
+  });
+});
+</script>
+
 <style>
-.post-header {
-  margin-bottom: 2.5rem;
-}
+.post-header { margin-bottom: 2.5rem; }
 .post-meta-top {
   display: flex;
   align-items: center;
@@ -128,21 +171,6 @@ layout: default
   border-radius: 4px;
   color: var(--green);
 }
-.post-content pre {
-  background: rgba(8,12,16,0.8);
-  border: 1px solid rgba(0,255,136,0.1);
-  border-radius: 8px;
-  padding: 1.25rem 1.5rem;
-  overflow-x: auto;
-  margin: 1.25rem 0;
-}
-.post-content pre code {
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: 13px;
-  color: var(--text);
-}
 .post-content blockquote {
   border-left: 2px solid var(--green);
   padding-left: 1rem;
@@ -152,6 +180,57 @@ layout: default
 }
 .post-content a { color: var(--green); }
 .post-content a:hover { text-decoration: underline; }
+
+/* Bloques de código con botón copiar */
+.code-block-wrap {
+  position: relative;
+  margin: 1.25rem 0;
+}
+.code-block-wrap pre {
+  background: rgba(8,12,16,0.8);
+  border: 1px solid rgba(0,255,136,0.1);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  padding-top: 2.25rem;
+  overflow-x: auto;
+  margin: 0;
+}
+.code-block-wrap pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 13px;
+  color: var(--text);
+}
+.code-lang {
+  position: absolute;
+  top: 0.6rem;
+  left: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+}
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  background: rgba(13,24,36,0.8);
+  border: 1px solid var(--glass-border);
+  border-radius: 4px;
+  padding: 3px 10px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.copy-btn:hover { color: var(--green); border-color: rgba(0,255,136,0.3); }
+.copy-btn.copied { color: var(--cyan); border-color: rgba(57,208,216,0.3); }
+
+/* Navegación entre posts */
 .post-nav {
   display: flex;
   justify-content: space-between;
@@ -169,9 +248,14 @@ layout: default
   padding: 0.9rem 1.1rem;
   color: var(--text);
   font-size: 13px;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, transform 0.2s;
   max-width: 48%;
 }
-.post-nav-link:hover { border-color: var(--glass-border-h); color: var(--text); }
+.post-nav-link:hover { border-color: var(--glass-border-h); color: var(--text); transform: translateY(-2px); }
 .post-nav-link.next { text-align: right; margin-left: auto; }
+
+@media (max-width: 640px) {
+  .post-title { font-size: 1.5rem; }
+  .post-nav-link { max-width: 100%; }
+}
 </style>
