@@ -8,13 +8,25 @@ permalink: /blog/
 
   <div class="section-label">// blog</div>
   <h1 style="font-size:1.8rem;font-weight:600;color:#e6edf3;margin-bottom:.5rem">Notas &amp; apuntes</h1>
-  <p style="color:var(--text2);font-size:14px;margin-bottom:2.5rem;font-family:'JetBrains Mono',monospace">
+  <p style="color:var(--text2);font-size:14px;margin-bottom:2rem;font-family:'JetBrains Mono',monospace">
     {{ site.posts | size }} entradas · redes, linux, sistemas y más
   </p>
 
-  <div class="posts-list">
+  <!-- FILTROS -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">todos</button>
+    {% assign categories = site.posts | map: 'categories' | join: ',' | split: ',' | uniq | sort %}
+    {% for cat in categories %}
+    <button class="filter-btn" data-filter="{{ cat | strip }}">{{ cat | strip }}</button>
+    {% endfor %}
+  </div>
+
+  <!-- POSTS -->
+  <div class="posts-list" id="posts-list">
     {% for post in site.posts %}
-    <a href="{{ post.url | relative_url }}" class="post-item-full">
+    <a href="{{ post.url | relative_url }}"
+       class="post-item-full"
+       data-category="{{ post.categories | first }}">
       <div class="pif-left">
         <span class="tag tag-{{ post.tag_color | default: 'green' }}">{{ post.categories | first }}</span>
         <h2 class="pif-title">{{ post.title }}</h2>
@@ -24,15 +36,101 @@ permalink: /blog/
       </div>
       <div class="pif-right">
         <span class="pif-date">{{ post.date | date: "%d %b %Y" }}</span>
+        {% if post.reading_time %}
+        <span class="pif-read">{{ post.reading_time }} min</span>
+        {% endif %}
         <span class="pif-arrow">→</span>
       </div>
     </a>
     {% endfor %}
   </div>
 
+  <!-- Mensaje cuando no hay resultados -->
+  <div class="no-results" id="no-results" style="display:none">
+    <div class="terminal" style="max-width:400px;margin:2rem auto">
+      <div class="terminal-bar">
+        <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+        <span class="terminal-title">bash</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-cmd">grep -r "<span id="no-results-cat"></span>" ./posts</div>
+        <div class="t-warn">0 resultados encontrados</div>
+      </div>
+    </div>
+  </div>
+
 </main>
 
+<script>
+(function() {
+  const btns  = document.querySelectorAll('.filter-btn');
+  const posts = document.querySelectorAll('.post-item-full');
+  const noResults = document.getElementById('no-results');
+  const noResultsCat = document.getElementById('no-results-cat');
+
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const filter = btn.getAttribute('data-filter');
+
+      // Actualizar botón activo
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+
+      // Filtrar posts
+      let visible = 0;
+      posts.forEach(function(post) {
+        if (filter === 'all' || post.getAttribute('data-category') === filter) {
+          post.style.display = 'flex';
+          visible++;
+        } else {
+          post.style.display = 'none';
+        }
+      });
+
+      // Mostrar mensaje si no hay resultados
+      if (visible === 0) {
+        noResults.style.display = 'block';
+        noResultsCat.textContent = filter;
+      } else {
+        noResults.style.display = 'none';
+      }
+    });
+  });
+})();
+</script>
+
 <style>
+/* Filtros */
+.filter-bar {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+}
+.filter-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 4px 14px;
+  border-radius: 4px;
+  border: 1px solid var(--glass-border);
+  background: transparent;
+  color: var(--text2);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  text-transform: lowercase;
+}
+.filter-btn:hover {
+  color: var(--green);
+  border-color: rgba(0,255,136,0.3);
+}
+.filter-btn.active {
+  color: var(--green);
+  border-color: var(--green);
+  background: rgba(0,255,136,0.07);
+}
+.filter-btn::before { content: '# '; color: var(--muted); }
+
+/* Posts */
 .posts-list { display:flex;flex-direction:column;gap:.75rem; }
 .post-item-full {
   background: rgba(13,24,36,0.5);
@@ -54,6 +152,12 @@ permalink: /blog/
 .pif-excerpt { font-size:12.5px;color:var(--text2);line-height:1.5; }
 .pif-right { display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;flex-shrink:0; }
 .pif-date { font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap; }
+.pif-read { font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted); }
 .pif-arrow { color:var(--muted);transition:color 0.2s; }
 .post-item-full:hover .pif-arrow { color:var(--green); }
+
+@media (max-width:640px) {
+  .post-item-full { flex-direction:column;align-items:flex-start;gap:.75rem; }
+  .pif-right { flex-direction:row;align-items:center;width:100%;justify-content:space-between; }
+}
 </style>
