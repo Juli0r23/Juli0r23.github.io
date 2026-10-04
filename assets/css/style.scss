@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap');
 
 /* ============================================================
-   VARIABLES
+   VARIABLES — MODO OSCURO (por defecto)
    ============================================================ */
 :root {
   --bg:               #080c10;
@@ -22,8 +22,86 @@
   --glass-bg:         rgba(13,24,36,0.55);
   --glass-border:     rgba(0,255,136,0.08);
   --glass-border-h:   rgba(0,255,136,0.22);
+  --nav-bg:           rgba(8,12,16,0.85);
+  --nav-mobile-bg:    rgba(8,12,16,0.98);
+  --terminal-bg:      rgba(13,17,23,0.75);
+  --card-bg:          rgba(13,24,36,0.5);
   --radius:           12px;
   --radius-sm:        8px;
+}
+
+/* ============================================================
+   VARIABLES — MODO CLARO
+   Detecta preferencia del sistema O clase manual en <html>
+   ============================================================ */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg:               #f0f4f8;
+    --bg2:              #e2e8f0;
+    --green:            #00916e;
+    --green-dim:        #007a5c;
+    --green-glow:       rgba(0,145,110,0.1);
+    --blue:             #2563eb;
+    --cyan:             #0891b2;
+    --yellow:           #b45309;
+    --red:              #dc2626;
+    --muted:            #94a3b8;
+    --text:             #1e293b;
+    --text2:            #475569;
+    --glass-bg:         rgba(255,255,255,0.7);
+    --glass-border:     rgba(0,145,110,0.12);
+    --glass-border-h:   rgba(0,145,110,0.3);
+    --nav-bg:           rgba(240,244,248,0.9);
+    --nav-mobile-bg:    rgba(240,244,248,0.99);
+    --terminal-bg:      rgba(255,255,255,0.8);
+    --card-bg:          rgba(255,255,255,0.6);
+  }
+}
+
+/* Toggle manual — clase en <html data-theme="light"> */
+:root[data-theme="light"] {
+  --bg:               #f0f4f8;
+  --bg2:              #e2e8f0;
+  --green:            #00916e;
+  --green-dim:        #007a5c;
+  --green-glow:       rgba(0,145,110,0.1);
+  --blue:             #2563eb;
+  --cyan:             #0891b2;
+  --yellow:           #b45309;
+  --red:              #dc2626;
+  --muted:            #94a3b8;
+  --text:             #1e293b;
+  --text2:            #475569;
+  --glass-bg:         rgba(255,255,255,0.7);
+  --glass-border:     rgba(0,145,110,0.12);
+  --glass-border-h:   rgba(0,145,110,0.3);
+  --nav-bg:           rgba(240,244,248,0.9);
+  --nav-mobile-bg:    rgba(240,244,248,0.99);
+  --terminal-bg:      rgba(255,255,255,0.8);
+  --card-bg:          rgba(255,255,255,0.6);
+}
+
+/* Toggle manual — clase en <html data-theme="dark"> */
+:root[data-theme="dark"] {
+  --bg:               #080c10;
+  --bg2:              #0d1117;
+  --green:            #00ff88;
+  --green-dim:        #00cc6a;
+  --green-glow:       rgba(0,255,136,0.12);
+  --blue:             #58a6ff;
+  --cyan:             #39d0d8;
+  --yellow:           #e3b341;
+  --red:              #f78166;
+  --muted:            #3d4f5c;
+  --text:             #cdd9e5;
+  --text2:            #768f9f;
+  --glass-bg:         rgba(13,24,36,0.55);
+  --glass-border:     rgba(0,255,136,0.08);
+  --glass-border-h:   rgba(0,255,136,0.22);
+  --nav-bg:           rgba(8,12,16,0.85);
+  --nav-mobile-bg:    rgba(8,12,16,0.98);
+  --terminal-bg:      rgba(13,17,23,0.75);
+  --card-bg:          rgba(13,24,36,0.5);
 }
 
 /* ============================================================
@@ -31,7 +109,10 @@
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  transition: background 0.3s, color 0.3s;
+}
 
 body {
   font-family: 'Inter', sans-serif;
@@ -40,6 +121,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   line-height: 1.7;
+  transition: background 0.3s, color 0.3s;
 }
 
 /* Scrollbar personalizada */
@@ -54,15 +136,15 @@ body::before {
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0,255,136,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,136,0.025) 1px, transparent 1px);
+    linear-gradient(var(--glass-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
   background-size: 40px 40px;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Scanline */
-body::after {
+/* Scanline — solo en modo oscuro */
+:root:not([data-theme="light"]) body::after {
   content: '';
   position: fixed;
   inset: 0;
@@ -84,15 +166,16 @@ img { max-width: 100%; }
   position: fixed;
   top: 0; left: 0; right: 0;
   height: 56px;
-  background: rgba(8,12,16,0.85);
+  background: var(--nav-bg);
   backdrop-filter: blur(18px) saturate(160%);
   -webkit-backdrop-filter: blur(18px) saturate(160%);
-  border-bottom: 1px solid rgba(0,255,136,0.07);
+  border-bottom: 1px solid var(--glass-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 2.5rem;
   z-index: 100;
+  transition: background 0.3s, border-color 0.3s;
 }
 
 .nav-logo {
@@ -119,6 +202,7 @@ img { max-width: 100%; }
 
 .nav-links {
   display: flex;
+  align-items: center;
   gap: 2rem;
   list-style: none;
 }
@@ -144,6 +228,40 @@ img { max-width: 100%; }
 .nav-links a.active::after { transform: scaleX(1); }
 .nav-links a:hover,
 .nav-links a.active { color: var(--green); }
+
+/* Toggle modo claro/oscuro */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--glass-border);
+  border-radius: 99px;
+  cursor: pointer;
+  width: 44px;
+  height: 24px;
+  padding: 0;
+  position: relative;
+  transition: border-color 0.2s, background 0.3s;
+  flex-shrink: 0;
+}
+.theme-toggle:hover { border-color: var(--green); }
+.theme-toggle-thumb {
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--green);
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1), background 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+}
+:root[data-theme="light"] .theme-toggle-thumb,
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .theme-toggle-thumb {
+    transform: translateX(20px);
+  }
+}
+:root[data-theme="light"] .theme-toggle-thumb { transform: translateX(20px); }
 
 /* Hamburger button */
 .nav-hamburger {
@@ -172,14 +290,15 @@ img { max-width: 100%; }
   display: none;
   position: fixed;
   top: 56px; left: 0; right: 0;
-  background: rgba(8,12,16,0.98);
+  background: var(--nav-mobile-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0,255,136,0.1);
+  border-bottom: 1px solid var(--glass-border);
   z-index: 99;
   padding: 0.5rem 0 1rem;
   flex-direction: column;
   animation: slideDown 0.2s ease;
+  transition: background 0.3s;
 }
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-8px); }
@@ -191,16 +310,29 @@ img { max-width: 100%; }
   font-size: 14px;
   color: var(--text2);
   padding: 0.9rem 2rem;
-  border-bottom: 1px solid rgba(0,255,136,0.05);
+  border-bottom: 1px solid var(--glass-border);
   transition: color 0.2s, background 0.2s, padding-left 0.2s;
 }
 .nav-mobile a::before { content: './'; color: var(--muted); }
 .nav-mobile a:hover,
 .nav-mobile a.active {
   color: var(--green);
-  background: rgba(0,255,136,0.04);
+  background: var(--glass-border);
   padding-left: 2.5rem;
 }
+
+/* Toggle en móvil */
+.nav-mobile-theme {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--text2);
+  border-bottom: 1px solid var(--glass-border);
+}
+.nav-mobile-theme span::before { content: './'; color: var(--muted); }
 
 /* ============================================================
    LAYOUT
@@ -231,20 +363,20 @@ img { max-width: 100%; }
   content: '';
   flex: 1;
   height: 1px;
-  background: linear-gradient(to right, rgba(0,255,136,0.2), transparent);
+  background: linear-gradient(to right, var(--glass-border-h), transparent);
 }
 
 /* ============================================================
    GLASS CARD
    ============================================================ */
 .glass-card {
-  background: rgba(13,24,36,0.5);
+  background: var(--card-bg);
   backdrop-filter: blur(16px) saturate(150%);
   -webkit-backdrop-filter: blur(16px) saturate(150%);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius);
   padding: 1.4rem;
-  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s, background 0.3s;
   position: relative;
   overflow: hidden;
 }
@@ -253,11 +385,11 @@ img { max-width: 100%; }
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(0,255,136,0.18), transparent);
+  background: linear-gradient(to right, transparent, var(--glass-border-h), transparent);
 }
 .glass-card:hover {
   border-color: var(--glass-border-h);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,255,136,0.06) inset;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15), 0 0 0 1px var(--glass-border) inset;
   transform: translateY(-2px);
 }
 
@@ -284,7 +416,7 @@ img { max-width: 100%; }
 }
 .btn-primary:hover {
   background: rgba(0,255,136,0.18);
-  box-shadow: 0 0 24px rgba(0,255,136,0.2);
+  box-shadow: 0 0 24px rgba(0,255,136,0.15);
   color: var(--green);
   transform: translateY(-1px);
 }
@@ -313,28 +445,28 @@ img { max-width: 100%; }
 .tag-red    { color: var(--red);    border-color: rgba(247,129,102,0.3); background: rgba(247,129,102,0.06); }
 .tag-blue   { color: var(--blue);   border-color: rgba(88,166,255,0.3);  background: rgba(88,166,255,0.06); }
 .tag-cyan   { color: var(--cyan);   border-color: rgba(57,208,216,0.3);  background: rgba(57,208,216,0.06); }
-.tag-green  { color: var(--green);  border-color: rgba(0,255,136,0.2);   background: rgba(0,255,136,0.05); }
+.tag-green  { color: var(--green);  border-color: rgba(0,145,110,0.2);   background: rgba(0,145,110,0.05); }
 .tag-yellow { color: var(--yellow); border-color: rgba(227,179,65,0.3);  background: rgba(227,179,65,0.06); }
 
 /* ============================================================
    TERMINAL WIDGET
    ============================================================ */
 .terminal {
-  background: rgba(13,17,23,0.75);
+  background: var(--terminal-bg);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(0,255,136,0.1);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04);
-  transition: box-shadow 0.3s;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.04);
+  transition: box-shadow 0.3s, background 0.3s;
 }
 .terminal:hover {
-  box-shadow: 0 12px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,255,136,0.08), inset 0 1px 0 rgba(255,255,255,0.04);
+  box-shadow: 0 12px 48px rgba(0,0,0,0.2), 0 0 0 1px var(--glass-border), inset 0 1px 0 rgba(255,255,255,0.04);
 }
 .terminal-bar {
-  background: rgba(255,255,255,0.03);
-  border-bottom: 1px solid rgba(0,255,136,0.07);
+  background: rgba(128,128,128,0.05);
+  border-bottom: 1px solid var(--glass-border);
   padding: 10px 16px;
   display: flex;
   align-items: center;
@@ -359,13 +491,14 @@ img { max-width: 100%; }
 .t-out { color: var(--text2); padding-left: 1.4rem; }
 .t-ok  { color: var(--cyan);  padding-left: 1.4rem; }
 .t-warn{ color: var(--yellow);padding-left: 1.4rem; }
+.t-err { color: var(--red);   padding-left: 1.4rem; }
 
 /* ============================================================
    FOOTER
    ============================================================ */
 .site-footer {
   position: relative; z-index: 1;
-  border-top: 1px solid rgba(0,255,136,0.06);
+  border-top: 1px solid var(--glass-border);
   padding: 1.5rem 2.5rem;
   display: flex;
   justify-content: space-between;
@@ -375,6 +508,7 @@ img { max-width: 100%; }
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
   color: var(--muted);
+  transition: border-color 0.3s;
 }
 .site-footer b { color: var(--green); font-weight: 400; }
 
