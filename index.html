@@ -10,7 +10,7 @@ title: Inicio
     <div class="hero-left">
       <div class="hero-tag">
         <span class="dot-pulse"></span>
-        disponible para prácticas · {{ site.cv.ubicacion }}
+        disponible para prácticas · presencial o remoto · {{ site.cv.ubicacion }}
       </div>
 
       <h1 class="hero-name">{{ site.author }} <span class="name-hl">.</span></h1>
@@ -32,42 +32,47 @@ title: Inicio
         <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
         <span class="terminal-title">bash — julio@server:~</span>
       </div>
-      <div class="terminal-body">
-        <div class="t-cmd">whoami</div>
-        <div class="t-ok">{{ site.github_username }}</div>
-        <div style="height:.4rem"></div>
-        <div class="t-cmd">cat about.txt</div>
-        <div class="t-out">{{ site.cv.curso }}</div>
-        <div class="t-out">Redes &amp; Sistemas Linux</div>
-        <div class="t-out">{{ site.cv.ubicacion }}</div>
-        <div style="height:.4rem"></div>
-        <div class="t-cmd">ping 8.8.8.8 -c 1</div>
-        <div class="t-ok">64 bytes: time=12.4ms</div>
-        <div style="height:.4rem"></div>
-        <div class="t-cmd">uptime</div>
-        <div class="t-warn">aprendiendo... 100%</div>
-        <div style="height:.4rem"></div>
-        <div class="t-cmd"><span style="color:var(--muted)">█</span></div>
+      <div class="terminal-body" id="typed-terminal">
+        <!-- El contenido se inyecta por JS con efecto typing -->
       </div>
     </div>
   </div>
+
+  <!-- AHORA MISMO -->
+  <section class="home-section">
+    <div class="section-label">// ahora mismo</div>
+    <div class="now-grid">
+      <div class="now-item glass-card">
+        <span class="now-label">$ estudiando</span>
+        <span class="now-value">VLANs, OSPF, SRI · 2º ASIR</span>
+      </div>
+      <div class="now-item glass-card">
+        <span class="now-label">$ objetivo</span>
+        <span class="now-value">CCNA · CompTIA Network+</span>
+      </div>
+      <div class="now-item glass-card">
+        <span class="now-label">$ buscando</span>
+        <span class="now-value">prácticas en redes o sistemas · 2027</span>
+      </div>
+    </div>
+  </section>
 
   <!-- SOBRE MÍ -->
   <section class="home-section">
     <div class="section-label">// sobre mí</div>
     <div class="cards-grid">
       <div class="glass-card">
-        <div class="card-icon">🌐</div>
+        <div class="card-badge">[NET]</div>
         <h3>Redes</h3>
         <p>Configuración de switches, routers y VLANs. Protocolos TCP/IP, routing estático y dinámico con OSPF y RIP.</p>
       </div>
       <div class="glass-card">
-        <div class="card-icon">🐧</div>
+        <div class="card-badge">[SYS]</div>
         <h3>Linux &amp; Servidores</h3>
         <p>Administración Debian/Ubuntu. Configuración de servicios: SSH, DNS, DHCP, Apache, Nginx.</p>
       </div>
       <div class="glass-card">
-        <div class="card-icon">🔒</div>
+        <div class="card-badge">[SEC]</div>
         <h3>Seguridad</h3>
         <p>Fundamentos de ciberseguridad, firewalls, VPNs y hardening básico de sistemas.</p>
       </div>
@@ -138,7 +143,7 @@ title: Inicio
         <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text2)">{{ site.email }}</p>
       </div>
       <div class="hero-btns" style="margin:0">
-        <a href="mailto:{{ site.email }}" class="btn btn-primary">enviar email</a>
+        <a href="{{ '/contacto/' | relative_url }}" class="btn btn-primary">contactar →</a>
         {% if site.github_username %}
         <a href="https://github.com/{{ site.github_username }}" class="btn btn-ghost" target="_blank">GitHub</a>
         {% endif %}
@@ -150,6 +155,111 @@ title: Inicio
   </section>
 
 </main>
+
+<!-- TYPING EFFECT -->
+<script>
+(function() {
+  const lines = [
+    { type: 'cmd',  text: 'whoami' },
+    { type: 'ok',   text: 'Juli0r23' },
+    { type: 'cmd',  text: 'cat about.txt' },
+    { type: 'out',  text: 'ASIR · 2º Año' },
+    { type: 'out',  text: 'Redes & Sistemas Linux' },
+    { type: 'out',  text: 'Extremadura, España' },
+    { type: 'cmd',  text: 'ping 8.8.8.8 -c 1' },
+    { type: 'ok',   text: '64 bytes: time=12.4ms' },
+    { type: 'cmd',  text: 'uptime' },
+    { type: 'warn', text: '' },   // uptime dinámico
+    { type: 'cursor', text: '' }
+  ];
+
+  const container = document.getElementById('typed-terminal');
+  if (!container) return;
+
+  const startTime = Date.now();
+  let uptimeEl = null;
+
+  // Actualiza el uptime cada segundo
+  function updateUptime() {
+    if (!uptimeEl) return;
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    const h = String(Math.floor(elapsed / 3600)).padStart(2,'0');
+    const m = String(Math.floor((elapsed % 3600) / 60)).padStart(2,'0');
+    const s = String(elapsed % 60).padStart(2,'0');
+    uptimeEl.textContent = 'aprendiendo... ' + h + ':' + m + ':' + s;
+  }
+
+  function makeLine(type, text) {
+    const div = document.createElement('div');
+    if (type === 'cmd') {
+      div.className = 't-cmd';
+      div.textContent = text;
+    } else if (type === 'ok') {
+      div.className = 't-ok';
+      div.textContent = text;
+    } else if (type === 'out') {
+      div.className = 't-out';
+      div.textContent = text;
+    } else if (type === 'warn') {
+      div.className = 't-warn';
+      uptimeEl = div;
+      updateUptime();
+      setInterval(updateUptime, 1000);
+    } else if (type === 'cursor') {
+      div.className = 't-cmd';
+      div.innerHTML = '<span style="color:var(--muted)">█</span>';
+    }
+    return div;
+  }
+
+  function typeText(el, text, cb) {
+    let i = 0;
+    el.textContent = '';
+    // Para líneas cmd añadimos el prefijo $ visualmente via CSS
+    // pero el texto real lo escribimos carácter a carácter
+    function tick() {
+      if (i <= text.length) {
+        el.textContent = text.slice(0, i);
+        i++;
+        setTimeout(tick, 45 + Math.random() * 30);
+      } else {
+        if (cb) setTimeout(cb, 180);
+      }
+    }
+    tick();
+  }
+
+  function renderLines(index) {
+    if (index >= lines.length) return;
+    const line = lines[index];
+
+    // Añadir espacio entre bloques de comandos
+    if (line.type === 'cmd' && index > 0) {
+      const spacer = document.createElement('div');
+      spacer.style.height = '.4rem';
+      container.appendChild(spacer);
+    }
+
+    const el = makeLine(line.type, '');
+    container.appendChild(el);
+
+    if (line.type === 'cmd') {
+      typeText(el, line.text, () => renderLines(index + 1));
+    } else if (line.type === 'warn' || line.type === 'cursor') {
+      renderLines(index + 1);
+    } else {
+      // out y ok aparecen de golpe con un pequeño delay
+      setTimeout(() => {
+        el.textContent = line.text;
+        renderLines(index + 1);
+      }, 120);
+    }
+  }
+
+  // Empezar con un pequeño delay inicial
+  setTimeout(() => renderLines(0), 600);
+})();
+</script>
 
 <style>
 .hero {
@@ -197,24 +307,55 @@ title: Inicio
 }
 .hero-line::before { content: '> '; color: var(--green); font-weight: 500; }
 .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-.hero-terminal { min-width: 260px; }
+.hero-terminal { min-width: 280px; }
 .home-section { margin-bottom: 3.5rem; }
+
+/* Ahora mismo */
+.now-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+.now-item {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.now-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--green);
+  text-transform: lowercase;
+}
+.now-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  color: var(--text2);
+}
+
+/* Cards sin emojis */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
 }
-.glass-card .card-icon {
-  width: 36px; height: 36px;
-  background: rgba(0,255,136,0.08);
-  border: 1px solid rgba(0,255,136,0.15);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 17px;
-  margin-bottom: 1rem;
+.card-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green);
+  background: rgba(0,255,136,0.07);
+  border: 1px solid rgba(0,255,136,0.18);
+  border-radius: 4px;
+  padding: 3px 8px;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  letter-spacing: .05em;
 }
 .glass-card h3 { font-size: 14px; font-weight: 500; color: #e6edf3; margin-bottom: .35rem; }
 .glass-card p  { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+/* Skills */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -230,13 +371,15 @@ title: Inicio
   display: flex;
   align-items: center;
   gap: 10px;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, transform 0.2s;
 }
-.skill-item:hover { border-color: var(--glass-border-h); }
+.skill-item:hover { border-color: var(--glass-border-h); transform: translateY(-2px); }
 .skill-dot { width:7px;height:7px;border-radius:50%;flex-shrink:0; }
 .skill-item span { font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--text); }
 .skill-bar-wrap { flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden;margin-left:auto;min-width:48px; }
 .skill-bar { height:100%;border-radius:99px;background:linear-gradient(to right,var(--green-dim),var(--green)); }
+
+/* Posts */
 .posts-list { display: flex; flex-direction: column; gap: .75rem; }
 .post-item {
   background: rgba(13,24,36,0.45);
@@ -256,6 +399,8 @@ title: Inicio
 .post-item-title { font-size:13.5px;color:var(--text);flex:1; }
 .post-arrow { color:var(--muted);font-size:16px;transition:color 0.2s; }
 .post-item:hover .post-arrow { color:var(--green); }
+
+/* Contacto */
 .contact-glass {
   background: rgba(13,24,36,0.5);
   backdrop-filter: blur(20px) saturate(160%);
@@ -275,9 +420,11 @@ title: Inicio
   content:'';position:absolute;top:0;left:0;right:0;height:1px;
   background:linear-gradient(to right,transparent,rgba(0,255,136,.25),transparent);
 }
+
 @media (max-width:640px) {
   .hero { grid-template-columns:1fr; }
   .hero-terminal { display:none; }
   .hero-name { font-size:2rem; }
+  .now-grid { grid-template-columns:1fr; }
 }
 </style>
