@@ -183,3 +183,92 @@ permalink: /cv/
 .cv-header { display:flex;flex-direction:column; }
 @media (max-width:640px) { .cv-grid { grid-template-columns:1fr; } }
 </style>
+
+<style>
+@media print {
+  /* Ocultar elementos de navegación */
+  .site-nav,
+  .site-footer,
+  .back-to-top,
+  .btn { display: none !important; }
+
+  /* Reset de página */
+  body {
+    background: #fff !important;
+    color: #1a1a1a !important;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  /* Quitar efectos glass y fondos */
+  .page-wrap { padding: 0 !important; max-width: 100% !important; }
+  .glass-card {
+    background: #fff !important;
+    backdrop-filter: none !important;
+    border: 1px solid #e0e0e0 !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+  .glass-card::before { display: none !important; }
+  .glass-card:hover { transform: none !important; }
+
+  /* Quitar grid background y scanlines */
+  body::before, body::after { display: none !important; }
+
+  /* Colores adaptados a impresión */
+  :root {
+    --green: #007a5c !important;
+    --text:  #1a1a1a !important;
+    --text2: #444 !important;
+    --muted: #888 !important;
+    --glass-border: #e0e0e0 !important;
+  }
+
+  /* Cabecera del CV */
+  .cv-header {
+    border-bottom: 2px solid #007a5c !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: .75rem !important;
+  }
+
+  /* Títulos */
+  .section-label {
+    color: #007a5c !important;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 3px;
+    margin-bottom: .5rem !important;
+  }
+  .section-label::after { display: none !important; }
+
+  /* Tags */
+  .tag {
+    border: 1px solid #ccc !important;
+    background: #f5f5f5 !important;
+    color: #444 !important;
+  }
+
+  /* Grid del CV */
+  .cv-grid { gap: .75rem !important; }
+  .cv-item { margin-bottom: .5rem !important; }
+  .cv-title { color: #1a1a1a !important; }
+  .cv-subtitle { color: #007a5c !important; }
+  .cv-desc { color: #444 !important; }
+  .cv-date { color: #888 !important; }
+
+  /* Saltos de página */
+  .cv-section { break-inside: avoid; }
+  .cv-col { break-inside: avoid; }
+
+  /* Quitar el botón de descarga en impresión */
+  a[download] { display: none !important; }
+
+  /* URLs de enlaces */
+  a[href]::after {
+    content: none !important;
+  }
+}
+</style>
+
+<div style="margin-top:1.5rem;text-align:center" class="no-print">
+  <button onclick="window.print()" class="btn btn-ghost">🖨️ imprimir / exportar PDF</button>
+</div>
