@@ -522,20 +522,14 @@ img { max-width: 100%; }
 }
 
 /* ============================================================
-   ANIMACIONES DE SCROLL
    ============================================================ */
-.fade-hidden {
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 0.55s cubic-bezier(.4,0,.2,1),
               transform 0.55s cubic-bezier(.4,0,.2,1);
 }
-.fade-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Sin animaciones si el usuario las tiene desactivadas */
-@media (prefers-reduced-motion: reduce) {
-  .fade-hidden { opacity: 1; transform: none; transition: none; }
 }
