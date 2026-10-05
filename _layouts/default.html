@@ -9,7 +9,7 @@
     // En pantallas más anchas se aplica zoom proporcional para igualar.
     // Móviles (innerWidth <= 768) quedan excluidos.
     (function() {
-      var REFERENCE = 1440;
+      var REFERENCE = 1440; // innerWidth del portátil que se ve bien
       var MOBILE    = 768;
       function applyZoom() {
         var w = window.innerWidth;
@@ -18,7 +18,9 @@
           return;
         }
         if (w > REFERENCE) {
-          document.documentElement.style.zoom = (REFERENCE / w);
+          // Escalar HACIA ARRIBA: el contenido ocupa la misma
+          // proporción visual que en el portátil de 1440px
+          document.documentElement.style.zoom = (w / REFERENCE);
         } else {
           document.documentElement.style.zoom = '';
         }
