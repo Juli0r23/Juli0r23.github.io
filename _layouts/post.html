@@ -107,14 +107,13 @@ document.querySelectorAll('.post-content pre').forEach(function(pre) {
   if (!bar || !content) return;
 
   function updateProgress() {
-    const contentTop    = content.getBoundingClientRect().top + window.scrollY;
-    const contentHeight = content.offsetHeight;
-    const scrolled      = window.scrollY - contentTop;
-    const percent       = Math.min(Math.max((scrolled / contentHeight) * 100, 0), 100);
-    bar.style.width     = percent + '%';
+    const scrollTop    = window.scrollY;
+    const docHeight    = document.documentElement.scrollHeight - window.innerHeight;
+    const percent      = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
+    bar.style.width    = percent + '%';
 
     // Cambiar color cuando llega al final
-    if (percent >= 100) {
+    if (percent >= 99) {
       bar.style.background = 'var(--cyan)';
     } else {
       bar.style.background = 'var(--green)';
