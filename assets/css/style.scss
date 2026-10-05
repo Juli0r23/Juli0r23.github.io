@@ -572,3 +572,23 @@ img { max-width: 100%; }
 /* Bash específico */
 .highlight .nb  { color: #00ff88; }                        /* $ comandos */
 .highlight .nv  { color: #39d0d8; }                        /* Variables $VAR */
+
+/* ============================================================
+   TRANSICIÓN ENTRE PÁGINAS
+   ============================================================ */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 9999;
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+.pt-hide {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition { display: none; }
+}
