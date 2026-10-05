@@ -156,6 +156,37 @@ title: Inicio
 
 </main>
 
+<!-- ANIMACIÓN DE ENTRADA AL SCROLL -->
+<script>
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // El hero entra inmediatamente, las secciones al hacer scroll
+  var sections = document.querySelectorAll('.home-section');
+  var cards    = document.querySelectorAll('.glass-card, .skill-item, .post-item, .now-item');
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+
+  sections.forEach(function(el) {
+    el.classList.add('fade-in-up');
+    observer.observe(el);
+  });
+
+  // Cards dentro de grids con delay escalonado
+  cards.forEach(function(el, i) {
+    el.classList.add('fade-in-up');
+    el.style.transitionDelay = (Math.min(i % 4, 3) * 0.08) + 's';
+    observer.observe(el);
+  });
+})();
+</script>
+
 <!-- TYPING EFFECT -->
 <script>
 (function() {
