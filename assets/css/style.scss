@@ -114,6 +114,8 @@ html {
   transition: background 0.3s, color 0.3s;
 }
 
+/* El escalado entre resoluciones lo gestiona el script en default.html */
+
 body {
   font-family: 'Inter', sans-serif;
   background: var(--bg);
@@ -138,7 +140,7 @@ body::before {
   background-image:
     linear-gradient(var(--glass-border) 1px, transparent 1px),
     linear-gradient(90deg, var(--glass-border) 1px, transparent 1px);
-  background-size: 40px 40px;
+  background-size: 2.5rem 2.5rem; /* rem → escala con el clamp del html, igual en 4K y 1080p */
   pointer-events: none;
   z-index: 0;
 }
@@ -338,6 +340,7 @@ img { max-width: 100%; }
 .page-wrap {
   position: relative;
   z-index: 1;
+  /* En 1080p → 1000px. En 4K → sigue siendo 1000px gracias al font-size clamp */
   max-width: 1000px;
   margin: 0 auto;
   padding: 96px 2rem 4rem;
