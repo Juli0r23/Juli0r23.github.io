@@ -114,19 +114,7 @@ html {
   transition: background 0.3s, color 0.3s;
 }
 
-/*
- * ESCALA CONSISTENTE ENTRE RESOLUCIONES
- * El portátil 1080p ve ~1366-1920px CSS → sin zoom, referencia.
- * 4K al 150% ve 2560px CSS → zoom 0.75 (= 1920/2560) para igualar.
- * 4K al 100% ve 3840px CSS → zoom 0.50 (= 1920/3840) para igualar.
- * Móviles quedan fuera del media query, no se tocan.
- */
-@media (min-width: 1921px) and (max-width: 2560px) {
-  html { zoom: 0.75; }
-}
-@media (min-width: 2561px) {
-  html { zoom: 0.5; }
-}
+/* Escalado entre resoluciones gestionado por el viewport dinámico en default.html */
 
 body {
   font-family: 'Inter', sans-serif;
