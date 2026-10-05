@@ -18,6 +18,33 @@
 
   {% include footer.html %}
 
+  <!-- TRANSICIÓN ENTRE PÁGINAS -->
+  <div class="page-transition" id="page-transition"></div>
+  <script>
+  (function() {
+    const overlay = document.getElementById('page-transition');
+
+    // Fade-in al cargar
+    window.addEventListener('DOMContentLoaded', function() {
+      overlay.classList.add('pt-hide');
+    });
+
+    // Fade-out al salir
+    document.querySelectorAll('a').forEach(function(a) {
+      const href = a.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('mailto') ||
+          href.startsWith('http') || a.target === '_blank') return;
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        overlay.classList.remove('pt-hide');
+        setTimeout(function() {
+          window.location.href = href;
+        }, 220);
+      });
+    });
+  })();
+  </script>
+
   <!-- BOTÓN VOLVER ARRIBA -->
   <button class="back-to-top" id="back-to-top" aria-label="Volver arriba">
     <span>↑</span>
