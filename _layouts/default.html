@@ -2,18 +2,29 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" id="vp" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <script>
-    // Si la pantalla física es más ancha que 1920px, forzamos el viewport
-    // a 1920px para que el navegador renderice siempre igual que en 1080p.
-    // En móviles (screen.width <= 768) no se toca nada.
+    // Escalado consistente entre resoluciones.
+    // Referencia: 1440px de innerWidth (portátil 1080p).
+    // En pantallas más anchas se aplica zoom proporcional para igualar.
+    // Móviles (innerWidth <= 768) quedan excluidos.
     (function() {
-      var sw = window.screen.width * window.devicePixelRatio;
-      if (sw > 1920 && window.screen.width > 768) {
-        document.getElementById('vp').setAttribute(
-          'content', 'width=1920, viewport-fit=cover'
-        );
+      var REFERENCE = 1440;
+      var MOBILE    = 768;
+      function applyZoom() {
+        var w = window.innerWidth;
+        if (w <= MOBILE) {
+          document.documentElement.style.zoom = '';
+          return;
+        }
+        if (w > REFERENCE) {
+          document.documentElement.style.zoom = (REFERENCE / w);
+        } else {
+          document.documentElement.style.zoom = '';
+        }
       }
+      applyZoom();
+      window.addEventListener('resize', applyZoom);
     })();
   </script>
   <title>{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
