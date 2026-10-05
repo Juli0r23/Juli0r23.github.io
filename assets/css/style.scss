@@ -592,3 +592,202 @@ img { max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   .page-transition { display: none; }
 }
+
+/* ============================================================
+   MEJORA 1 — NÚMEROS DE LÍNEA EN BLOQUES DE CÓDIGO
+   ============================================================ */
+.code-block-wrap {
+  counter-reset: line-number;
+}
+
+.code-block-wrap pre code .line {
+  display: block;
+  counter-increment: line-number;
+  padding-left: 3.2rem;
+  position: relative;
+  line-height: 1.7;
+}
+
+.code-block-wrap pre code .line::before {
+  content: counter(line-number);
+  position: absolute;
+  left: 0;
+  width: 2.4rem;
+  text-align: right;
+  color: var(--muted);
+  font-size: 11px;
+  user-select: none;
+  border-right: 1px solid var(--glass-border);
+  padding-right: 0.6rem;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.code-block-wrap:hover pre code .line::before {
+  opacity: 0.8;
+}
+
+/* Línea activa al hover */
+.code-block-wrap pre code .line:hover {
+  background: rgba(0,255,136,0.04);
+  border-radius: 2px;
+}
+.code-block-wrap pre code .line:hover::before {
+  color: var(--green);
+  opacity: 1;
+}
+
+/* Ajuste: el padding-top del pre ya existe, no duplicar */
+.code-block-wrap pre {
+  padding-left: 0 !important;
+  padding-right: 1rem;
+}
+
+/* ============================================================
+   MEJORA 2 — GLOW PULSANTE EN EL TERMINAL DEL HERO
+   ============================================================ */
+.hero-terminal .terminal {
+  transition:
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.hero-terminal .terminal:hover {
+  border-color: rgba(0,255,136,0.35);
+  box-shadow:
+    0 0 0 1px rgba(0,255,136,0.12),
+    0 0 20px rgba(0,255,136,0.12),
+    0 0 60px rgba(0,255,136,0.07),
+    0 16px 48px rgba(0,0,0,0.25);
+  animation: terminal-glow 2.4s ease-in-out infinite;
+}
+
+@keyframes terminal-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 0 1px rgba(0,255,136,0.12),
+      0 0 20px rgba(0,255,136,0.12),
+      0 0 60px rgba(0,255,136,0.07),
+      0 16px 48px rgba(0,0,0,0.25);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(0,255,136,0.22),
+      0 0 32px rgba(0,255,136,0.18),
+      0 0 80px rgba(0,255,136,0.10),
+      0 16px 48px rgba(0,0,0,0.25);
+  }
+}
+
+/* Detener animación si el usuario prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .hero-terminal .terminal:hover {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   MEJORA 3 — ANIMACIÓN DE ENTRADA AL HACER SCROLL
+   ============================================================ */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Retrasos escalonados para grids de cards */
+.fade-in-up:nth-child(2) { transition-delay: 0.08s; }
+.fade-in-up:nth-child(3) { transition-delay: 0.16s; }
+.fade-in-up:nth-child(4) { transition-delay: 0.24s; }
+
+/* Sin animaciones si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============================================================
+   MEJORA 4 — FOOTER MEJORADO
+   ============================================================ */
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.footer-left,
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-prompt {
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+
+.footer-site {
+  color: var(--green);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.footer-stack {
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+.footer-sep {
+  color: var(--muted);
+  font-size: 11px;
+  opacity: 0.4;
+}
+
+.footer-egg {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  transition: color 0.3s;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 280px;
+  text-overflow: ellipsis;
+}
+
+.footer-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  transition: color 0.2s;
+  border-bottom: 1px dashed var(--glass-border);
+  padding-bottom: 1px;
+}
+.footer-link:hover {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+@media (max-width: 640px) {
+  .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+  .footer-egg { max-width: 100%; }
+}
