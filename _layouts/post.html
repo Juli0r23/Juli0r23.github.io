@@ -7,6 +7,14 @@ layout: default
 
 <main class="page-wrap post-wrap">
 
+  <!-- Tabla de contenidos (escritorio, flotante izquierda) -->
+  <aside class="toc-desktop" id="toc-desktop" style="display:none">
+    <div class="toc-inner glass-card">
+      <div class="section-label" style="margin-bottom:.75rem">// índice</div>
+      <nav class="toc-list" id="toc-list-desktop"></nav>
+    </div>
+  </aside>
+
   <article class="post-full">
 
     <!-- Cabecera del post -->
@@ -64,14 +72,6 @@ layout: default
     </nav>
 
   </article>
-
-  <!-- Tabla de contenidos (escritorio, flotante) -->
-  <aside class="toc-desktop" id="toc-desktop" style="display:none">
-    <div class="toc-inner glass-card">
-      <div class="section-label" style="margin-bottom:.75rem">// índice</div>
-      <nav class="toc-list" id="toc-list-desktop"></nav>
-    </div>
-  </aside>
 
 </main>
 
@@ -138,10 +138,22 @@ layout: default
   // Marcar el heading activo al hacer scroll
   const allLinks = document.querySelectorAll('.toc-link');
   function updateActive() {
-    let current = '';
+    const scrollY  = window.scrollY;
+    const offset   = 120;
+    let current    = headings[0].id; // por defecto el primero
+
     headings.forEach(function(h) {
-      if (h.getBoundingClientRect().top <= 100) current = h.id;
+      if (h.getBoundingClientRect().top + scrollY - offset <= scrollY) {
+        current = h.id;
+      }
     });
+
+    // Si estamos al final del todo, marcar el último
+    const distFromBottom = document.documentElement.scrollHeight - scrollY - window.innerHeight;
+    if (distFromBottom < 10) {
+      current = headings[headings.length - 1].id;
+    }
+
     allLinks.forEach(function(a) {
       a.classList.toggle('toc-active', a.getAttribute('href') === '#' + current);
     });
@@ -215,10 +227,10 @@ document.querySelectorAll('.post-content pre').forEach(function(pre) {
   box-shadow: 0 0 8px rgba(0,255,136,0.5);
 }
 
-/* Layout con TOC lateral */
+/* Layout con TOC lateral izquierda */
 .post-wrap {
   display: grid;
-  grid-template-columns: 1fr 220px;
+  grid-template-columns: 220px 1fr;
   gap: 2rem;
   align-items: start;
   max-width: 1100px;
