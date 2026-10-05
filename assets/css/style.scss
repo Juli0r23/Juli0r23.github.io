@@ -520,3 +520,55 @@ img { max-width: 100%; }
   .page-wrap { padding: 80px 1.2rem 3rem; }
   .site-footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem 1.2rem; }
 }
+
+/* ============================================================
+   HIGHLIGHT DE SINTAXIS — Rouge (tema terminal)
+   ============================================================ */
+.highlight {
+  background: rgba(8,12,16,0.85);
+  border: 1px solid rgba(0,255,136,0.1);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  margin: 1.25rem 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.highlight pre { margin: 0; background: none; border: none; padding: 0; }
+.highlight code { background: none; border: none; padding: 0; color: var(--text); font-size: 13px; }
+
+/* Tokens de color */
+.highlight .c,
+.highlight .c1,
+.highlight .cm,
+.highlight .cs  { color: #546e7a; font-style: italic; }   /* Comentarios */
+.highlight .k,
+.highlight .kd,
+.highlight .kn,
+.highlight .kr  { color: #c792ea; }                        /* Keywords */
+.highlight .s,
+.highlight .s1,
+.highlight .s2,
+.highlight .sb  { color: #c3e88d; }                        /* Strings */
+.highlight .mi,
+.highlight .mf,
+.highlight .mh  { color: #f78c6c; }                        /* Números */
+.highlight .nf,
+.highlight .na  { color: #82aaff; }                        /* Funciones */
+.highlight .nb  { color: #00ff88; }                        /* Builtins */
+.highlight .nc  { color: #ffcb6b; }                        /* Clases */
+.highlight .o,
+.highlight .ow  { color: #89ddff; }                        /* Operadores */
+.highlight .p   { color: #89ddff; }                        /* Puntuación */
+.highlight .nv,
+.highlight .vi  { color: #f07178; }                        /* Variables */
+.highlight .nt  { color: #f78166; }                        /* Tags HTML */
+.highlight .nn  { color: #ffcb6b; }                        /* Namespace */
+.highlight .err { color: #f78166; background: none; }      /* Errores */
+.highlight .gd  { color: #f78166; }                        /* Diff eliminado */
+.highlight .gi  { color: #c3e88d; }                        /* Diff añadido */
+
+/* Bash específico */
+.highlight .nb  { color: #00ff88; }                        /* $ comandos */
+.highlight .nv  { color: #39d0d8; }                        /* Variables $VAR */
