@@ -2,7 +2,20 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" id="vp" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <script>
+    // Si la pantalla física es más ancha que 1920px, forzamos el viewport
+    // a 1920px para que el navegador renderice siempre igual que en 1080p.
+    // En móviles (screen.width <= 768) no se toca nada.
+    (function() {
+      var sw = window.screen.width * window.devicePixelRatio;
+      if (sw > 1920 && window.screen.width > 768) {
+        document.getElementById('vp').setAttribute(
+          'content', 'width=1920, viewport-fit=cover'
+        );
+      }
+    })();
+  </script>
   <title>{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
