@@ -520,16 +520,3 @@ img { max-width: 100%; }
   .page-wrap { padding: 80px 1.2rem 3rem; }
   .site-footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem 1.2rem; }
 }
-
-/* ============================================================
-   ============================================================ */
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.55s cubic-bezier(.4,0,.2,1),
-              transform 0.55s cubic-bezier(.4,0,.2,1);
-}
-  opacity: 1;
-  transform: translateY(0);
-}
-
-}
