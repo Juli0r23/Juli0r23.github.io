@@ -1,0 +1,56 @@
+<!-- Animaciones de entrada al hacer scroll -->
+<script>
+(function() {
+  // Elementos que se animarán al entrar en pantalla
+  const selectors = [
+    '.glass-card',
+    '.home-section',
+    '.hero-left',
+    '.hero-terminal',
+    '.section-label',
+    '.post-item',
+    '.post-item-full',
+    '.now-item',
+    '.skill-item',
+    '.cv-item',
+    '.contact-link',
+    '.post-full header',
+    '.post-content',
+    '.post-nav'
+  ].join(', ');
+
+  // Añadir clase fade-hidden a todos los elementos
+  function initAnimations() {
+    document.querySelectorAll(selectors).forEach(function(el, i) {
+      el.classList.add('fade-hidden');
+      // Delay escalonado para elementos del mismo grupo
+      el.style.transitionDelay = Math.min(i * 0.04, 0.4) + 's';
+    });
+
+    // Observador
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('fade-hidden');
+          entry.target.classList.add('fade-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.fade-hidden').forEach(function(el) {
+      observer.observe(el);
+    });
+  }
+
+  // Esperar a que el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAnimations);
+  } else {
+    initAnimations();
+  }
+})();
+</script>
