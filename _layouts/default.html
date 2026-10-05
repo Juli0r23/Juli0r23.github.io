@@ -9,6 +9,36 @@
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/img/favicon.svg' | relative_url }}">
   {% seo %}
   {% feed_meta %}
+
+  <!--
+    ESCALA CONSISTENTE ENTRE RESOLUCIONES
+    Referencia: 1920px (1080p a pantalla completa).
+    En ventanas más anchas se aplica zoom proporcional.
+    Móviles (<= 640px CSS) quedan excluidos, tienen su propio diseño.
+    Se ejecuta en <head> para evitar flash de contenido sin escalar.
+  -->
+  <script>
+  (function () {
+    var REFERENCE = 1920; // ancho de referencia en px CSS
+    var MOBILE_BP = 640;  // por debajo de esto, no tocar nada
+
+    function applyScale() {
+      var w = window.innerWidth;
+      if (w <= MOBILE_BP) {
+        document.documentElement.style.zoom = '';
+        return;
+      }
+      if (w > REFERENCE) {
+        document.documentElement.style.zoom = (REFERENCE / w).toFixed(4);
+      } else {
+        document.documentElement.style.zoom = '';
+      }
+    }
+
+    applyScale();
+    window.addEventListener('resize', applyScale);
+  })();
+  </script>
 </head>
 <body>
 
