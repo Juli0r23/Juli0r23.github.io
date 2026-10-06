@@ -14,18 +14,8 @@ permalink: /proyectos/
     <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
     <span class="terminal-title">bash — julio@server:~/proyectos</span>
   </div>
-  <div class="terminal-body">
-    <div class="t-cmd">ls -la ./proyectos</div>
-    <div class="t-out">total 0</div>
-    <div class="t-warn">drwxr-xr-x  construyendo...</div>
-    <div style="height:.4rem"></div>
-    <div class="t-cmd">git log --oneline</div>
-    <div class="t-ok">próximamente · trabajando en ello</div>
-    <div style="height:.4rem"></div>
-    <div class="t-cmd">eta --release</div>
-    <div class="t-warn">pronto™</div>
-    <div style="height:.4rem"></div>
-    <div class="t-cmd"><span style="color:var(--muted)">█</span></div>
+  <div class="terminal-body" id="typed-terminal-proyectos">
+    <!-- Contenido inyectado por JS -->
   </div>
 </div>
 
@@ -40,3 +30,76 @@ permalink: /proyectos/
 </div>
 
 </main>
+
+<script>
+(function() {
+  const lines = [
+    { type: 'cmd',    text: 'ls -la ./proyectos' },
+    { type: 'out',    text: 'total 0' },
+    { type: 'warn',   text: 'drwxr-xr-x  construyendo...' },
+    { type: 'cmd',    text: 'git log --oneline' },
+    { type: 'ok',     text: 'próximamente · trabajando en ello' },
+    { type: 'cmd',    text: 'eta --release' },
+    { type: 'warn',   text: 'pronto™' },
+    { type: 'cursor', text: '' }
+  ];
+
+  const container = document.getElementById('typed-terminal-proyectos');
+  if (!container) return;
+
+  function makeLine(type, text) {
+    const div = document.createElement('div');
+    if      (type === 'cmd')    { div.className = 't-cmd';  div.textContent = text; }
+    else if (type === 'ok')     { div.className = 't-ok';   div.textContent = text; }
+    else if (type === 'out')    { div.className = 't-out';  div.textContent = text; }
+    else if (type === 'warn')   { div.className = 't-warn'; div.textContent = text; }
+    else if (type === 'cursor') {
+      div.className = 't-cmd';
+      div.innerHTML = '<span style="color:var(--muted)">█</span>';
+    }
+    return div;
+  }
+
+  function typeText(el, text, cb) {
+    let i = 0;
+    el.textContent = '';
+    function tick() {
+      if (i <= text.length) {
+        el.textContent = text.slice(0, i);
+        i++;
+        setTimeout(tick, 45 + Math.random() * 30);
+      } else {
+        if (cb) setTimeout(cb, 180);
+      }
+    }
+    tick();
+  }
+
+  function renderLines(index) {
+    if (index >= lines.length) return;
+    const line = lines[index];
+
+    if (line.type === 'cmd' && index > 0) {
+      const spacer = document.createElement('div');
+      spacer.style.height = '.4rem';
+      container.appendChild(spacer);
+    }
+
+    const el = makeLine(line.type, '');
+    container.appendChild(el);
+
+    if (line.type === 'cmd') {
+      typeText(el, line.text, () => renderLines(index + 1));
+    } else if (line.type === 'cursor') {
+      renderLines(index + 1);
+    } else {
+      setTimeout(() => {
+        el.textContent = line.text;
+        renderLines(index + 1);
+      }, 120);
+    }
+  }
+
+  setTimeout(() => renderLines(0), 600);
+})();
+</script>
