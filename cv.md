@@ -38,7 +38,7 @@ permalink: /cv/
   <div class="cv-item glass-card">
     <div class="cv-item-header">
       <span class="cv-title">Técnico en SMR</span>
-      <span class="cv-date">2023 – 2025</span>
+      <span class="cv-date">2022 – 2025</span>
     </div>
     <div class="cv-subtitle">IES Suárez de Figueroa · Sistemas Microinformáticos y Redes</div>
     <div class="cv-desc">Formación en mantenimiento de equipos, redes locales y soporte técnico.</div>
@@ -59,7 +59,7 @@ permalink: /cv/
       <span class="tag tag-cyan">Soporte técnico</span>
       <span class="tag tag-green">Diagnóstico</span>
     </div>
-    <div class="cv-desc">Reparación y mantenimiento de teléfonos móviles, tablets y ordenadores. Prácticas de SMR (Sep 2024) con contrato posterior hasta Aug 2025. Prácticas de ASIR 1 con contrato posterior hasta Aug 2026.</div>
+    <div class="cv-desc">Reparación y mantenimiento de teléfonos móviles, tablets y ordenadores. Prácticas de SMR (sept 2024) con contrato posterior hasta ag 2025. Prácticas de ASIR 1 con contrato posterior hasta ag 2026.</div>
   </div>
   </div>
 
@@ -69,7 +69,7 @@ permalink: /cv/
   <div class="cv-item glass-card">
     <div class="cv-item-header">
       <span class="cv-title">Red empresarial en Cisco Packet Tracer</span>
-      <span class="cv-date">2025 – 2026</span>
+      <span class="cv-date"> </span>
     </div>
     <div style="display:flex;gap:.4rem;margin-bottom:.5rem;flex-wrap:wrap">
       <span class="tag tag-red">Redes</span>
@@ -81,7 +81,7 @@ permalink: /cv/
   <div class="cv-item glass-card">
     <div class="cv-item-header">
       <span class="cv-title">Servidor casero con Raspberry Pi</span>
-      <span class="cv-date">2025 – actualidad</span>
+      <span class="cv-date"> </span>
     </div>
     <div style="display:flex;gap:.4rem;margin-bottom:.5rem;flex-wrap:wrap">
       <span class="tag tag-cyan">Homelab</span>
@@ -94,7 +94,7 @@ permalink: /cv/
   <div class="cv-item glass-card">
     <div class="cv-item-header">
       <span class="cv-title">Servidor Debian 13 con IP estática</span>
-      <span class="cv-date">Sep 2026</span>
+      <span class="cv-date"> </span>
     </div>
     <div style="display:flex;gap:.4rem;margin-bottom:.5rem;flex-wrap:wrap">
       <span class="tag tag-cyan">SRI</span>
@@ -106,7 +106,7 @@ permalink: /cv/
   <div class="cv-item glass-card">
     <div class="cv-item-header">
       <span class="cv-title">SSH Hardening en servidor Linux</span>
-      <span class="cv-date">Sep 2026</span>
+      <span class="cv-date"> </span>
     </div>
     <div style="display:flex;gap:.4rem;margin-bottom:.5rem;flex-wrap:wrap">
       <span class="tag tag-cyan">Seguridad</span>
