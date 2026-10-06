@@ -18,9 +18,9 @@
           return;
         }
         if (w > REFERENCE) {
-          // Escalar HACIA ARRIBA: el contenido ocupa la misma
-          // proporción visual que en el portátil de 1440px
-          document.documentElement.style.zoom = (w / REFERENCE);
+          // Factor 0.9 para no escalar al 100% sino un poco menos,
+          // quedando visualmente igual que el portátil de referencia
+          document.documentElement.style.zoom = (w / REFERENCE) * 0.9;
         } else {
           document.documentElement.style.zoom = '';
         }
