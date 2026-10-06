@@ -266,7 +266,3 @@ permalink: /cv/
   a[href]::after { content: none !important; }
 }
 </style>
-
-<div style="margin-top:1.5rem;text-align:center" class="no-print">
-  <button onclick="window.print()" class="btn btn-ghost">🖨️ imprimir / exportar PDF</button>
-</div>
