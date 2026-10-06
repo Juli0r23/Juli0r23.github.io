@@ -14,6 +14,7 @@ permalink: /cv/
   <div style="display:flex;gap:1.5rem;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2)">
     <span>📧 contacto@julior23.es</span>
     <span>🐙 github.com/Juli0r23</span>
+    <span>💼 linkedin.com/in/julior23</span>
     <span>📍 Extremadura, ES</span>
   </div>
 </div>
@@ -30,8 +31,8 @@ permalink: /cv/
       <span class="cv-title">Técnico Superior en ASIR</span>
       <span class="cv-date">2025 – actualidad</span>
     </div>
-    <div class="cv-subtitle">IES-Suarez de Figueroa · Administración de Sistemas Informáticos en Red</div>
-    <div class="cv-desc">2º año · Módulos: Redes Locales, SRI, Seguridad, Administración de Sistemas Operativos</div>
+    <div class="cv-subtitle">IES Suárez de Figueroa · Administración de Sistemas Informáticos en Red</div>
+    <div class="cv-desc">2º año · Módulos: Redes Locales, SRI, Seguridad, Administración de Sistemas Operativos, Python</div>
   </div>
 
   <div class="cv-item glass-card">
@@ -39,12 +40,56 @@ permalink: /cv/
       <span class="cv-title">Técnico en SMR</span>
       <span class="cv-date">2023 – 2025</span>
     </div>
-    <div class="cv-subtitle">IES-Suarez de Figueroa · Sistemas Microinformáticos y Redes</div>
+    <div class="cv-subtitle">IES Suárez de Figueroa · Sistemas Microinformáticos y Redes</div>
+    <div class="cv-desc">Formación en mantenimiento de equipos, redes locales y soporte técnico.</div>
+  </div>
+  </div>
+
+  <div class="cv-section">
+  <div class="section-label">// experiencia</div>
+
+  <div class="cv-item glass-card">
+    <div class="cv-item-header">
+      <span class="cv-title">Técnico de reparación · Bolopapa</span>
+      <span class="cv-date">Sep 2024 – Ago 2026</span>
+    </div>
+    <div class="cv-subtitle" style="margin-bottom:.5rem">Reparación de dispositivos · Extremadura</div>
+    <div style="display:flex;gap:.4rem;margin-bottom:.5rem;flex-wrap:wrap">
+      <span class="tag tag-blue">Hardware</span>
+      <span class="tag tag-cyan">Soporte técnico</span>
+      <span class="tag tag-green">Diagnóstico</span>
+    </div>
+    <div class="cv-desc">Reparación y mantenimiento de teléfonos móviles, tablets y ordenadores. Prácticas de SMR (Sep 2024) con contrato posterior hasta Aug 2025. Prácticas de ASIR 1 con contrato posterior hasta Aug 2026.</div>
   </div>
   </div>
 
   <div class="cv-section">
   <div class="section-label">// proyectos</div>
+
+  <div class="cv-item glass-card">
+    <div class="cv-item-header">
+      <span class="cv-title">Red empresarial en Cisco Packet Tracer</span>
+      <span class="cv-date">2025 – 2026</span>
+    </div>
+    <div style="display:flex;gap:.4rem;margin-bottom:.5rem;flex-wrap:wrap">
+      <span class="tag tag-red">Redes</span>
+      <span class="tag tag-green">Cisco IOS</span>
+    </div>
+    <div class="cv-desc">Diseño e implementación de la red completa de una empresa: VLANs, direccionamiento IP, subredes, routing estático y dinámico, ACLs y conectividad entre sedes.</div>
+  </div>
+
+  <div class="cv-item glass-card">
+    <div class="cv-item-header">
+      <span class="cv-title">Servidor casero con Raspberry Pi</span>
+      <span class="cv-date">2025 – actualidad</span>
+    </div>
+    <div style="display:flex;gap:.4rem;margin-bottom:.5rem;flex-wrap:wrap">
+      <span class="tag tag-cyan">Homelab</span>
+      <span class="tag tag-blue">Linux</span>
+      <span class="tag tag-green">Docker</span>
+    </div>
+    <div class="cv-desc">Servidor doméstico basado en Raspberry Pi con servicios en Docker: monitorización, almacenamiento, DNS local y otros servicios self-hosted.</div>
+  </div>
 
   <div class="cv-item glass-card">
     <div class="cv-item-header">
@@ -70,30 +115,6 @@ permalink: /cv/
     <div class="cv-desc">Configuración de sshd_config para endurecer el acceso remoto: cambio de puerto, deshabilitación de root, autenticación por clave ed25519 e instalación de Fail2ban.</div>
   </div>
 
-  <div class="cv-item glass-card">
-    <div class="cv-item-header">
-      <span class="cv-title">Segmentación de red con VLANs Cisco</span>
-      <span class="cv-date">Sep 2026</span>
-    </div>
-    <div style="display:flex;gap:.4rem;margin-bottom:.5rem;flex-wrap:wrap">
-      <span class="tag tag-red">Redes</span>
-      <span class="tag tag-green">Cisco IOS</span>
-    </div>
-    <div class="cv-desc">Configuración de VLANs en switch Cisco: creación de VLANs, asignación de puertos en modo access y configuración de trunk entre switches.</div>
-  </div>
-
-  <div class="cv-item glass-card">
-    <div class="cv-item-header">
-      <span class="cv-title">Prácticas PHP — Variables y Operadores</span>
-      <span class="cv-date">2024 – 2025</span>
-    </div>
-    <div style="display:flex;gap:.4rem;margin-bottom:.5rem;flex-wrap:wrap">
-      <span class="tag tag-green">PHP</span>
-      <span class="tag tag-yellow">Git</span>
-    </div>
-    <div class="cv-desc">36 ejercicios progresivos sobre variables, tipos de datos, operadores aritméticos, lógicos y de comparación en PHP. Entregados mediante repositorio Git.</div>
-  </div>
-
   </div>
   </div>
 
@@ -110,24 +131,36 @@ permalink: /cv/
         <span class="tag tag-cyan">VLANs</span>
         <span class="tag tag-blue">OSPF</span>
         <span class="tag tag-green">DNS/DHCP</span>
+        <span class="tag tag-yellow">Packet Tracer</span>
       </div>
     </div>
     <div class="skill-group">
       <div class="skill-group-label">Sistemas</div>
       <div class="cv-tags">
-        <span class="tag tag-cyan">Linux</span>
+        <span class="tag tag-cyan">Linux (Debian)</span>
         <span class="tag tag-blue">Windows Server</span>
         <span class="tag tag-yellow">Bash</span>
         <span class="tag tag-green">SSH</span>
         <span class="tag tag-red">Apache/Nginx</span>
+        <span class="tag tag-cyan">Raspberry Pi</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">DevOps / Infra</div>
+      <div class="cv-tags">
+        <span class="tag tag-blue">Docker</span>
+        <span class="tag tag-green">Self-hosting</span>
+        <span class="tag tag-yellow">Monitorización</span>
+        <span class="tag tag-cyan">Homelab</span>
       </div>
     </div>
     <div class="skill-group">
       <div class="skill-group-label">Desarrollo</div>
       <div class="cv-tags">
-        <span class="tag tag-blue">PHP</span>
-        <span class="tag tag-green">HTML/CSS</span>
+        <span class="tag tag-blue">Python</span>
+        <span class="tag tag-green">PHP</span>
         <span class="tag tag-yellow">Git</span>
+        <span class="tag tag-cyan">HTML/CSS</span>
       </div>
     </div>
     <div class="skill-group" style="border:none;margin:0;padding-bottom:0">
@@ -149,12 +182,16 @@ permalink: /cv/
     </div>
     <div class="cv-desc">Fundamentos de redes: modelo OSI, TCP/IP, direccionamiento IPv4/IPv6 y configuración básica de dispositivos Cisco.</div>
   </div>
+  </div>
+
+  <div class="cv-section">
+  <div class="section-label">// objetivos</div>
   <div class="cv-item glass-card">
     <div class="cv-item-header">
-      <span class="cv-title">Objetivo 2027</span>
+      <span class="cv-title">Ciberseguridad · Pentesting</span>
       <span class="tag tag-yellow">En curso</span>
     </div>
-    <div class="cv-desc">Preparando CCNA (Cisco Certified Network Associate) y CompTIA Network+.</div>
+    <div class="cv-desc">Tras ASIR, formación especializada en ciberseguridad orientada al pentesting. Objetivo: certificaciones eJPT (eLearnSecurity) y CompTIA PenTest+, y a largo plazo OSCP.</div>
   </div>
   </div>
 
@@ -186,86 +223,28 @@ permalink: /cv/
 
 <style>
 @media print {
-  /* Ocultar elementos de navegación */
-  .site-nav,
-  .site-footer,
-  .back-to-top,
-  .btn { display: none !important; }
-
-  /* Reset de página */
-  body {
-    background: #fff !important;
-    color: #1a1a1a !important;
-    font-size: 12px;
-    line-height: 1.5;
-  }
-
-  /* Quitar efectos glass y fondos */
+  .site-nav, .site-footer, .back-to-top, .btn { display: none !important; }
+  body { background: #fff !important; color: #1a1a1a !important; font-size: 12px; line-height: 1.5; }
   .page-wrap { padding: 0 !important; max-width: 100% !important; }
-  .glass-card {
-    background: #fff !important;
-    backdrop-filter: none !important;
-    border: 1px solid #e0e0e0 !important;
-    box-shadow: none !important;
-    break-inside: avoid;
-  }
+  .glass-card { background: #fff !important; backdrop-filter: none !important; border: 1px solid #e0e0e0 !important; box-shadow: none !important; break-inside: avoid; }
   .glass-card::before { display: none !important; }
   .glass-card:hover { transform: none !important; }
-
-  /* Quitar grid background y scanlines */
   body::before, body::after { display: none !important; }
-
-  /* Colores adaptados a impresión */
-  :root {
-    --green: #007a5c !important;
-    --text:  #1a1a1a !important;
-    --text2: #444 !important;
-    --muted: #888 !important;
-    --glass-border: #e0e0e0 !important;
-  }
-
-  /* Cabecera del CV */
-  .cv-header {
-    border-bottom: 2px solid #007a5c !important;
-    margin-bottom: 1rem !important;
-    padding-bottom: .75rem !important;
-  }
-
-  /* Títulos */
-  .section-label {
-    color: #007a5c !important;
-    border-bottom: 1px solid #e0e0e0;
-    padding-bottom: 3px;
-    margin-bottom: .5rem !important;
-  }
+  :root { --green: #007a5c !important; --text: #1a1a1a !important; --text2: #444 !important; --muted: #888 !important; --glass-border: #e0e0e0 !important; }
+  .cv-header { border-bottom: 2px solid #007a5c !important; margin-bottom: 1rem !important; padding-bottom: .75rem !important; }
+  .section-label { color: #007a5c !important; border-bottom: 1px solid #e0e0e0; padding-bottom: 3px; margin-bottom: .5rem !important; }
   .section-label::after { display: none !important; }
-
-  /* Tags */
-  .tag {
-    border: 1px solid #ccc !important;
-    background: #f5f5f5 !important;
-    color: #444 !important;
-  }
-
-  /* Grid del CV */
+  .tag { border: 1px solid #ccc !important; background: #f5f5f5 !important; color: #444 !important; }
   .cv-grid { gap: .75rem !important; }
   .cv-item { margin-bottom: .5rem !important; }
   .cv-title { color: #1a1a1a !important; }
   .cv-subtitle { color: #007a5c !important; }
   .cv-desc { color: #444 !important; }
   .cv-date { color: #888 !important; }
-
-  /* Saltos de página */
   .cv-section { break-inside: avoid; }
   .cv-col { break-inside: avoid; }
-
-  /* Quitar el botón de descarga en impresión */
   a[download] { display: none !important; }
-
-  /* URLs de enlaces */
-  a[href]::after {
-    content: none !important;
-  }
+  a[href]::after { content: none !important; }
 }
 </style>
 
