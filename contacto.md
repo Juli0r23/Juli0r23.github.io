@@ -7,7 +7,7 @@ permalink: /contacto/
 <main class="page-wrap" style="max-width:640px">
 
 <div class="section-label">// contacto</div>
-<h1 style="font-size:1.8rem;font-weight:600;color:#e6edf3;margin-bottom:.5rem">¿Hablamos?</h1>
+<h1 class="page-title">¿Hablamos?</h1>
 <p style="color:var(--text2);font-size:14px;margin-bottom:2.5rem;font-family:'JetBrains Mono',monospace">
   > disponible para prácticas a partir de 2027 · presencial en Extremadura o remoto · interesado en redes, sistemas Linux y ciberseguridad.
 </p>
