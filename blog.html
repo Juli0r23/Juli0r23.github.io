@@ -7,7 +7,7 @@ permalink: /blog/
 <main class="page-wrap">
 
   <div class="section-label">// blog</div>
-  <h1 style="font-size:1.8rem;font-weight:600;color:#e6edf3;margin-bottom:.5rem">Notas &amp; apuntes</h1>
+  <h1 class="page-title">Notas &amp; apuntes</h1>
   <p style="color:var(--text2);font-size:14px;margin-bottom:2rem;font-family:'JetBrains Mono',monospace">
     {{ site.posts | size }} entradas · redes, linux, sistemas y más
   </p>
@@ -99,64 +99,6 @@ permalink: /blog/
 })();
 </script>
 
-<style>
-/* Filtros */
-.filter-bar {
-  display: flex;
-  gap: .5rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.75rem;
-}
-.filter-btn {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  padding: 4px 14px;
-  border-radius: 4px;
-  border: 1px solid var(--glass-border);
-  background: transparent;
-  color: var(--text2);
-  cursor: pointer;
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
-  text-transform: lowercase;
-}
-.filter-btn:hover {
-  color: var(--green);
-  border-color: rgba(0,255,136,0.3);
-}
-.filter-btn.active {
-  color: var(--green);
-  border-color: var(--green);
-  background: rgba(0,255,136,0.07);
-}
-.filter-btn::before { content: '# '; color: var(--muted); }
-
-/* Posts */
-.posts-list { display:flex;flex-direction:column;gap:.75rem; }
-.post-item-full {
-  background: rgba(13,24,36,0.5);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--glass-border);
-  border-radius: 10px;
-  padding: 1.25rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  color: var(--text);
-  transition: border-color 0.2s, transform 0.15s;
-}
-.post-item-full:hover { border-color:var(--glass-border-h);transform:translateX(4px);color:var(--text); }
-.pif-left { display:flex;flex-direction:column;gap:.4rem;flex:1; }
-.pif-title { font-size:14.5px;font-weight:500;color:#e6edf3; }
-.pif-excerpt { font-size:12.5px;color:var(--text2);line-height:1.5; }
-.pif-right { display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;flex-shrink:0; }
-.pif-date { font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap; }
-.pif-read { font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted); }
-.pif-arrow { color:var(--muted);transition:color 0.2s; }
-.post-item-full:hover .pif-arrow { color:var(--green); }
-
-@media (max-width:640px) {
   .post-item-full { flex-direction:column;align-items:flex-start;gap:.75rem; }
   .pif-right { flex-direction:row;align-items:center;width:100%;justify-content:space-between; }
 }
