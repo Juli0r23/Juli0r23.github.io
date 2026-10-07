@@ -5,11 +5,11 @@
 
   <!-- Menú escritorio -->
   <ul class="nav-links">
-    <li><a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active" aria-current="page"{% endif %} title="$ cd ~/">./inicio</a></li>
-    <li><a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog' %} class="active" aria-current="page"{% endif %} title="$ ls ./blog">./blog</a></li>
-    <li><a href="{{ '/proyectos/' | relative_url }}"{% if page.url contains '/proyectos' %} class="active" aria-current="page"{% endif %} title="$ ls ./proyectos">./proyectos</a></li>
-    <li><a href="{{ '/cv/' | relative_url }}"{% if page.url contains '/cv' %} class="active" aria-current="page"{% endif %} title="$ cat cv.md">./cv</a></li>
-    <li><a href="{{ '/contacto/' | relative_url }}"{% if page.url contains '/contacto' %} class="active" aria-current="page"{% endif %} title="$ ping contacto">./contacto</a></li>
+    <li><a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active" aria-current="page"{% endif %} title="$ cd ~/">/inicio</a></li>
+    <li><a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog' %} class="active" aria-current="page"{% endif %} title="$ ls ./blog">/blog</a></li>
+    <li><a href="{{ '/proyectos/' | relative_url }}"{% if page.url contains '/proyectos' %} class="active" aria-current="page"{% endif %} title="$ ls ./proyectos">/proyectos</a></li>
+    <li><a href="{{ '/cv/' | relative_url }}"{% if page.url contains '/cv' %} class="active" aria-current="page"{% endif %} title="$ cat cv.md">/cv</a></li>
+    <li><a href="{{ '/contacto/' | relative_url }}"{% if page.url contains '/contacto' %} class="active" aria-current="page"{% endif %} title="$ ping contacto">/contacto</a></li>
     <li>
       <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
         <div class="theme-toggle-thumb" id="theme-thumb">
@@ -27,11 +27,11 @@
 
 <!-- Menú móvil desplegable -->
 <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
-  <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active" aria-current="page"{% endif %}>./inicio</a>
-  <a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog' %} class="active" aria-current="page"{% endif %}>./blog</a>
-  <a href="{{ '/proyectos/' | relative_url }}"{% if page.url contains '/proyectos' %} class="active" aria-current="page"{% endif %}>./proyectos</a>
-  <a href="{{ '/cv/' | relative_url }}"{% if page.url contains '/cv' %} class="active" aria-current="page"{% endif %}>./cv</a>
-  <a href="{{ '/contacto/' | relative_url }}"{% if page.url contains '/contacto' %} class="active" aria-current="page"{% endif %}>./contacto</a>
+  <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active" aria-current="page"{% endif %}>/inicio</a>
+  <a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog' %} class="active" aria-current="page"{% endif %}>/blog</a>
+  <a href="{{ '/proyectos/' | relative_url }}"{% if page.url contains '/proyectos' %} class="active" aria-current="page"{% endif %}>/proyectos</a>
+  <a href="{{ '/cv/' | relative_url }}"{% if page.url contains '/cv' %} class="active" aria-current="page"{% endif %}>/cv</a>
+  <a href="{{ '/contacto/' | relative_url }}"{% if page.url contains '/contacto' %} class="active" aria-current="page"{% endif %}>/contacto</a>
   <div class="nav-mobile-theme">
     <span id="mobile-theme-label">modo oscuro</span>
     <button class="theme-toggle" id="theme-toggle-mobile" aria-label="Cambiar tema">
