@@ -10,7 +10,7 @@
   --bg:               #080c10;
   --bg2:              #0d1117;
   --green:            #00ff88;
-  --green-dim:        #00cc6a;
+  --green-dim:        var(--green);
   --green-glow:       rgba(0,255,136,0.12);
   --blue:             #58a6ff;
   --cyan:             #39d0d8;
@@ -39,7 +39,7 @@
     --bg:               #f0f4f8;
     --bg2:              #e2e8f0;
     --green:            #00916e;
-    --green-dim:        #007a5c;
+    --green-dim:        var(--green-dark, #007a5c);
     --green-glow:       rgba(0,145,110,0.1);
     --blue:             #2563eb;
     --cyan:             #0891b2;
@@ -63,7 +63,7 @@
   --bg:               #f0f4f8;
   --bg2:              #e2e8f0;
   --green:            #00916e;
-  --green-dim:        #007a5c;
+  --green-dim:        var(--green-dark, #007a5c);
   --green-glow:       rgba(0,145,110,0.1);
   --blue:             #2563eb;
   --cyan:             #0891b2;
@@ -86,7 +86,7 @@
   --bg:               #080c10;
   --bg2:              #0d1117;
   --green:            #00ff88;
-  --green-dim:        #00cc6a;
+  --green-dim:        var(--green);
   --green-glow:       rgba(0,255,136,0.12);
   --blue:             #58a6ff;
   --cyan:             #39d0d8;
@@ -559,22 +559,22 @@ img { max-width: 100%; }
 .highlight .mh  { color: #f78c6c; }                        /* Números */
 .highlight .nf,
 .highlight .na  { color: #82aaff; }                        /* Funciones */
-.highlight .nb  { color: #00ff88; }                        /* Builtins */
+.highlight .nb  { color: var(--green); }                        /* Builtins */
 .highlight .nc  { color: #ffcb6b; }                        /* Clases */
 .highlight .o,
 .highlight .ow  { color: #89ddff; }                        /* Operadores */
 .highlight .p   { color: #89ddff; }                        /* Puntuación */
 .highlight .nv,
 .highlight .vi  { color: #f07178; }                        /* Variables */
-.highlight .nt  { color: #f78166; }                        /* Tags HTML */
+.highlight .nt  { color: var(--red); }                        /* Tags HTML */
 .highlight .nn  { color: #ffcb6b; }                        /* Namespace */
-.highlight .err { color: #f78166; background: none; }      /* Errores */
-.highlight .gd  { color: #f78166; }                        /* Diff eliminado */
+.highlight .err { color: var(--red); background: none; }      /* Errores */
+.highlight .gd  { color: var(--red); }                        /* Diff eliminado */
 .highlight .gi  { color: #c3e88d; }                        /* Diff añadido */
 
 /* Bash específico */
-.highlight .nb  { color: #00ff88; }                        /* $ comandos */
-.highlight .nv  { color: #39d0d8; }                        /* Variables $VAR */
+.highlight .nb  { color: var(--green); }                        /* $ comandos */
+.highlight .nv  { color: var(--cyan); }                        /* Variables $VAR */
 
 /* ============================================================
    TRANSICIÓN ENTRE PÁGINAS
@@ -793,4 +793,126 @@ img { max-width: 100%; }
     gap: 0.4rem;
   }
   .footer-egg { max-width: 100%; }
+}
+
+
+/* ============================================================
+   CV — estilos de la página /cv/
+   ============================================================ */
+
+.cv-grid { display:grid;grid-template-columns:1fr 1fr;gap:1.5rem; }
+.cv-section { margin-bottom:1.5rem; }
+.cv-item { margin-bottom:0.75rem; }
+.cv-item-header { display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;margin-bottom:.3rem; }
+.cv-title { font-size:13.5px;font-weight:500;color:var(--text); }
+.cv-date { font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap; }
+.cv-subtitle { font-size:12.5px;color:var(--green);margin-bottom:.3rem;font-family:'JetBrains Mono',monospace; }
+.cv-desc { font-size:12.5px;color:var(--text2);line-height:1.6; }
+.skill-group { padding:.75rem 0;border-bottom:1px solid var(--glass-border); }
+.skill-group-label { font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem; }
+.cv-tags { display:flex;flex-wrap:wrap;gap:.4rem; }
+.cv-header { display:flex;flex-direction:column; }
+@media (max-width:640px) { .cv-grid { grid-template-columns:1fr; } }
+
+
+@media print {
+  .site-nav, .site-footer, .back-to-top, .btn { display: none !important; }
+  body { background: #fff !important; color: #1a1a1a !important; font-size: 12px; line-height: 1.5; }
+  .page-wrap { padding: 0 !important; max-width: 100% !important; }
+  .glass-card { background: #fff !important; backdrop-filter: none !important; border: 1px solid #e0e0e0 !important; box-shadow: none !important; break-inside: avoid; }
+  .glass-card::before { display: none !important; }
+  .glass-card:hover { transform: none !important; }
+  body::before, body::after { display: none !important; }
+  :root { --green: #007a5c !important; --text: #1a1a1a !important; --text2: #444 !important; --muted: #888 !important; --glass-border: #e0e0e0 !important; }
+  .cv-header { border-bottom: 2px solid #007a5c !important; margin-bottom: 1rem !important; padding-bottom: .75rem !important; }
+  .section-label { color: #007a5c !important; border-bottom: 1px solid #e0e0e0; padding-bottom: 3px; margin-bottom: .5rem !important; }
+  .section-label::after { display: none !important; }
+  .tag { border: 1px solid #ccc !important; background: #f5f5f5 !important; color: #444 !important; }
+  .cv-grid { gap: .75rem !important; }
+  .cv-item { margin-bottom: .5rem !important; }
+  .cv-title { color: #1a1a1a !important; }
+  .cv-subtitle { color: #007a5c !important; }
+  .cv-desc { color: #444 !important; }
+  .cv-date { color: #888 !important; }
+  .cv-section { break-inside: avoid; }
+  .cv-col { break-inside: avoid; }
+  a[download] { display: none !important; }
+  a[href]::after { content: none !important; }
+}
+
+
+/* ============================================================
+   BLOG — filtros y listado de posts
+   ============================================================ */
+
+/* Filtros */
+.filter-bar {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+}
+.filter-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding: 4px 14px;
+  border-radius: 4px;
+  border: 1px solid var(--glass-border);
+  background: transparent;
+  color: var(--text2);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  text-transform: lowercase;
+}
+.filter-btn:hover {
+  color: var(--green);
+  border-color: rgba(0,255,136,0.3);
+}
+.filter-btn.active {
+  color: var(--green);
+  border-color: var(--green);
+  background: rgba(0,255,136,0.07);
+}
+.filter-btn::before { content: '# '; color: var(--muted); }
+
+/* Posts */
+.posts-list { display:flex;flex-direction:column;gap:.75rem; }
+.post-item-full {
+  background: rgba(13,24,36,0.5);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  color: var(--text);
+  transition: border-color 0.2s, transform 0.15s;
+}
+.post-item-full:hover { border-color:var(--glass-border-h);transform:translateX(4px);color:var(--text); }
+.pif-left { display:flex;flex-direction:column;gap:.4rem;flex:1; }
+.pif-title { font-size:14.5px;font-weight:500;color:var(--text); }
+.pif-excerpt { font-size:12.5px;color:var(--text2);line-height:1.5; }
+.pif-right { display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;flex-shrink:0; }
+.pif-date { font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap; }
+.pif-read { font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted); }
+.pif-arrow { color:var(--muted);transition:color 0.2s; }
+.post-item-full:hover .pif-arrow { color:var(--green); }
+
+@media (max-width:640px) {
+  .post-item-full { flex-direction:column;align-items:flex-start;gap:.75rem; }
+  .pif-right { flex-direction:row;align-items:center;width:100%;justify-content:space-between; }
+}
+
+/* ============================================================
+   PAGE TITLE — título principal de cada página
+   Centraliza el estilo para que respete el tema claro/oscuro
+   ============================================================ */
+.page-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: .5rem;
 }
