@@ -100,6 +100,12 @@ layout: default
   max-width: 1100px;
 }
 
+/* Si la ToC está oculta, el artículo ocupa el ancho completo */
+.post-wrap > aside[style*="display:none"] + article,
+.post-wrap > aside[style*="display: none"] + article {
+  grid-column: 1 / -1;
+}
+
 /* TOC escritorio */
 .toc-desktop {
   position: sticky;
