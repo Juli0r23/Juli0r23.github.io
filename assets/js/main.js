@@ -432,23 +432,84 @@
 })();
 
 
-/* ── 11. TOC ACTIVO EN POSTS ── */
+/* ── 11. TOC (CONSTRUIR + ACTIVO) EN POSTS ── */
 (function () {
-  var allLinks = document.querySelectorAll('.toc a');
-  if (!allLinks.length) return;
+  var content = document.getElementById('post-content');
+  if (!content) return;
 
-  var headings = document.querySelectorAll('.post-content h2, .post-content h3');
+  var headings = content.querySelectorAll('h2, h3');
+  if (headings.length < 2) return; // Solo mostrar si hay al menos 2 headings
 
-  function updateActive() {
-    var current = '';
+  // Añadir IDs a los headings si no los tienen
+  headings.forEach(function (h, i) {
+    if (!h.id) {
+      h.id = 'heading-' + i + '-' + h.textContent.toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    }
+  });
+
+  // Generar lista de enlaces en un contenedor dado
+  function buildToc(container) {
     headings.forEach(function (h) {
-      if (window.scrollY >= h.offsetTop - 120) current = h.id;
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = h.textContent;
+      a.className = 'toc-link toc-' + h.tagName.toLowerCase();
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var target = document.getElementById(h.id);
+        if (target) {
+          window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth' });
+        }
+      });
+      container.appendChild(a);
     });
+  }
+
+  // Escritorio
+  var desktopToc  = document.getElementById('toc-desktop');
+  var desktopList = document.getElementById('toc-list-desktop');
+  if (desktopToc && desktopList) {
+    buildToc(desktopList);
+    desktopToc.style.display = 'block';
+  }
+
+  // Móvil
+  var mobileToc  = document.getElementById('toc-mobile');
+  var mobileList = document.getElementById('toc-list-mobile');
+  var toggle     = document.getElementById('toc-toggle');
+  var arrow      = document.querySelector('.toc-arrow');
+  if (mobileToc && mobileList && toggle) {
+    buildToc(mobileList);
+    mobileToc.style.display = 'block';
+    toggle.addEventListener('click', function () {
+      var open = mobileList.style.display === 'none';
+      mobileList.style.display = open ? 'block' : 'none';
+      arrow.textContent = open ? '▴' : '▾';
+    });
+  }
+
+  // Marcar el heading activo al hacer scroll
+  var allLinks = document.querySelectorAll('.toc-link');
+  function updateActive() {
+    var scrollY  = window.scrollY;
+    var offset   = 120;
+    var current  = headings[0].id;
+
+    headings.forEach(function (h) {
+      if (h.getBoundingClientRect().top + scrollY - offset <= scrollY) {
+        current = h.id;
+      }
+    });
+
+    // Si estamos al final, marcar el último
+    var distFromBottom = document.documentElement.scrollHeight - scrollY - window.innerHeight;
+    if (distFromBottom < 10) current = headings[headings.length - 1].id;
+
     allLinks.forEach(function (a) {
       a.classList.toggle('toc-active', a.getAttribute('href') === '#' + current);
     });
   }
-
   window.addEventListener('scroll', updateActive, { passive: true });
   updateActive();
 })();
