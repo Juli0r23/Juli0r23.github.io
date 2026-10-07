@@ -5,35 +5,8 @@
     <span class="footer-stack">Jekyll + GitHub Pages</span>
   </div>
   <div class="footer-right">
-    <span class="footer-egg" id="footer-egg" title="¿Qué hace un sysadmin en la playa? &gt; chmod 700 arena.sh">© {{ 'now' | date: "%Y" }} Julio A. Romero</span>
+    <span class="footer-egg" id="footer-egg" title="¿Qué hace un sysadmin en la playa?">© {{ 'now' | date: "%Y" }} Julio A. Romero</span>
     <span class="footer-sep">·</span>
     <a href="https://github.com/{{ site.github_username }}" class="footer-link" target="_blank">src</a>
   </div>
 </footer>
-
-<script>
-(function() {
-  const egg = document.getElementById('footer-egg');
-  if (!egg) return;
-  let clicks = 0;
-  const jokes = [
-    '> chmod 700 arena.sh',
-    '> sudo make me a sandwich',
-    '> rm -rf node_modules && pray',
-    '> git commit -m "arreglado (de verdad esta vez)"',
-    '> ping -c 1 vida-social  →  100% packet loss',
-    '> sudo chupapi  →  Permission granted ❤',
-  ];
-  egg.style.cursor = 'pointer';
-  egg.addEventListener('click', function() {
-    egg.textContent = jokes[clicks % jokes.length];
-    egg.style.color = 'var(--green)';
-    clicks++;
-    clearTimeout(egg._t);
-    egg._t = setTimeout(function() {
-      egg.textContent = '© {{ "now" | date: "%Y" }} Julio A. Romero';
-      egg.style.color = '';
-    }, 2800);
-  });
-})();
-</script>
