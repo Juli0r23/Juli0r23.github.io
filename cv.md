@@ -9,7 +9,7 @@ permalink: /cv/
 <div class="section-label">// curriculum vitae</div>
 
 <div class="cv-header glass-card" style="margin-bottom:1.5rem">
-  <h1 style="font-size:1.8rem;font-weight:600;color:#e6edf3;margin-bottom:.3rem">Julio A. Romero Ramírez</h1>
+  <h1 style="font-size:1.8rem;font-weight:600;color:var(--text);margin-bottom:.3rem">Julio A. Romero Ramírez</h1>
   <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--green);margin-bottom:.75rem">Estudiante ASIR · Extremadura, España</p>
   <div style="display:flex;gap:1.5rem;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2)">
     <span>📧 contacto@julior23.es</span>
@@ -38,7 +38,7 @@ permalink: /cv/
   <div class="cv-item glass-card">
     <div class="cv-item-header">
       <span class="cv-title">Técnico en SMR</span>
-      <span class="cv-date">2022 – 2025</span>
+      <span class="cv-date">2023 – 2025</span>
     </div>
     <div class="cv-subtitle">IES Suárez de Figueroa · Sistemas Microinformáticos y Redes</div>
     <div class="cv-desc">Formación en mantenimiento de equipos, redes locales y soporte técnico.</div>
@@ -223,46 +223,3 @@ permalink: /cv/
 </div>
 
 </main>
-
-<style>
-.cv-grid { display:grid;grid-template-columns:1fr 1fr;gap:1.5rem; }
-.cv-section { margin-bottom:1.5rem; }
-.cv-item { margin-bottom:0.75rem; }
-.cv-item-header { display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;margin-bottom:.3rem; }
-.cv-title { font-size:13.5px;font-weight:500;color:#e6edf3; }
-.cv-date { font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);white-space:nowrap; }
-.cv-subtitle { font-size:12.5px;color:var(--green);margin-bottom:.3rem;font-family:'JetBrains Mono',monospace; }
-.cv-desc { font-size:12.5px;color:var(--text2);line-height:1.6; }
-.skill-group { padding:.75rem 0;border-bottom:1px solid var(--glass-border); }
-.skill-group-label { font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem; }
-.cv-tags { display:flex;flex-wrap:wrap;gap:.4rem; }
-.cv-header { display:flex;flex-direction:column; }
-@media (max-width:640px) { .cv-grid { grid-template-columns:1fr; } }
-</style>
-
-<style>
-@media print {
-  .site-nav, .site-footer, .back-to-top, .btn { display: none !important; }
-  body { background: #fff !important; color: #1a1a1a !important; font-size: 12px; line-height: 1.5; }
-  .page-wrap { padding: 0 !important; max-width: 100% !important; }
-  .glass-card { background: #fff !important; backdrop-filter: none !important; border: 1px solid #e0e0e0 !important; box-shadow: none !important; break-inside: avoid; }
-  .glass-card::before { display: none !important; }
-  .glass-card:hover { transform: none !important; }
-  body::before, body::after { display: none !important; }
-  :root { --green: #007a5c !important; --text: #1a1a1a !important; --text2: #444 !important; --muted: #888 !important; --glass-border: #e0e0e0 !important; }
-  .cv-header { border-bottom: 2px solid #007a5c !important; margin-bottom: 1rem !important; padding-bottom: .75rem !important; }
-  .section-label { color: #007a5c !important; border-bottom: 1px solid #e0e0e0; padding-bottom: 3px; margin-bottom: .5rem !important; }
-  .section-label::after { display: none !important; }
-  .tag { border: 1px solid #ccc !important; background: #f5f5f5 !important; color: #444 !important; }
-  .cv-grid { gap: .75rem !important; }
-  .cv-item { margin-bottom: .5rem !important; }
-  .cv-title { color: #1a1a1a !important; }
-  .cv-subtitle { color: #007a5c !important; }
-  .cv-desc { color: #444 !important; }
-  .cv-date { color: #888 !important; }
-  .cv-section { break-inside: avoid; }
-  .cv-col { break-inside: avoid; }
-  a[download] { display: none !important; }
-  a[href]::after { content: none !important; }
-}
-</style>
