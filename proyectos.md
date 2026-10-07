@@ -7,7 +7,7 @@ permalink: /proyectos/
 <main class="page-wrap" style="max-width:700px">
 
 <div class="section-label">// proyectos</div>
-<h1 style="font-size:1.8rem;font-weight:600;color:#e6edf3;margin-bottom:.5rem">Proyectos</h1>
+<h1 class="page-title">Proyectos</h1>
 
 <div class="terminal" style="margin-bottom:2.5rem">
   <div class="terminal-bar">
