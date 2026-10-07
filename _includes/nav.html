@@ -5,12 +5,11 @@
 
   <!-- Menú escritorio -->
   <ul class="nav-links">
-    <li><a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active" aria-current="page"{% endif %} title="$ cd ~/">inicio</a></li>
-    <li><a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog' %} class="active" aria-current="page"{% endif %} title="$ ls ./blog">blog</a></li>
-    <li><a href="{{ '/proyectos/' | relative_url }}"{% if page.url contains '/proyectos' %} class="active" aria-current="page"{% endif %} title="$ ls ./proyectos">proyectos</a></li>
-    <li><a href="{{ '/cv/' | relative_url }}"{% if page.url contains '/cv' %} class="active" aria-current="page"{% endif %} title="$ cat cv.md">cv</a></li>
-    <li><a href="{{ '/contacto/' | relative_url }}"{% if page.url contains '/contacto' %} class="active" aria-current="page"{% endif %} title="$ ping contacto">contacto</a></li>
-    <!-- Toggle modo claro/oscuro -->
+    <li><a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active" aria-current="page"{% endif %} title="$ cd ~/">./inicio</a></li>
+    <li><a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog' %} class="active" aria-current="page"{% endif %} title="$ ls ./blog">./blog</a></li>
+    <li><a href="{{ '/proyectos/' | relative_url }}"{% if page.url contains '/proyectos' %} class="active" aria-current="page"{% endif %} title="$ ls ./proyectos">./proyectos</a></li>
+    <li><a href="{{ '/cv/' | relative_url }}"{% if page.url contains '/cv' %} class="active" aria-current="page"{% endif %} title="$ cat cv.md">./cv</a></li>
+    <li><a href="{{ '/contacto/' | relative_url }}"{% if page.url contains '/contacto' %} class="active" aria-current="page"{% endif %} title="$ ping contacto">./contacto</a></li>
     <li>
       <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
         <div class="theme-toggle-thumb" id="theme-thumb">
@@ -28,12 +27,11 @@
 
 <!-- Menú móvil desplegable -->
 <div class="nav-mobile" id="nav-mobile" aria-hidden="true">
-  <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active" aria-current="page"{% endif %}>inicio</a>
-  <a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog' %} class="active" aria-current="page"{% endif %}>blog</a>
-  <a href="{{ '/proyectos/' | relative_url }}"{% if page.url contains '/proyectos' %} class="active" aria-current="page"{% endif %}>proyectos</a>
-  <a href="{{ '/cv/' | relative_url }}"{% if page.url contains '/cv' %} class="active" aria-current="page"{% endif %}>cv</a>
-  <a href="{{ '/contacto/' | relative_url }}"{% if page.url contains '/contacto' %} class="active" aria-current="page"{% endif %}>contacto</a>
-  <!-- Toggle en móvil -->
+  <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active" aria-current="page"{% endif %}>./inicio</a>
+  <a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog' %} class="active" aria-current="page"{% endif %}>./blog</a>
+  <a href="{{ '/proyectos/' | relative_url }}"{% if page.url contains '/proyectos' %} class="active" aria-current="page"{% endif %}>./proyectos</a>
+  <a href="{{ '/cv/' | relative_url }}"{% if page.url contains '/cv' %} class="active" aria-current="page"{% endif %}>./cv</a>
+  <a href="{{ '/contacto/' | relative_url }}"{% if page.url contains '/contacto' %} class="active" aria-current="page"{% endif %}>./contacto</a>
   <div class="nav-mobile-theme">
     <span id="mobile-theme-label">modo oscuro</span>
     <button class="theme-toggle" id="theme-toggle-mobile" aria-label="Cambiar tema">
@@ -43,74 +41,3 @@
     </button>
   </div>
 </div>
-
-<script>
-(function() {
-  const root    = document.documentElement;
-  const icons   = [document.getElementById('theme-icon'), document.getElementById('mobile-theme-icon')];
-  const labels  = [document.getElementById('mobile-theme-label')];
-  const toggles = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')];
-  const thumbs  = document.querySelectorAll('.theme-toggle-thumb');
-
-  // Leer preferencia guardada o del sistema
-  function getTheme() {
-    const saved = localStorage.getItem('theme');
-    if (saved) return saved;
-    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-  }
-
-  function applyTheme(theme) {
-    root.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-
-    const isLight = theme === 'light';
-    icons.forEach(function(el) { if (el) el.textContent = isLight ? '☀️' : '🌙'; });
-    labels.forEach(function(el) { if (el) el.textContent = isLight ? 'modo claro' : 'modo oscuro'; });
-    thumbs.forEach(function(t) {
-      t.style.transform = isLight ? 'translateX(20px)' : 'translateX(0)';
-    });
-  }
-
-  // Aplicar al cargar
-  applyTheme(getTheme());
-
-  // Escuchar clicks en ambos toggles
-  toggles.forEach(function(btn) {
-    if (!btn) return;
-    btn.addEventListener('click', function() {
-      const current = root.getAttribute('data-theme') || 'dark';
-      applyTheme(current === 'dark' ? 'light' : 'dark');
-    });
-  });
-
-  // Menú hamburguesa
-  const hamburguer = document.getElementById('nav-hamburger');
-  const menu = document.getElementById('nav-mobile');
-
-  hamburguer.addEventListener('click', function() {
-    const isOpen = menu.classList.toggle('open');
-    hamburguer.classList.toggle('open', isOpen);
-    hamburguer.setAttribute('aria-expanded', isOpen);
-    menu.setAttribute('aria-hidden', !isOpen);
-  });
-
-  menu.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', function() {
-      hamburguer.classList.remove('open');
-      menu.classList.remove('open');
-      hamburguer.setAttribute('aria-expanded', false);
-      menu.setAttribute('aria-hidden', true);
-    });
-  });
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && menu.classList.contains('open')) {
-      hamburguer.classList.remove('open');
-      menu.classList.remove('open');
-      hamburguer.setAttribute('aria-expanded', false);
-      menu.setAttribute('aria-hidden', true);
-      hamburguer.focus();
-    }
-  });
-})();
-</script>
