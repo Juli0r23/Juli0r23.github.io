@@ -431,6 +431,28 @@ img { max-width: 100%; }
   color: var(--text);
   transform: translateY(-1px);
 }
+.btn-github {
+  background: transparent;
+  border-color: rgba(240,246,252,0.3);
+  color: #f0f6fc;
+}
+.btn-github:hover {
+  background: rgba(240,246,252,0.08);
+  border-color: #f0f6fc;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+.btn-linkedin {
+  background: transparent;
+  border-color: rgba(10,102,194,0.5);
+  color: #0A66C2;
+}
+.btn-linkedin:hover {
+  background: rgba(10,102,194,0.12);
+  border-color: #0A66C2;
+  color: #378fe9;
+  transform: translateY(-1px);
+}
 
 /* ============================================================
    POST TAGS
@@ -904,15 +926,4 @@ img { max-width: 100%; }
 @media (max-width:640px) {
   .post-item-full { flex-direction:column;align-items:flex-start;gap:.75rem; }
   .pif-right { flex-direction:row;align-items:center;width:100%;justify-content:space-between; }
-}
-
-/* ============================================================
-   PAGE TITLE — título principal de cada página
-   Centraliza el estilo para que respete el tema claro/oscuro
-   ============================================================ */
-.page-title {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: .5rem;
 }
