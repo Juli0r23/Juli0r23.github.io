@@ -45,6 +45,7 @@ drwxr-xr-x   /                ← raíz del proyecto
 ├── drwxr-xr-x  _posts/       ← entradas del blog en Markdown
 ├── drwxr-xr-x  assets/
 │   ├── css/style.scss         ← TODOS los estilos (un solo archivo)
+│   ├── js/main.js             ← TODO el JavaScript (un solo archivo, defer)
 │   └── img/favicon.svg
 ├── -rw-r--r--  _config.yml   ← ⭐ configuración global
 ├── -rw-r--r--  index.html    ← página de inicio (con typing effect)
@@ -63,6 +64,7 @@ drwxr-xr-x   /                ← raíz del proyecto
 | **Generador** | Jekyll 4.3 | build estático, sin servidor |
 | **Hosting** | GitHub Pages | deploy automático en cada push |
 | **Estilos** | SCSS vanilla | cero frameworks, todo custom |
+| **JavaScript** | Vanilla JS (`main.js`) | un solo archivo con `defer`, sin dependencias |
 | **Tipografía** | JetBrains Mono + Inter | mono para código, sans para texto |
 | **Formulario** | Formspree | sin backend, sin JS extra |
 | **Highlight** | Rouge + Kramdown | bloques de código con sintaxis |
@@ -171,6 +173,29 @@ Edita este archivo para actualizar nombre, email o redes en **todo el sitio** de
 [✓] SEO automático con jekyll-seo-tag
 [✓] RSS feed con jekyll-feed
 [✓] Sitemap con jekyll-sitemap
+[✓] Botón "copiar" en bloques de código con números de línea
+[✓] Typing effect diferido (solo cuando el elemento es visible)
+```
+
+---
+
+## `$ cat changelog.md`
+
+```
+[2026-10-07] Refactorización y optimización general
+  · Todo el JavaScript consolidado en assets/js/main.js (defer)
+    → eliminados todos los <script> inline de layouts y páginas
+  · nav.html limpio de JS: toggle de tema gestionado por main.js
+  · CSS inline de cv.md, blog.html y proyectos.md movido a style.scss
+  · Colores hardcodeados (#e6edf3, etc.) reemplazados por variables CSS
+    → .cv-title, .pif-title, .post-title usan var(--text)
+  · Prefijos ./ en el nav generados por CSS (::before), no por el HTML
+    → corregido el bug de doble barra (.//inicio → ./inicio)
+  · Corregido bug de HTML roto en blog.html (comillas sin escapar
+    en bloque terminal causaban volcado de CSS visible en página)
+  · Función buildToc() restaurada en main.js
+    → el índice lateral de posts volvía a aparecer vacío
+  · Debounce añadido al listener de resize en el layout
 ```
 
 ---
