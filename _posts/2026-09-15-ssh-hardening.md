@@ -7,6 +7,7 @@ date: 2026-09-15
 reading_time: 4
 description: "Configuración básica para endurecer SSH y evitar accesos no autorizados a tu servidor Linux: cambio de puerto, claves ed25519 y Fail2ban."
 excerpt: "Configuración básica para endurecer SSH y evitar accesos no autorizados a tu servidor Linux."
+lang_en_url: /en/2026/09/15/ssh-hardening/
 ---
 
 ## ¿Por qué hacer hardening de SSH?
