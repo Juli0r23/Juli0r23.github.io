@@ -7,6 +7,7 @@ date: 2026-09-22
 reading_time: 3
 description: "Guía de instalación y configuración básica de Debian 13 como servidor: IP estática, gateway, DNS y verificación de conectividad."
 excerpt: "Guía de instalación y configuración básica de Debian 13 como servidor, con IP estática y servicios esenciales."
+lang_en_url: /en/2026/09/22/debian-13-server/
 ---
 
 ## Descarga e instalación
