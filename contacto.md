@@ -15,14 +15,15 @@ permalink: /contacto/
 <!-- FORMULARIO -->
 <div class="glass-card" style="margin-bottom:2rem">
   <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);text-transform:uppercase;letter-spacing:.1em;margin-bottom:1.25rem">$ send_message</div>
-  <form action="https://formspree.io/f/xoevoajz" method="POST" class="contact-form">
+  <form action="https://formspree.io/f/xoevoajz" method="POST" class="contact-form" id="contact-form" novalidate>
     <div class="form-group">
       <label class="form-label">nombre</label>
       <input type="text" name="nombre" placeholder="Tu nombre" required class="form-input">
     </div>
     <div class="form-group">
       <label class="form-label">email</label>
-      <input type="email" name="email" placeholder="tu@email.com" required class="form-input">
+      <input type="email" name="email" id="form-email" placeholder="tu@email.com" required class="form-input">
+      <span class="form-error" id="email-error"></span>
     </div>
     <div class="form-group">
       <label class="form-label">mensaje</label>
@@ -61,6 +62,86 @@ permalink: /contacto/
 </div>
 
 </main>
+
+<script>
+(function () {
+  // ── Dominios desechables bloqueados ──────────────────────────
+  var BLOCKED = [
+    "mailinator.com","guerrillamail.com","guerrillamail.net","guerrillamail.org",
+    "guerrillamail.biz","guerrillamail.de","guerrillamail.info","spam4.me",
+    "tempmail.com","temp-mail.org","temp-mail.io","throwam.com","throwam.net",
+    "trashmail.com","trashmail.at","trashmail.io","trashmail.me","trashmail.net",
+    "yopmail.com","yopmail.fr","cool.fr.nf","jetable.fr.nf","nospam.ze.tc",
+    "nomail.xl.cx","mega.zik.dj","speed.1s.fr","courriel.fr.nf","moncourrier.fr.nf",
+    "monemail.fr.nf","monmail.fr.nf","sharklasers.com","guerrillamailblock.com",
+    "grr.la","guerrillamail.info","spam.la","spamgourmet.com","spamgourmet.net",
+    "spamgourmet.org","spamgourmet.com","dispostable.com","fakeinbox.com",
+    "mailnull.com","maildrop.cc","discard.email","discardmail.com","discardmail.de",
+    "spamspot.com","spamspot.com","0-mail.com","0815.ru","0clickemail.com",
+    "10minutemail.com","10minutemail.net","10minutemail.org","20minutemail.com",
+    "mintemail.com","mytrashmail.com","mt2014.com","mt2015.com","spamfree24.org",
+    "spamfree24.de","spamfree24.net","spamfree24.info","spamfree24.biz","spamfree.eu",
+    "spamfree24.com","throwam.com","mailnesia.com","mailnull.com","spamgob.com",
+    "tempr.email","discard.email","spamoverdose.com","spamspot.com","spam.la",
+    "tempinbox.com","tempomail.fr","temporaryemail.net","temporaryinbox.com",
+    "thanksnospam.info","throwam.com","throwam.net","throwam.us","trashdevil.com",
+    "trashdevil.de","wegwerfmail.de","wegwerfmail.net","wegwerfmail.org",
+    "mailexpire.com","mailzilla.com","mailzilla.org","spamgob.com"
+  ];
+
+  var form      = document.getElementById('contact-form');
+  var emailInput = document.getElementById('form-email');
+  var emailError = document.getElementById('email-error');
+
+  function getDomain(email) {
+    var parts = email.split('@');
+    return parts.length === 2 ? parts[1].toLowerCase().trim() : '';
+  }
+
+  function validateEmail(email) {
+    // Formato básico
+    var re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    if (!re.test(email)) return 'Introduce un email válido.';
+
+    // Dominio desechable
+    var domain = getDomain(email);
+    if (BLOCKED.indexOf(domain) !== -1)
+      return 'No se admiten correos temporales o desechables.';
+
+    // Mínimo un punto en el dominio (ej: gmail.com, no solo "gmail")
+    if (domain.indexOf('.') === -1)
+      return 'El dominio del email no parece válido.';
+
+    return null; // OK
+  }
+
+  function showError(msg) {
+    emailError.textContent = msg || '';
+    emailInput.classList.toggle('form-input--error', !!msg);
+  }
+
+  // Validar al perder el foco
+  emailInput.addEventListener('blur', function () {
+    var err = validateEmail(emailInput.value.trim());
+    showError(err);
+  });
+
+  // Limpiar error al escribir
+  emailInput.addEventListener('input', function () {
+    if (emailError.textContent) showError(null);
+  });
+
+  // Validar al enviar
+  form.addEventListener('submit', function (e) {
+    var err = validateEmail(emailInput.value.trim());
+    if (err) {
+      e.preventDefault();
+      showError(err);
+      emailInput.focus();
+    }
+  });
+})();
+</script>
 
 <style>
 .contact-links { display:flex;flex-direction:column;gap:.75rem; }
@@ -103,5 +184,16 @@ permalink: /contacto/
   border-color: rgba(0,255,136,0.35);
   box-shadow: 0 0 0 3px rgba(0,255,136,0.06);
 }
+.form-input--error {
+  border-color: rgba(247,129,102,0.5) !important;
+  box-shadow: 0 0 0 3px rgba(247,129,102,0.06) !important;
+}
 .form-textarea { resize: vertical; min-height: 100px; }
+.form-error {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--red);
+  min-height: 1rem;
+}
+.form-error::before { content: '✖ '; }
 </style>
