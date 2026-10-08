@@ -20,7 +20,7 @@ Este sitio web funciona como portfolio personal, blog técnico y espacio de docu
 
 ## Propiedad intelectual
 
-Salvo que se indique expresamente otra licencia, los contenidos originales del sitio están publicados bajo licencia [MIT](https://github.com/Juli0r23/Juli0r23.github.io/blob/main/LICENSE) y pertenecen a su autor.
+Salvo que se indique expresamente otra licencia, los contenidos originales del sitio están publicados bajo [licencia MIT](/LICENSE) y pertenecen a su autor.
 
 Las condiciones particulares de reutilización podrán indicarse en cada recurso.
 
