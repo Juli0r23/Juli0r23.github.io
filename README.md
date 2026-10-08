@@ -17,7 +17,7 @@
 
 **`Julio A. Romero Ramírez`** · Estudiante ASIR · Extremadura, España
 
-[![Deploy](https://img.shields.io/badge/▶_deploy-online-00ff88?style=flat-square&labelColor=0d1824)](https://juli0r23.github.io)
+[![Deploy](https://img.shields.io/badge/▶_deploy-online-00ff88?style=flat-square&labelColor=0d1824)](https://julior23.es)
 [![Jekyll](https://img.shields.io/badge/Jekyll-4.3-CC0000?style=flat-square&logo=jekyll&logoColor=white&labelColor=0d1824)](https://jekyllrb.com)
 [![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-deployed-58a6ff?style=flat-square&logo=github&labelColor=0d1824)](https://pages.github.com)
 [![Posts](https://img.shields.io/badge/posts-3-39d0d8?style=flat-square&labelColor=0d1824)](#-blog)
@@ -144,7 +144,7 @@ Contenido en Markdown...
 title:              "Julior23"
 author:             "Julio A. Romero Ramírez"
 email:              "contacto@julior23.es"
-url:                "https://juli0r23.github.io"
+url:                "https://julior23.es"
 github_username:    Juli0r23
 linkedin_username:  julior23
 
@@ -212,5 +212,7 @@ disponible para prácticas · presencial en Extremadura o remoto · 2027
 <div align="center">
 
 `MIT License · © 2026 Julio A. Romero Ramírez`
+
+</div>
 
 </div>
