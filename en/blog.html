@@ -1,0 +1,89 @@
+---
+layout: default
+title: Blog
+permalink: /en/blog/
+lang: en
+lang_es_url: /blog/
+---
+
+<main class="page-wrap">
+
+  <div class="section-label">// blog</div>
+  <h1 style="font-size:1.8rem;font-weight:600;color:#e6edf3;margin-bottom:.5rem">Notes &amp; write-ups</h1>
+  <p style="color:var(--text2);font-size:14px;margin-bottom:2rem;font-family:'JetBrains Mono',monospace">
+    {% assign en_posts = site.posts | where: "lang", "en" %}{{ en_posts | size }} posts · networking, linux, sysadmin and more
+  </p>
+
+  <!-- FILTERS -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">all</button>
+    {% assign en_posts = site.posts | where: "lang", "en" %}
+    {% assign categories = en_posts | map: 'categories' | join: ',' | split: ',' | uniq | sort %}
+    {% for cat in categories %}
+    <button class="filter-btn" data-filter="{{ cat | strip }}">{{ cat | strip }}</button>
+    {% endfor %}
+  </div>
+
+  <!-- POSTS -->
+  <div class="posts-list" id="posts-list">
+    {% assign en_posts = site.posts | where: "lang", "en" %}
+    {% for post in en_posts %}
+    <a href="{{ post.url | relative_url }}"
+       class="post-item-full"
+       data-category="{{ post.categories | first }}">
+      <div class="pif-left">
+        <span class="tag tag-{{ post.tag_color | default: 'green' }}">{{ post.categories | first }}</span>
+        <h2 class="pif-title">{{ post.title }}</h2>
+        {% if post.excerpt %}
+        <p class="pif-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+        {% endif %}
+      </div>
+      <div class="pif-right">
+        <span class="pif-date">{{ post.date | date: "%d %b %Y" }}</span>
+        {% if post.reading_time %}
+        <span class="pif-read">{{ post.reading_time }} min</span>
+        {% endif %}
+        <span class="pif-arrow">→</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <div class="no-results" id="no-results" style="display:none">
+    <div class="terminal" style="max-width:400px;margin:2rem auto">
+      <div class="terminal-bar">
+        <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+        <span class="terminal-title">bash</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-cmd">grep -r &quot;<span id="no-results-cat"></span>&quot; ./posts</div>
+        <div class="t-warn">0 results found</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+(function() {
+  const btns  = document.querySelectorAll('.filter-btn');
+  const posts = document.querySelectorAll('.post-item-full');
+  const noResults = document.getElementById('no-results');
+  const noResultsCat = document.getElementById('no-results-cat');
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const filter = btn.getAttribute('data-filter');
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      let visible = 0;
+      posts.forEach(function(post) {
+        if (filter === 'all' || post.getAttribute('data-category') === filter) {
+          post.style.display = 'flex'; visible++;
+        } else { post.style.display = 'none'; }
+      });
+      if (visible === 0) { noResults.style.display = 'block'; noResultsCat.textContent = filter; }
+      else { noResults.style.display = 'none'; }
+    });
+  });
+})();
+</script>
