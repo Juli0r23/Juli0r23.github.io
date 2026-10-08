@@ -1,0 +1,210 @@
+---
+layout: default
+title: Home
+permalink: /en/
+lang: en
+lang_es_url: /
+---
+
+<main class="page-wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">
+        <span class="dot-pulse"></span>
+        available for internships · on-site or remote · Extremadura, Spain
+      </div>
+
+      <h1 class="hero-name">{{ site.author }} <span class="name-hl">.</span></h1>
+
+      <div class="hero-sub">
+        <div class="hero-line">{{ site.cv.curso }}</div>
+        <div class="hero-line">Networking, Linux, Docker &amp; Systems Administration</div>
+        <div class="hero-line">Passionate about pentesting, homelabbing and cybersecurity</div>
+      </div>
+
+      <div class="hero-btns">
+        <a href="{{ '/en/cv/' | relative_url }}" class="btn btn-primary">view my CV</a>
+        <a href="{{ '/en/contact/' | relative_url }}" class="btn btn-ghost">contact</a>
+      </div>
+    </div>
+
+    <div class="terminal hero-terminal">
+      <div class="terminal-bar">
+        <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+        <span class="terminal-title">bash — julio@server:~</span>
+      </div>
+      <div class="terminal-body" id="typed-terminal">
+        <!-- Content injected by JS typing effect -->
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT NOW -->
+  <section class="home-section">
+    <div class="section-label">// right now</div>
+    <div class="now-grid">
+      <div class="now-item glass-card">
+        <span class="now-label">$ studying</span>
+        <span class="now-value">2nd year ASIR</span>
+      </div>
+      <div class="now-item glass-card">
+        <span class="now-label">$ goal</span>
+        <span class="now-value">Cybersecurity · eJPT · CompTIA PenTest+</span>
+      </div>
+      <div class="now-item glass-card">
+        <span class="now-label">$ working at</span>
+        <span class="now-value">Bolopapa · device repair</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT ME -->
+  <section class="home-section">
+    <div class="section-label">// about me</div>
+    <div class="cards-grid">
+      <div class="glass-card">
+        <div class="card-badge">[NET]</div>
+        <h3>Networking</h3>
+        <p>Network design with VLANs, subnets, OSPF/RIP routing. Projects in Cisco Packet Tracer with full enterprise networks.</p>
+      </div>
+      <div class="glass-card">
+        <div class="card-badge">[SYS]</div>
+        <h3>Linux &amp; Servers</h3>
+        <p>Debian and Windows Server systems. Docker, Raspberry Pi, server management and monitoring.</p>
+      </div>
+      <div class="glass-card">
+        <div class="card-badge">[SEC]</div>
+        <h3>Security</h3>
+        <p>Focused on pentesting and ethical hacking. System hardening, firewalls, VPNs and upcoming eJPT and PenTest+ certifications.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="home-section">
+    <div class="section-label">// tech stack</div>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <span class="skill-dot" style="background:#00ff88"></span>
+        <span>Cisco IOS</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-dot" style="background:#39d0d8"></span>
+        <span>Linux</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-dot" style="background:#58a6ff"></span>
+        <span>Windows Server</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-dot" style="background:#f78166"></span>
+        <span>Bash / scripting</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:60%"></div></div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-dot" style="background:#00ff88"></span>
+        <span>TCP/IP &amp; DNS</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-dot" style="background:#e3b341"></span>
+        <span>Virtualisation</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-dot" style="background:#39d0d8"></span>
+        <span>Docker</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-dot" style="background:#f78166"></span>
+        <span>Python</span>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:55%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATEST POSTS -->
+  <section class="home-section">
+    <div class="section-label">// latest posts</div>
+    <div class="posts-list">
+      {% assign en_posts = site.posts | where: "lang", "en" %}
+      {% for post in en_posts limit:4 %}
+      <a href="{{ post.url | relative_url }}" class="post-item">
+        <span class="post-date">{{ post.date | date: "%d %b %Y" }}</span>
+        <span class="tag tag-{{ post.tag_color | default: 'green' }}">{{ post.categories | first }}</span>
+        <span class="post-item-title">{{ post.title }}</span>
+        <span class="post-arrow">→</span>
+      </a>
+      {% endfor %}
+    </div>
+    <div style="margin-top:1.25rem">
+      <a href="{{ '/en/blog/' | relative_url }}" class="btn btn-ghost">all posts →</a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="home-section">
+    <div class="section-label">// contact</div>
+    <div class="contact-glass">
+      <div>
+        <h3 style="font-size:1.1rem;font-weight:500;color:#e6edf3;margin-bottom:.3rem">Let's talk?</h3>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text2)">{{ site.email }}</p>
+      </div>
+      <div class="hero-btns" style="margin:0">
+        <a href="{{ '/en/contact/' | relative_url }}" class="btn btn-primary">get in touch →</a>
+        {% if site.github_username %}
+        <a href="https://github.com/{{ site.github_username }}" class="btn btn-github" target="_blank">GitHub</a>
+        {% endif %}
+        {% if site.linkedin_username %}
+        <a href="https://linkedin.com/in/{{ site.linkedin_username }}" class="btn btn-linkedin" target="_blank">LinkedIn</a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<style>
+.hero { display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:start;margin-bottom:4rem; }
+.hero-tag { font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green);background:rgba(0,255,136,0.06);border:1px solid rgba(0,255,136,0.15);padding:4px 10px;border-radius:4px;display:inline-flex;align-items:center;gap:6px;margin-bottom:1.25rem; }
+.dot-pulse { width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+.hero-name { font-size:3rem;font-weight:600;line-height:1.1;letter-spacing:-0.03em;color:#e6edf3;margin-bottom:0.5rem; }
+.name-hl { color:var(--green); }
+.hero-sub { font-family:'JetBrains Mono',monospace;font-size:13.5px;color:var(--text2);margin-bottom:1.5rem;line-height:2; }
+.hero-line::before { content:'> ';color:var(--green);font-weight:500; }
+.hero-btns { display:flex;gap:1rem;flex-wrap:wrap; }
+.hero-terminal { min-width:280px; }
+.home-section { margin-bottom:3.5rem; }
+.now-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem; }
+.now-item { display:flex;flex-direction:column;gap:.35rem; }
+.now-label { font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);text-transform:lowercase; }
+.now-value { font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--text2); }
+.cards-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem; }
+.card-badge { font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--green);background:rgba(0,255,136,0.07);border:1px solid rgba(0,255,136,0.18);border-radius:4px;padding:3px 8px;display:inline-block;margin-bottom:.75rem;letter-spacing:.05em; }
+.glass-card h3 { font-size:14px;font-weight:500;color:#e6edf3;margin-bottom:.35rem; }
+.glass-card p { font-size:13px;color:var(--text2);line-height:1.6; }
+.skills-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem; }
+.skill-item { background:rgba(13,24,36,0.5);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--glass-border);border-radius:8px;padding:.9rem 1.1rem;display:flex;align-items:center;gap:10px;transition:border-color 0.2s,transform 0.2s; }
+.skill-item:hover { border-color:var(--glass-border-h);transform:translateY(-2px); }
+.skill-dot { width:7px;height:7px;border-radius:50%;flex-shrink:0; }
+.skill-item span { font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--text); }
+.skill-bar-wrap { flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden;margin-left:auto;min-width:48px; }
+.skill-bar { height:100%;border-radius:99px;background:linear-gradient(to right,var(--green-dim),var(--green)); }
+.posts-list { display:flex;flex-direction:column;gap:.75rem; }
+.post-item { background:rgba(13,24,36,0.45);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--glass-border);border-radius:10px;padding:1.1rem 1.3rem;display:flex;align-items:center;gap:1rem;transition:border-color 0.2s,transform 0.15s;color:var(--text); }
+.post-item:hover { border-color:var(--glass-border-h);transform:translateX(4px);color:var(--text); }
+.post-date { font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);min-width:80px; }
+.post-item-title { font-size:13.5px;color:var(--text);flex:1; }
+.post-arrow { color:var(--muted);font-size:16px;transition:color 0.2s; }
+.post-item:hover .post-arrow { color:var(--green); }
+.contact-glass { background:rgba(13,24,36,0.5);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid rgba(0,255,136,0.1);border-radius:14px;padding:2rem;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap; }
+.contact-glass::before { content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(0,255,136,.25),transparent); }
+@media (max-width:640px) { .hero{grid-template-columns:1fr;} .hero-terminal{display:none;} .hero-name{font-size:2rem;} .now-grid{grid-template-columns:1fr;} }
+</style>
