@@ -22,7 +22,10 @@ permalink: /contacto/
     </div>
     <div class="form-group">
       <label class="form-label">email</label>
-      <input type="email" name="email" id="form-email" placeholder="tu@email.com" required class="form-input">
+      <div style="position:relative">
+        <input type="email" name="email" id="form-email" placeholder="tu@email.com" required class="form-input" style="padding-right:2.2rem">
+        <span id="email-icon" style="position:absolute;right:.75rem;top:50%;transform:translateY(-50%);font-size:14px;font-family:'JetBrains Mono',monospace;pointer-events:none"></span>
+      </div>
       <span class="form-error" id="email-error"></span>
     </div>
     <div class="form-group">
@@ -89,9 +92,10 @@ permalink: /contacto/
     "mailexpire.com","mailzilla.com","mailzilla.org","spamgob.com"
   ];
 
-  var form      = document.getElementById('contact-form');
+  var form       = document.getElementById('contact-form');
   var emailInput = document.getElementById('form-email');
   var emailError = document.getElementById('email-error');
+  var emailIcon  = document.getElementById('email-icon');
 
   function getDomain(email) {
     var parts = email.split('@');
@@ -99,36 +103,51 @@ permalink: /contacto/
   }
 
   function validateEmail(email) {
-    // Formato básico
     var re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     if (!re.test(email)) return 'Introduce un email válido.';
-
-    // Dominio desechable
     var domain = getDomain(email);
     if (BLOCKED.indexOf(domain) !== -1)
       return 'No se admiten correos temporales o desechables.';
-
-    // Mínimo un punto en el dominio (ej: gmail.com, no solo "gmail")
     if (domain.indexOf('.') === -1)
       return 'El dominio del email no parece válido.';
-
-    return null; // OK
+    return null;
   }
 
-  function showError(msg) {
-    emailError.textContent = msg || '';
-    emailInput.classList.toggle('form-input--error', !!msg);
+  function showFeedback(msg) {
+    if (msg) {
+      // Error
+      emailError.textContent = msg;
+      emailIcon.textContent  = '✖';
+      emailIcon.style.color  = 'var(--red)';
+      emailInput.classList.add('form-input--error');
+      emailInput.classList.remove('form-input--ok');
+    } else if (emailInput.value.trim()) {
+      // Válido
+      emailError.textContent = '';
+      emailIcon.textContent  = '✔';
+      emailIcon.style.color  = 'var(--green)';
+      emailInput.classList.remove('form-input--error');
+      emailInput.classList.add('form-input--ok');
+    } else {
+      // Vacío
+      emailError.textContent = '';
+      emailIcon.textContent  = '';
+      emailInput.classList.remove('form-input--error', 'form-input--ok');
+    }
   }
 
   // Validar al perder el foco
   emailInput.addEventListener('blur', function () {
-    var err = validateEmail(emailInput.value.trim());
-    showError(err);
+    if (!emailInput.value.trim()) { showFeedback(null); return; }
+    showFeedback(validateEmail(emailInput.value.trim()));
   });
 
-  // Limpiar error al escribir
+  // Actualizar icono al escribir en tiempo real (solo si ya se validó antes)
   emailInput.addEventListener('input', function () {
-    if (emailError.textContent) showError(null);
+    if (!emailInput.classList.contains('form-input--error') &&
+        !emailInput.classList.contains('form-input--ok')) return;
+    if (!emailInput.value.trim()) { showFeedback(null); return; }
+    showFeedback(validateEmail(emailInput.value.trim()));
   });
 
   // Validar al enviar
@@ -136,7 +155,7 @@ permalink: /contacto/
     var err = validateEmail(emailInput.value.trim());
     if (err) {
       e.preventDefault();
-      showError(err);
+      showFeedback(err);
       emailInput.focus();
     }
   });
@@ -188,6 +207,10 @@ permalink: /contacto/
   border-color: rgba(247,129,102,0.5) !important;
   box-shadow: 0 0 0 3px rgba(247,129,102,0.06) !important;
 }
+.form-input--ok {
+  border-color: rgba(0,255,136,0.35) !important;
+  box-shadow: 0 0 0 3px rgba(0,255,136,0.06) !important;
+}
 .form-textarea { resize: vertical; min-height: 100px; }
 .form-error {
   font-family: 'JetBrains Mono', monospace;
@@ -195,5 +218,4 @@ permalink: /contacto/
   color: var(--red);
   min-height: 1rem;
 }
-.form-error::before { content: '✖ '; }
 </style>
