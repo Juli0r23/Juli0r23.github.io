@@ -932,7 +932,10 @@ img { max-width: 100%; }
    LANG DROPDOWN
    ============================================================ */
 
-/* Desktop: dropdown con bandera actual + menú al hover */
+/* Anular el "./" que .nav-links a::before añade a TODOS los enlaces */
+.lang-dropdown a::before,
+.lang-option-mobile::before { content: none !important; }
+
 .lang-dropdown {
   position: relative;
   display: flex;
@@ -946,10 +949,15 @@ img { max-width: 100%; }
   border: none;
   cursor: pointer;
   padding: 2px;
-  font-size: 16px;
   line-height: 1;
 }
-.lang-flag { font-size: 16px; filter: grayscale(0.15); }
+.lang-flag {
+  font-size: 15px;
+  font-style: normal;
+  /* fuerza el estilo "emoji de color" y evita el recuadro monocromo con borde */
+  font-variant-emoji: emoji;
+  -webkit-font-feature-settings: "liga" 0;
+}
 .lang-caret {
   font-size: 9px;
   color: var(--muted);
@@ -961,7 +969,7 @@ img { max-width: 100%; }
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
-  background: rgba(13,24,36,0.92);
+  background: rgba(13,24,36,0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
@@ -993,10 +1001,12 @@ img { max-width: 100%; }
   font-size: 12.5px;
   color: var(--text2);
   transition: background 0.15s, color 0.15s;
+  position: static; /* anula el position:relative de .nav-links a */
 }
+.lang-option::after { content: none; } /* anula el subrayado ::after de .nav-links a */
 .lang-option:hover { background: rgba(0,255,136,0.08); color: var(--text); }
 .lang-option.is-current { color: var(--green); }
-.lang-option.is-current::after { content: '✓'; margin-left: auto; font-size: 11px; }
+.lang-option.is-current .lang-tick { margin-left: auto; font-size: 11px; }
 
 /* Mobile: lista simple dentro del menú desplegable */
 .lang-option-mobile {
