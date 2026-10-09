@@ -18,12 +18,19 @@
     <li><a href="{{ '/cv/' | relative_url }}"{% if page.url contains '/cv' and page.url != '/en/cv/' %} class="active" aria-current="page"{% endif %} title="$ cat cv.md">cv</a></li>
     <li><a href="{{ '/contacto/' | relative_url }}"{% if page.url contains '/contacto' %} class="active" aria-current="page"{% endif %} title="$ ping contacto">contacto</a></li>
     {% endif %}
-    <li>
-      {% if page.lang == 'en' %}
-      <a href="{{ page.lang_es_url | default: '/' | relative_url }}" class="lang-toggle" title="Cambiar a español">ES</a>
-      {% else %}
-      <a href="{{ page.lang_en_url | default: '/en/' | relative_url }}" class="lang-toggle" title="Switch to English">EN</a>
-      {% endif %}
+    <li class="lang-dropdown">
+      <button class="lang-current" aria-label="Cambiar idioma" aria-haspopup="true">
+        <span class="lang-flag">{% if page.lang == 'en' %}🇬🇧{% else %}🇪🇸{% endif %}</span>
+        <span class="lang-caret">▾</span>
+      </button>
+      <div class="lang-menu" role="menu">
+        <a href="{{ page.lang_es_url | default: '/' | relative_url }}" class="lang-option{% if page.lang != 'en' %} is-current{% endif %}" role="menuitem">
+          <span class="lang-flag">🇪🇸</span><span>Español</span>
+        </a>
+        <a href="{{ page.lang_en_url | default: '/en/' | relative_url }}" class="lang-option{% if page.lang == 'en' %} is-current{% endif %}" role="menuitem">
+          <span class="lang-flag">🇬🇧</span><span>English</span>
+        </a>
+      </div>
     </li>
     <li>
       <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
@@ -48,14 +55,14 @@
   <a href="{{ '/en/projects/' | relative_url }}"{% if page.url contains '/en/projects' %} class="active" aria-current="page"{% endif %}>projects</a>
   <a href="{{ '/en/cv/' | relative_url }}"{% if page.url contains '/en/cv' %} class="active" aria-current="page"{% endif %}>cv</a>
   <a href="{{ '/en/contact/' | relative_url }}"{% if page.url contains '/en/contact' %} class="active" aria-current="page"{% endif %}>contact</a>
-  <a href="{{ page.lang_es_url | default: '/' | relative_url }}" class="lang-toggle">🇪🇸 Español</a>
+  <a href="{{ page.lang_es_url | default: '/' | relative_url }}" class="lang-option-mobile">🇪🇸 Español</a>
   {% else %}
   <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active" aria-current="page"{% endif %}>inicio</a>
   <a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog' and page.url != '/en/blog/' %} class="active" aria-current="page"{% endif %}>blog</a>
   <a href="{{ '/proyectos/' | relative_url }}"{% if page.url contains '/proyectos' %} class="active" aria-current="page"{% endif %}>proyectos</a>
   <a href="{{ '/cv/' | relative_url }}"{% if page.url contains '/cv' and page.url != '/en/cv/' %} class="active" aria-current="page"{% endif %}>cv</a>
   <a href="{{ '/contacto/' | relative_url }}"{% if page.url contains '/contacto' %} class="active" aria-current="page"{% endif %}>contacto</a>
-  <a href="{{ page.lang_en_url | default: '/en/' | relative_url }}" class="lang-toggle">🇬🇧 English</a>
+  <a href="{{ page.lang_en_url | default: '/en/' | relative_url }}" class="lang-option-mobile">🇬🇧 English</a>
   {% endif %}
   <div class="nav-mobile-theme">
     <span id="mobile-theme-label">modo oscuro</span>
