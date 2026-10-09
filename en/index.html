@@ -133,7 +133,7 @@ lang_es_url: /
   <section class="home-section">
     <div class="section-label">// latest posts</div>
     <div class="posts-list">
-      {% assign en_posts = site.posts | where: "lang", "en" %}
+      {% assign en_posts = site.en_posts | sort: "date" | reverse %}
       {% for post in en_posts limit:4 %}
       <a href="{{ post.url | relative_url }}" class="post-item">
         <span class="post-date">{{ post.date | date: "%d %b %Y" }}</span>
