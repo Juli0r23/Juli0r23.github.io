@@ -25,10 +25,10 @@
       </button>
       <div class="lang-menu" role="menu">
         <a href="{{ page.lang_es_url | default: '/' | relative_url }}" class="lang-option{% if page.lang != 'en' %} is-current{% endif %}" role="menuitem">
-          <span class="lang-flag">🇪🇸</span><span>Español</span>
+          <span class="lang-flag">🇪🇸</span><span>Español</span>{% if page.lang != 'en' %}<span class="lang-tick">✓</span>{% endif %}
         </a>
         <a href="{{ page.lang_en_url | default: '/en/' | relative_url }}" class="lang-option{% if page.lang == 'en' %} is-current{% endif %}" role="menuitem">
-          <span class="lang-flag">🇬🇧</span><span>English</span>
+          <span class="lang-flag">🇬🇧</span><span>English</span>{% if page.lang == 'en' %}<span class="lang-tick">✓</span>{% endif %}
         </a>
       </div>
     </li>
