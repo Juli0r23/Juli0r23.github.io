@@ -931,18 +931,24 @@ img { max-width: 100%; }
    LANG TOGGLE
    ============================================================ */
 .lang-toggle {
+  font-size: 13px;
+  color: var(--text2);
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
   font-weight: 700;
-  color: var(--muted);
-  border: 1px solid var(--glass-border);
-  border-radius: 4px;
-  padding: 3px 7px;
-  letter-spacing: .05em;
-  transition: color 0.2s, border-color 0.2s;
+  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 2px;
   text-decoration: none;
 }
-.lang-toggle:hover {
-  color: var(--green);
-  border-color: var(--green);
+.lang-toggle::before { content: '#'; color: var(--muted); margin-right: 2px; }
+.lang-toggle::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 1px;
+  background: var(--green);
+  transform: scaleX(0);
+  transition: transform 0.2s;
 }
+.lang-toggle:hover::after { transform: scaleX(1); }
+.lang-toggle:hover { color: var(--green); }
