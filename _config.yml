@@ -40,3 +40,9 @@ cv:
   disponible: true
   ubicacion: "Extremadura, España"
   curso: "ASIR · 2º Año"
+
+# Collection para las entradas de blog en inglés (en/_posts/)
+collections:
+  en_posts:
+    output: true
+    permalink: /en/:year/:month/:day/:title/
