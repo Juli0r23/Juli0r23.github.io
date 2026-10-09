@@ -36,8 +36,24 @@
   var overlay = document.getElementById('page-transition');
   if (!overlay) return;
 
-  window.addEventListener('DOMContentLoaded', function () {
+  function hideOverlay() {
     overlay.classList.add('pt-hide');
+  }
+
+  // Carga normal de la página
+  window.addEventListener('DOMContentLoaded', hideOverlay);
+
+  // Restauración desde bfcache (botón atrás/adelante del navegador):
+  // DOMContentLoaded NO se dispara de nuevo en ese caso, así que sin esto
+  // el overlay se queda visible y la pantalla aparece en negro hasta refrescar.
+  window.addEventListener('pageshow', function (event) {
+    hideOverlay();
+  });
+
+  // Si el usuario pulsa atrás/adelante justo durante la animación de salida,
+  // aseguramos que el overlay no se quede a medio mostrar.
+  window.addEventListener('pagehide', function () {
+    hideOverlay();
   });
 
   document.querySelectorAll('a').forEach(function (a) {
