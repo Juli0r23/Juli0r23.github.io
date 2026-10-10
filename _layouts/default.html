@@ -31,6 +31,24 @@
 
   {% seo %}
   {% feed_meta %}
+
+  <!-- Datos estructurados: Person (solo en la portada) -->
+  {% if page.url == '/' or page.url == '/en/' %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ site.author }}",
+    "url": "{{ site.url }}",
+    "email": "mailto:{{ site.email }}",
+    "jobTitle": "{{ site.cv.curso }}",
+    "sameAs": [
+      "https://github.com/{{ site.github_username }}",
+      "https://linkedin.com/in/{{ site.linkedin_username }}"
+    ]
+  }
+  </script>
+  {% endif %}
 </head>
 <body>
 
