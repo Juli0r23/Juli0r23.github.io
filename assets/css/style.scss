@@ -1053,3 +1053,65 @@ img { max-width: 100%; }
   border-color: var(--green);
   opacity: 1;
 }
+
+/* ============================================================
+   IMPRESIÓN (ctrl+p)
+   ============================================================ */
+@media print {
+  /* Ocultar elementos de navegación e interacción que no aportan en papel */
+  .site-nav,
+  .nav-mobile,
+  .site-footer,
+  .page-transition,
+  .back-to-top,
+  #cv-pdf-btn,
+  .hero-btns {
+    display: none !important;
+  }
+
+  /* Fondo y texto legibles en papel: quitar el tema oscuro */
+  body, html {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  .page-wrap {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Las glass-card pierden el blur/transparencia (no se imprime bien) */
+  .glass-card {
+    background: #ffffff !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .cv-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Textos con variables de color oscuro pasan a negro/gris para contraste en papel */
+  .cv-title, h1, h2, h3 { color: #111111 !important; }
+  .cv-desc, .cv-subtitle, p { color: #333333 !important; }
+  .section-label { color: #555555 !important; }
+
+  /* Enlaces: mostrar la URL entre paréntesis, útil en papel */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 10px;
+    color: #666;
+  }
+  a[href^="mailto"]::after { content: ""; } /* evitar ruido en el email */
+
+  @page {
+    size: A4;
+    margin: 1.5cm;
+  }
+}
