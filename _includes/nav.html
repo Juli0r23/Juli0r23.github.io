@@ -14,6 +14,7 @@
     {% else %}
     <li><a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active" aria-current="page"{% endif %} title="$ cd ~/">inicio</a></li>
     <li><a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog' and page.url != '/en/blog/' %} class="active" aria-current="page"{% endif %} title="$ ls ./blog">blog</a></li>
+    <li><a href="{{ '/writeups/' | relative_url }}"{% if page.url contains '/writeups' %} class="active" aria-current="page"{% endif %} title="$ ls ./writeups">writeups</a></li>
     <li><a href="{{ '/proyectos/' | relative_url }}"{% if page.url contains '/proyectos' %} class="active" aria-current="page"{% endif %} title="$ ls ./proyectos">proyectos</a></li>
     <li><a href="{{ '/cv/' | relative_url }}"{% if page.url contains '/cv' and page.url != '/en/cv/' %} class="active" aria-current="page"{% endif %} title="$ cat cv.md">cv</a></li>
     <li><a href="{{ '/contacto/' | relative_url }}"{% if page.url contains '/contacto' %} class="active" aria-current="page"{% endif %} title="$ ping contacto">contacto</a></li>
@@ -59,6 +60,7 @@
   {% else %}
   <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="active" aria-current="page"{% endif %}>inicio</a>
   <a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog' and page.url != '/en/blog/' %} class="active" aria-current="page"{% endif %}>blog</a>
+  <a href="{{ '/writeups/' | relative_url }}"{% if page.url contains '/writeups' %} class="active" aria-current="page"{% endif %}>writeups</a>
   <a href="{{ '/proyectos/' | relative_url }}"{% if page.url contains '/proyectos' %} class="active" aria-current="page"{% endif %}>proyectos</a>
   <a href="{{ '/cv/' | relative_url }}"{% if page.url contains '/cv' and page.url != '/en/cv/' %} class="active" aria-current="page"{% endif %}>cv</a>
   <a href="{{ '/contacto/' | relative_url }}"{% if page.url contains '/contacto' %} class="active" aria-current="page"{% endif %}>contacto</a>
