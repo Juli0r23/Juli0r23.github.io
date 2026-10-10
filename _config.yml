@@ -46,7 +46,28 @@ cv:
   curso: "ASIR · 2º Año"
 
 # Collection para las entradas de blog en inglés (_en_posts/ en la raíz)
+# Collection para los writeups de máquinas (_writeups/ en la raíz)
 collections:
   en_posts:
     output: true
     permalink: /en/:year/:month/:day/:title/
+  writeups:
+    output: true
+    permalink: /writeups/:path/
+
+# Niveles de dificultad por plataforma, en orden (para los índices agrupados)
+writeups_difficulty_order:
+  dockerlabs: ["muy-facil", "facil", "medio", "dificil", "experto"]
+  thm: ["easy", "medium", "hard", "insane"]
+
+# Etiquetas visibles de cada dificultad y su color de tag (reutiliza .tag-*)
+writeups_difficulty_labels:
+  muy-facil: { label: "Muy fácil", color: "green" }
+  facil:     { label: "Fácil",     color: "green" }
+  medio:     { label: "Medio",     color: "yellow" }
+  dificil:   { label: "Difícil",   color: "red" }
+  experto:   { label: "Experto",   color: "red" }
+  easy:      { label: "Easy",      color: "green" }
+  medium:    { label: "Medium",    color: "yellow" }
+  hard:      { label: "Hard",      color: "red" }
+  insane:    { label: "Insane",    color: "red" }
