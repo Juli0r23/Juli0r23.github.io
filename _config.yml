@@ -35,13 +35,17 @@ kramdown:
     block:
       line_numbers: false
 
+# Minificar el CSS compilado desde style.scss
+sass:
+  style: compressed
+
 # Datos del CV
 cv:
   disponible: true
   ubicacion: "Extremadura, España"
   curso: "ASIR · 2º Año"
 
-# Collection para las entradas de blog en inglés (en/_posts/)
+# Collection para las entradas de blog en inglés (_en_posts/ en la raíz)
 collections:
   en_posts:
     output: true
