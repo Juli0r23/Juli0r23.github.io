@@ -2,6 +2,7 @@
 layout: default
 title: Aviso Legal
 permalink: /aviso-legal/
+lang_en_url: /en/legal-notice/
 ---
 
 <main class="page-wrap" style="max-width:640px">
