@@ -199,6 +199,7 @@
     var isOpen = menu.classList.toggle('open');
     hamburger.classList.toggle('open', isOpen);
     hamburger.setAttribute('aria-expanded', isOpen);
+    hamburger.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
     menu.setAttribute('aria-hidden', !isOpen);
   });
 
@@ -207,6 +208,7 @@
       hamburger.classList.remove('open');
       menu.classList.remove('open');
       hamburger.setAttribute('aria-expanded', false);
+      hamburger.setAttribute('aria-label', 'Abrir menú');
       menu.setAttribute('aria-hidden', true);
     });
   });
@@ -216,6 +218,7 @@
       hamburger.classList.remove('open');
       menu.classList.remove('open');
       hamburger.setAttribute('aria-expanded', false);
+      hamburger.setAttribute('aria-label', 'Abrir menú');
       menu.setAttribute('aria-hidden', true);
       hamburger.focus();
     }
