@@ -1,0 +1,64 @@
+---
+layout: default
+title: DockerLabs
+permalink: /writeups/dockerlabs/
+---
+
+<main class="page-wrap" style="max-width:760px">
+
+  <div class="wu-breadcrumb">
+    <a href="{{ '/writeups/' | relative_url }}">writeups</a>
+    <span>/</span>
+    <span class="wu-breadcrumb-current">dockerlabs</span>
+  </div>
+
+  <div class="section-label">// dockerlabs</div>
+  <h1 class="page-title">🐳 DockerLabs</h1>
+  <p style="color:var(--text2);font-size:14px;margin-bottom:2.5rem;font-family:'JetBrains Mono',monospace">
+    > máquinas de dockerlabs.es agrupadas por dificultad
+  </p>
+
+  {% assign platform_posts = site.writeups | where: "platform", "dockerlabs" %}
+  {% for diff in site.writeups_difficulty_order.dockerlabs %}
+    {% assign machines = platform_posts | where: "difficulty", diff %}
+    {% if machines.size > 0 %}
+    {% assign diff_meta = site.writeups_difficulty_labels[diff] %}
+    <div class="wu-diff-section">
+      <h2 class="wu-diff-heading">
+        <span class="tag tag-{{ diff_meta.color }}">{{ diff_meta.label }}</span>
+        <span class="wu-diff-count">{{ machines.size }}</span>
+      </h2>
+      <div class="posts-list">
+        {% assign sorted_machines = machines | sort: "date" | reverse %}
+        {% for m in sorted_machines %}
+        <a href="{{ m.url | relative_url }}" class="post-item">
+          <span class="post-date">{{ m.date | date: "%d %b %Y" }}</span>
+          <span class="post-item-title">{{ m.title }}</span>
+          <span class="post-arrow">→</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  {% endfor %}
+
+  {% if platform_posts.size == 0 %}
+  <div class="terminal" style="max-width:420px">
+    <div class="terminal-bar">
+      <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+      <span class="terminal-title">bash</span>
+    </div>
+    <div class="terminal-body">
+      <div class="t-cmd">ls ./writeups/dockerlabs</div>
+      <div class="t-warn">aún no hay máquinas documentadas</div>
+    </div>
+  </div>
+  {% endif %}
+
+</main>
+
+<style>
+.wu-diff-section { margin-bottom: 2.5rem; }
+.wu-diff-heading { display: flex; align-items: center; gap: .6rem; margin-bottom: 1rem; }
+.wu-diff-count { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); }
+</style>
