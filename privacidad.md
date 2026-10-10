@@ -2,6 +2,7 @@
 layout: default
 title: Política de Privacidad
 permalink: /privacidad/
+lang_en_url: /en/privacy/
 ---
 
 <main class="page-wrap" style="max-width:640px">
