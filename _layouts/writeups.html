@@ -1,0 +1,108 @@
+---
+layout: default
+---
+
+<!-- Datos estructurados: Article (writeup técnico) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ page.title | jsonify }},
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "description": {{ page.description | default: page.excerpt | strip_html | jsonify }},
+  "inLanguage": "{{ page.lang | default: site.lang }}",
+  "url": "{{ site.url }}{{ page.url | relative_url }}",
+  "author": { "@type": "Person", "name": "{{ site.author }}" }
+}
+</script>
+
+<main class="page-wrap" style="max-width:760px">
+
+  <!-- Migas de pan -->
+  <div class="wu-breadcrumb">
+    <a href="{{ '/writeups/' | relative_url }}">writeups</a>
+    <span>/</span>
+    <a href="{{ '/writeups/' | append: page.platform | append: '/' | relative_url }}">{{ page.platform }}</a>
+    <span>/</span>
+    <span class="wu-breadcrumb-current">{{ page.title }}</span>
+  </div>
+
+  <!-- Cabecera de la máquina -->
+  <div class="wu-header glass-card">
+    {% assign diff_meta = site.writeups_difficulty_labels[page.difficulty] %}
+    <div class="wu-header-top">
+      <span class="tag tag-{{ diff_meta.color | default: 'green' }}">{{ diff_meta.label | default: page.difficulty }}</span>
+      <span class="wu-platform">{{ page.platform | upcase }}</span>
+    </div>
+    <h1 class="wu-title">{{ page.title }}</h1>
+    <div class="wu-meta">
+      {% if page.ip %}<span class="wu-meta-item">🖥 {{ page.ip }}</span>{% endif %}
+      {% if page.os %}<span class="wu-meta-item">🐧 {{ page.os }}</span>{% endif %}
+      <span class="wu-meta-item">📅 {{ page.date | date: "%d %b %Y" }}</span>
+      {% if page.source_url %}<span class="wu-meta-item"><a href="{{ page.source_url }}" target="_blank">↗ ver en {{ page.platform }}</a></span>{% endif %}
+    </div>
+    {% if page.tools %}
+    <div class="wu-tools">
+      {% for tool in page.tools %}<span class="tag tag-blue">{{ tool }}</span>{% endfor %}
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Contenido del writeup -->
+  <article class="wu-content">
+    {{ content }}
+  </article>
+
+  <!-- Navegación entre writeups de la misma plataforma/dificultad -->
+  <div class="wu-footer-nav">
+    <a href="{{ '/writeups/' | append: page.platform | append: '/' | relative_url }}" class="btn btn-ghost">← volver a {{ page.platform }}</a>
+  </div>
+
+</main>
+
+<style>
+.wu-breadcrumb {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: .4rem;
+  flex-wrap: wrap;
+}
+.wu-breadcrumb a { color: var(--text2); }
+.wu-breadcrumb a:hover { color: var(--green); }
+.wu-breadcrumb-current { color: var(--green); }
+
+.wu-header { margin-bottom: 2rem; }
+.wu-header-top { display: flex; align-items: center; gap: .6rem; margin-bottom: .75rem; }
+.wu-platform {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: .08em;
+}
+.wu-title { font-size: 1.6rem; font-weight: 600; color: #e6edf3; margin-bottom: .9rem; }
+.wu-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  color: var(--text2);
+}
+.wu-meta-item a { color: var(--green); }
+.wu-tools { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
+
+.wu-content { line-height: 1.75; font-size: 15px; color: var(--text2); }
+.wu-content h2 { font-size: 1.25rem; color: #e6edf3; margin: 2.25rem 0 .9rem; font-weight: 600; }
+.wu-content h3 { font-size: 1.05rem; color: #e6edf3; margin: 1.75rem 0 .6rem; font-weight: 600; }
+.wu-content p { margin-bottom: 1rem; }
+.wu-content code { font-family: 'JetBrains Mono', monospace; font-size: 13px; background: rgba(0,255,136,0.08); color: var(--green); padding: 2px 5px; border-radius: 4px; }
+.wu-content pre { margin: 1rem 0; }
+.wu-content ul, .wu-content ol { margin: 0 0 1rem 1.25rem; }
+.wu-content img { max-width: 100%; border-radius: 8px; border: 1px solid var(--glass-border); margin: 1rem 0; }
+.wu-content blockquote { border-left: 3px solid var(--green); padding-left: 1rem; color: var(--muted); margin: 1rem 0; }
+
+.wu-footer-nav { margin-top: 2.5rem; }
+</style>
