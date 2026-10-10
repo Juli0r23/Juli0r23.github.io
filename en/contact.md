@@ -34,6 +34,11 @@ lang_es_url: /contacto/
       <label class="form-label">message</label>
       <textarea name="mensaje" rows="4" placeholder="Tell me about it..." required class="form-input form-textarea"></textarea>
     </div>
+    <div class="form-consent">
+      <input type="checkbox" id="form-consent" name="consentimiento" required class="form-checkbox">
+      <label for="form-consent">I have read and accept the <a href="{{ '/en/privacy/' | relative_url }}" target="_blank">privacy policy</a>.</label>
+    </div>
+    <span class="form-error" id="consent-error"></span>
     <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">send message →</button>
   </form>
 </div>
@@ -77,10 +82,12 @@ lang_es_url: /contacto/
     "10minutemail.com","20minutemail.com","mintemail.com","mytrashmail.com",
     "mailnesia.com","tempr.email","tempinbox.com","tempomail.fr","mailzilla.com"
   ];
-  var form       = document.getElementById('contact-form');
-  var emailInput = document.getElementById('form-email');
-  var emailError = document.getElementById('email-error');
-  var emailIcon  = document.getElementById('email-icon');
+  var form         = document.getElementById('contact-form');
+  var emailInput   = document.getElementById('form-email');
+  var emailError   = document.getElementById('email-error');
+  var emailIcon    = document.getElementById('email-icon');
+  var consentInput = document.getElementById('form-consent');
+  var consentError = document.getElementById('consent-error');
   function getDomain(email) { var p=email.split('@'); return p.length===2?p[1].toLowerCase().trim():''; }
   function validateEmail(email) {
     var re=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -97,7 +104,8 @@ lang_es_url: /contacto/
   }
   emailInput.addEventListener('blur',function(){if(!emailInput.value.trim()){showFeedback(null);return;}showFeedback(validateEmail(emailInput.value.trim()));});
   emailInput.addEventListener('input',function(){if(!emailInput.classList.contains('form-input--error')&&!emailInput.classList.contains('form-input--ok'))return;if(!emailInput.value.trim()){showFeedback(null);return;}showFeedback(validateEmail(emailInput.value.trim()));});
-  form.addEventListener('submit',function(e){var err=validateEmail(emailInput.value.trim());if(err){e.preventDefault();showFeedback(err);emailInput.focus();}});
+  consentInput.addEventListener('change',function(){if(consentInput.checked)consentError.textContent='';});
+  form.addEventListener('submit',function(e){var err=validateEmail(emailInput.value.trim());if(err){e.preventDefault();showFeedback(err);emailInput.focus();return;}if(!consentInput.checked){e.preventDefault();consentError.textContent='You must accept the privacy policy to continue.';consentInput.focus();}});
 })();
 </script>
 
@@ -120,5 +128,12 @@ lang_es_url: /contacto/
 .form-input--error{border-color:rgba(247,129,102,0.5)!important;box-shadow:0 0 0 3px rgba(247,129,102,0.06)!important;}
 .form-input--ok{border-color:rgba(0,255,136,0.35)!important;box-shadow:0 0 0 3px rgba(0,255,136,0.06)!important;}
 .form-textarea{resize:vertical;min-height:100px;}
+.form-consent{display:flex;align-items:flex-start;gap:.55rem;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2);line-height:1.5;}
+.form-consent label{cursor:pointer;}
+.form-consent a{color:var(--green);}
+.form-checkbox{appearance:none;-webkit-appearance:none;width:16px;height:16px;min-width:16px;margin-top:2px;border:1px solid var(--glass-border);border-radius:4px;background:rgba(13,24,36,0.6);cursor:pointer;position:relative;transition:border-color .2s,background .2s;}
+.form-checkbox:checked{background:var(--green);border-color:var(--green);}
+.form-checkbox:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);font-size:11px;font-weight:700;color:#080c10;}
+.form-checkbox:focus-visible{box-shadow:0 0 0 3px rgba(0,255,136,0.15);}
 .form-error{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--red);min-height:1rem;}
 </style>
