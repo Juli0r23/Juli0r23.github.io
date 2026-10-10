@@ -1019,3 +1019,37 @@ img { max-width: 100%; }
   padding: 4px 0;
 }
 .lang-option-mobile:hover { color: var(--green); }
+
+/* ============================================================
+   COPY BUTTON
+   ============================================================ */
+.code-block-wrap {
+  position: relative;
+}
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text2);
+  background: rgba(13,24,36,0.85);
+  border: 1px solid var(--glass-border);
+  border-radius: 5px;
+  padding: 4px 9px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s, border-color 0.2s, color 0.2s, background 0.2s;
+  z-index: 2;
+}
+.code-block-wrap:hover .copy-btn { opacity: 1; }
+.copy-btn:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+.copy-btn.copied {
+  color: #080c10;
+  background: var(--green);
+  border-color: var(--green);
+  opacity: 1;
+}
