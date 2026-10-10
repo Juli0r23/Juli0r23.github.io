@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://julior23.es/sitemap.xml
