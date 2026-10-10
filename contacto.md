@@ -32,6 +32,11 @@ permalink: /contacto/
       <label class="form-label">mensaje</label>
       <textarea name="mensaje" rows="4" placeholder="Cuéntame..." required class="form-input form-textarea"></textarea>
     </div>
+    <div class="form-consent">
+      <input type="checkbox" id="form-consent" name="consentimiento" required class="form-checkbox">
+      <label for="form-consent">He leído y acepto la <a href="{{ '/privacidad/' | relative_url }}" target="_blank">política de privacidad</a>.</label>
+    </div>
+    <span class="form-error" id="consent-error"></span>
     <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">enviar mensaje →</button>
   </form>
 </div>
@@ -92,10 +97,12 @@ permalink: /contacto/
     "mailexpire.com","mailzilla.com","mailzilla.org","spamgob.com"
   ];
 
-  var form       = document.getElementById('contact-form');
-  var emailInput = document.getElementById('form-email');
-  var emailError = document.getElementById('email-error');
-  var emailIcon  = document.getElementById('email-icon');
+  var form         = document.getElementById('contact-form');
+  var emailInput   = document.getElementById('form-email');
+  var emailError   = document.getElementById('email-error');
+  var emailIcon    = document.getElementById('email-icon');
+  var consentInput = document.getElementById('form-consent');
+  var consentError = document.getElementById('consent-error');
 
   function getDomain(email) {
     var parts = email.split('@');
@@ -150,6 +157,11 @@ permalink: /contacto/
     showFeedback(validateEmail(emailInput.value.trim()));
   });
 
+  // Ocultar aviso de consentimiento al marcar la casilla
+  consentInput.addEventListener('change', function () {
+    if (consentInput.checked) consentError.textContent = '';
+  });
+
   // Validar al enviar
   form.addEventListener('submit', function (e) {
     var err = validateEmail(emailInput.value.trim());
@@ -157,6 +169,12 @@ permalink: /contacto/
       e.preventDefault();
       showFeedback(err);
       emailInput.focus();
+      return;
+    }
+    if (!consentInput.checked) {
+      e.preventDefault();
+      consentError.textContent = 'Debes aceptar la política de privacidad para continuar.';
+      consentInput.focus();
     }
   });
 })();
@@ -212,10 +230,52 @@ permalink: /contacto/
   box-shadow: 0 0 0 3px rgba(0,255,136,0.06) !important;
 }
 .form-textarea { resize: vertical; min-height: 100px; }
+.form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: .55rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.form-consent label { cursor: pointer; }
+.form-consent a { color: var(--green); }
+.form-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  margin-top: 2px;
+  border: 1px solid var(--glass-border);
+  border-radius: 4px;
+  background: rgba(13,24,36,0.6);
+  cursor: pointer;
+  position: relative;
+  transition: border-color .2s, background .2s;
+}
+.form-checkbox:checked {
+  background: var(--green);
+  border-color: var(--green);
+}
+.form-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -54%);
+  font-size: 11px;
+  font-weight: 700;
+  color: #080c10;
+}
+.form-checkbox:focus-visible {
+  box-shadow: 0 0 0 3px rgba(0,255,136,0.15);
+}
 .form-error {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   color: var(--red);
   min-height: 1rem;
 }
+</style>
 </style>
