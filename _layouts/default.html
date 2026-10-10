@@ -6,8 +6,12 @@
 
   <!-- Zoom adaptativo: se ejecuta antes de pintar para evitar flash -->
   <script>
-  (function(){var R=1440,M=768,t=null;function z(){var w=window.innerWidth;document.documentElement.style.zoom=w<=M?'':(w>R?(w/R)*0.9:'');}z();window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(z,100);});}());
+  (function(){var R=1440,M=768,t=null;function z(){var w=window.innerWidth;document.documentElement.style.zoom=w<=M?'':(w>R?(w/R)*0.9:'');}z();window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(z,100);});window.__zoomInit=true;}());
   </script>
+
+  <!-- Conexión anticipada a Google Fonts (ahorra una ronda DNS+TLS completa) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <title>{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{{ page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
@@ -27,6 +31,10 @@
   <meta name="twitter:title" content="{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}">
   <meta name="twitter:description" content="{{ page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
   <meta name="twitter:image" content="{{ page.og_image | default: '/assets/img/og-preview.png' | absolute_url }}">
+
+  <!-- Google Fonts: carga no bloqueante (media="print" + onload) para no retrasar el primer pintado -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap"></noscript>
 
   <!-- Favicons y Estilos -->
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
@@ -83,23 +91,6 @@
   <button class="back-to-top" id="back-to-top" aria-label="Volver arriba">
     <span>↑</span>
   </button>
-
-  <style>
-  .back-to-top {
-    position: fixed; bottom: 2rem; right: 2rem;
-    width: 40px; height: 40px; border-radius: 50%;
-    background: rgba(13,24,36,0.8);
-    border: 1px solid var(--glass-border);
-    color: var(--green); font-size: 16px; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    z-index: 90; opacity: 0; transform: translateY(12px);
-    pointer-events: none;
-    transition: opacity 0.25s, transform 0.25s, border-color 0.2s, box-shadow 0.2s;
-  }
-  .back-to-top:hover { border-color: var(--green); box-shadow: 0 0 16px rgba(0,255,136,0.2); }
-  .btt-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-  </style>
 
   <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
 

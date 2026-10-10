@@ -31,27 +31,3 @@ permalink: /writeups/
   </div>
 
 </main>
-
-<style>
-.wu-platforms-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.25rem;
-}
-.wu-platform-card {
-  position: relative;
-  padding: 2rem;
-  text-align: center;
-  color: var(--text);
-  transition: border-color .2s, transform .2s;
-}
-.wu-platform-card:hover { border-color: var(--glass-border-h); transform: translateY(-3px); color: var(--text); }
-.wu-platform-card-icon { font-size: 2.5rem; margin-bottom: .75rem; }
-.wu-platform-card h2 { font-size: 1.15rem; font-weight: 600; color: #e6edf3; margin-bottom: .3rem; }
-.wu-platform-card p { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--muted); }
-.wu-platform-card-arrow {
-  position: absolute; top: 1.25rem; right: 1.25rem;
-  color: var(--muted); transition: color .2s;
-}
-.wu-platform-card:hover .wu-platform-card-arrow { color: var(--green); }
-</style>

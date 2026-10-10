@@ -3,32 +3,11 @@
    JS compartido de todo el sitio.
    ============================================================= */
 
-/* ── 1. ZOOM ADAPTATIVO (debe ejecutarse lo antes posible) ── */
-(function () {
-  var REFERENCE = 1440;
-  var MOBILE    = 768;
-  var _timer    = null;
-
-  function applyZoom() {
-    var w = window.innerWidth;
-    if (w <= MOBILE) {
-      document.documentElement.style.zoom = '';
-      return;
-    }
-    document.documentElement.style.zoom = w > REFERENCE
-      ? (w / REFERENCE) * 0.9
-      : '';
-  }
-
-  applyZoom();
-
-  // Debounce: solo recalcula 100ms después de que el usuario
-  // para de redimensionar, no en cada pixel de movimiento
-  window.addEventListener('resize', function () {
-    clearTimeout(_timer);
-    _timer = setTimeout(applyZoom, 100);
-  });
-})();
+/* ── 1. ZOOM ADAPTATIVO ──
+   Ya se ejecuta de forma inline en <head> (antes de pintar, para evitar
+   flash) y deja marcado window.__zoomInit = true, así que aquí no se
+   repite: evita re-declarar funciones y re-adjuntar el listener de
+   resize en cada carga de página. */
 
 
 /* ── 2. TRANSICIÓN ENTRE PÁGINAS ── */

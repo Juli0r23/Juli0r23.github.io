@@ -44,7 +44,9 @@ drwxr-xr-x   /                ← raíz del proyecto
 ├── drwxr-xr-x  _includes/    ← componentes (nav + footer)
 ├── drwxr-xr-x  _posts/       ← entradas del blog en Markdown
 ├── drwxr-xr-x  assets/
-│   ├── css/style.scss         ← TODOS los estilos (un solo archivo)
+│   ├── css/style.scss         ← TODOS los estilos, sin excepción
+│   │                             (ningún <style> inline en el HTML:
+│   │                              se descarga y cachea una sola vez)
 │   ├── js/main.js             ← TODO el JavaScript (un solo archivo, defer)
 │   └── img/favicon.svg
 ├── -rw-r--r--  _config.yml   ← ⭐ configuración global
@@ -175,6 +177,8 @@ Edita este archivo para actualizar nombre, email o redes en **todo el sitio** de
 [✓] Sitemap con jekyll-sitemap
 [✓] Botón "copiar" en bloques de código con números de línea
 [✓] Typing effect diferido (solo cuando el elemento es visible)
+[✓] Google Fonts con carga no bloqueante (preconnect + media swap)
+[✓] CSS 100% centralizado y cacheable (cero <style> inline en HTML)
 ```
 
 ---
@@ -182,6 +186,22 @@ Edita este archivo para actualizar nombre, email o redes en **todo el sitio** de
 ## `$ cat changelog.md`
 
 ```
+[2026-10-11] Optimización de rendimiento (carga y caché)
+  · Google Fonts: el @import bloqueante dentro de style.scss se
+    sustituye por <link rel="preconnect"> + carga no bloqueante
+    (media="print" + onload) en el <head>, con <noscript> de respaldo
+    → la fuente deja de retrasar el primer pintado de la página
+  · Eliminada la duplicación del script de zoom adaptativo: antes se
+    ejecutaba completo dos veces (inline en <head> y de nuevo dentro
+    de main.js) en cada carga de página; ahora solo corre una vez
+  · Todos los <style> que quedaban inline en el HTML (default.html,
+    index.html, en/index.html, post.html, writeups.html y los 3
+    índices de /writeups/) se mueven a assets/css/style.scss
+    → ese CSS ahora se descarga y cachea UNA sola vez para todo el
+      sitio, en vez de repetirse en cada página visitada
+  · Reglas CSS duplicadas entre la home en español e inglés
+    (idénticas en ambos idiomas) deduplicadas en style.scss
+
 [2026-10-07] Refactorización y optimización general
   · Todo el JavaScript consolidado en assets/js/main.js (defer)
     → eliminados todos los <script> inline de layouts y páginas
