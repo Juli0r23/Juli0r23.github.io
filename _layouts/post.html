@@ -2,6 +2,30 @@
 layout: default
 ---
 
+<!-- Datos estructurados: BlogPosting -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  {% if page.last_modified_at %}"dateModified": "{{ page.last_modified_at | date_to_xmlschema }}",{% endif %}
+  "description": {{ page.description | default: page.excerpt | strip_html | jsonify }},
+  "inLanguage": "{{ page.lang | default: site.lang }}",
+  "url": "{{ site.url }}{{ page.url | relative_url }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ site.author }}",
+    "url": "{{ site.url }}"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "{{ site.author }}"
+  }
+  {% if page.categories %},"keywords": "{{ page.categories | join: ', ' }}"{% endif %}
+}
+</script>
+
 <!-- Barra de progreso de lectura -->
 <div class="reading-progress" id="reading-progress"></div>
 
