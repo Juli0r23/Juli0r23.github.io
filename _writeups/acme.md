@@ -2,17 +2,17 @@
 layout: writeup
 title: "ACME"
 platform: dockerlabs
-difficulty: facil
+difficulty: muy-facil
 date: 2026-10-12
 permalink: /writeups/dockerlabs/acme/
 ip: 172.17.0.2
-os: Linux (Ubuntu 22.04.5 LTS)
+os: Linux
 tools: [nmap, ssh, suid]
 source_url: https://dockerlabs.es/   # cambia esto por el enlace directo a la máquina cuando lo tengas
-description: "Máquina fácil de DockerLabs: una web corporativa en mantenimiento filtra en el banner de SSH unas credenciales temporales, y un binario bash con bit SUID mal configurado permite escalar directamente a root."
+description: "Máquina muy fácil de DockerLabs: una web corporativa en mantenimiento filtra en el banner de SSH unas credenciales temporales, y un binario bash con bit SUID mal configurado permite escalar directamente a root."
 ---
 
-**ACME** es una máquina <span class="tag tag-green">fácil</span> centrada en dos fallos muy típicos en entornos reales: <span class="tag tag-yellow">fuga de credenciales</span> en un banner de bienvenida y una mala configuración de <span class="tag tag-red">SUID</span>. Nada de cadenas complicadas: todo el recorrido sale de leer con atención lo que el propio sistema nos enseña.
+**ACME** es una máquina <span class="tag tag-green">muy fácil</span> centrada en dos fallos muy típicos en entornos reales: <span class="tag tag-yellow">fuga de credenciales</span> en un banner de bienvenida y una mala configuración de <span class="tag tag-red">SUID</span>. Nada de cadenas complicadas: todo el recorrido sale de leer con atención lo que el propio sistema nos enseña.
 
 ## Despliegue
 
