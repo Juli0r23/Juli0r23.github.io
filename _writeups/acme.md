@@ -1,5 +1,5 @@
 ---
-layout: writeup
+layout: writeups
 title: "ACME"
 platform: dockerlabs
 difficulty: muy-facil
