@@ -33,13 +33,16 @@ layout: default
     <div class="wu-header-top">
       <span class="tag tag-{{ diff_meta.color | default: 'green' }}">{{ diff_meta.label | default: page.difficulty }}</span>
       <span class="wu-platform">{{ page.platform | upcase }}</span>
+      {% if page.diploma %}
+      <a href="#wu-diploma" class="tag tag-cyan" style="margin-left:auto">🏆 pwned · ver diploma ↓</a>
+      {% endif %}
     </div>
     <h1 class="wu-title">{{ page.title }}</h1>
     <div class="wu-meta">
       {% if page.ip %}<span class="wu-meta-item">🖥 {{ page.ip }}</span>{% endif %}
       {% if page.os %}<span class="wu-meta-item">🐧 {{ page.os }}</span>{% endif %}
       <span class="wu-meta-item">📅 {{ page.date | date: "%d %b %Y" }}</span>
-      {% if page.source_url %}<span class="wu-meta-item"><a href="{{ page.source_url }}" target="_blank">↗ ver en {{ page.platform }}</a></span>{% endif %}
+      {% if page.source_url %}<span class="wu-meta-item"><a href="{{ page.source_url }}" target="_blank" rel="noopener noreferrer">↗ ver en {{ page.platform }}</a></span>{% endif %}
     </div>
     {% if page.tools %}
     <div class="wu-tools">
@@ -52,6 +55,33 @@ layout: default
   <article class="wu-content">
     {{ content }}
   </article>
+
+  <!-- Diploma de resolución (se muestra automáticamente si existe page.diploma) -->
+  {% if page.diploma %}
+  <section class="wu-diploma" id="wu-diploma">
+    <div class="section-label">// certificación de resolución</div>
+    <div class="terminal wu-diploma-terminal">
+      <div class="terminal-bar">
+        <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+        <span class="terminal-title">xdg-open — {{ page.title | downcase }}-diploma.png</span>
+      </div>
+      <div class="terminal-body wu-diploma-body">
+        <div class="wu-diploma-bar">
+          <div>
+            <div class="t-cmd">verify-flag --machine "{{ page.title }}" --platform "{{ page.platform }}"</div>
+            <div class="t-ok">[✔] Máquina comprometida con éxito (root) · {{ page.date | date: "%d/%m/%Y" }}</div>
+          </div>
+          <a href="{{ page.diploma | relative_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-ghost wu-diploma-btn">
+            ampliar ↗
+          </a>
+        </div>
+        <a href="{{ page.diploma | relative_url }}" target="_blank" rel="noopener noreferrer" class="wu-diploma-img-wrap">
+          <img src="{{ page.diploma | relative_url }}" alt="Diploma de resolución de {{ page.title }} en {{ page.platform }}" loading="lazy">
+        </a>
+      </div>
+    </div>
+  </section>
+  {% endif %}
 
   <!-- Navegación entre writeups de la misma plataforma/dificultad -->
   <div class="wu-footer-nav">
