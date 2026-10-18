@@ -8,7 +8,8 @@ permalink: /writeups/dockerlabs/acme/
 ip: 172.17.0.2
 os: Linux
 tools: [nmap, ssh, suid]
-source_url: https://dockerlabs.es/   # cambia esto por el enlace directo a la máquina cuando lo tengas
+source_url: https://dockerlabs.es/
+diploma: /assets/img/writeups/acme-diploma.png
 description: "Máquina muy fácil de DockerLabs: una web corporativa en mantenimiento filtra en el banner de SSH unas credenciales temporales, y un binario bash con bit SUID mal configurado permite escalar directamente a root."
 ---
 
