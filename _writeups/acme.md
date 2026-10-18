@@ -9,7 +9,6 @@ ip: 172.17.0.2
 os: Linux
 tools: [nmap, ssh, suid]
 source_url: https://dockerlabs.es/
-diploma: /assets/img/writeups/acme-diploma.png
 description: "Máquina muy fácil de DockerLabs: una web corporativa en mantenimiento filtra en el banner de SSH unas credenciales temporales, y un binario bash con bit SUID mal configurado permite escalar directamente a root."
 ---
 
@@ -182,5 +181,16 @@ Confirmamos el compromiso total:
   </div>
   <div class="terminal-body">
     <div class="t-ok">FLAG{nmap_recon_ssh_foothold_7a9f24e1}</div>
+  </div>
+</div>
+
+## Certificado
+
+<div class="glass-card" style="text-align:center; padding:1.5rem;">
+  <img src="/assets/img/writeups/dockerlabs/acme-diploma.png" alt="Diploma de finalización del laboratorio ACME — DockerLabs" style="border:none; margin:0 0 1.1rem; border-radius:10px; max-width:100%;">
+  <div class="wu-meta" style="justify-content:center;">
+    <span class="wu-meta-item">📅 14/10/2026</span>
+    <span class="wu-meta-item">🆔 DL-4896D4</span>
+    <span class="wu-meta-item"><a href="https://dockerlabs.es" target="_blank" rel="noopener">dockerlabs.es</a></span>
   </div>
 </div>
