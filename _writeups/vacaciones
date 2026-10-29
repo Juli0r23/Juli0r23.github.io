@@ -2,7 +2,7 @@
 layout: writeups
 title: "Vacaciones"
 platform: dockerlabs
-difficulty: muy facil
+difficulty: muy-facil
 date: 2026-10-27
 permalink: /writeups/dockerlabs/vacaciones/
 ip: 172.17.0.2
@@ -12,7 +12,7 @@ source_url: https://dockerlabs.es/   # cambia esto por el enlace directo a la m�
 description: "Máquina fácil de DockerLabs: un comentario HTML filtra dos nombres de usuario, fuerza bruta por SSH con hydra da pie de entrada, un correo en /var/mail revela la contraseña del segundo usuario, y un permiso sudo sobre ruby permite escalar a root."
 ---
 
-**Vacaciones** es una máquina <span class="tag tag-green">muy fácil</span> con una cadena muy didáctica: una pista escondida en el código fuente, <span class="tag tag-yellow">fuerza bruta</span> a SSH, movimiento lateral leyendo el correo de otro usuario y una escalada clásica de <span class="tag tag-red">sudo mal configurado</span> sobre un intérprete.
+**Vacaciones** es una máquina <span class="tag tag-green">fácil</span> con una cadena muy didáctica: una pista escondida en el código fuente, <span class="tag tag-yellow">fuerza bruta</span> a SSH, movimiento lateral leyendo el correo de otro usuario y una escalada clásica de <span class="tag tag-red">sudo mal configurado</span> sobre un intérprete.
 
 ## Despliegue
 
@@ -162,7 +162,7 @@ No por ahí. Miramos qué sí puede ejecutar `juan` con privilegios:
   </div>
 </div>
 
-`ruby` sin contraseña y sin restricciones de argumentos. Un vistazo rápido a [GTFOBins](https://gtfobins.github.io/gtfobins/ruby/) confirma que basta con pedirle que ejecute una shell:
+`ruby` sin contraseña y sin restricciones de argumentos. Un vistazo rápido a <a href="https://gtfobins.github.io/gtfobins/ruby/" target="_blank" rel="noopener">GTFOBins</a> confirma que basta con pedirle que ejecute una shell:
 
 <div class="terminal">
   <div class="terminal-bar">
@@ -178,18 +178,22 @@ No por ahí. Miramos qué sí puede ejecutar `juan` con privilegios:
 
 Root confirmado.
 
-## Cadena de ataque — resumen
+<h2>Cadena de ataque — resumen</h2>
 
-1. **Recon web** → la web está vacía, pero el código fuente filtra dos usuarios (`juan`, `camilo`) y menciona un correo.
-2. **Fuerza bruta** → `hydra` contra SSH con `camilo` y `rockyou.txt` → `camilo:password1`.
-3. **Movimiento lateral** → `/var/mail/camilo/correo.txt` contiene la contraseña de `juan`.
-4. **Escalada** → `sudo -l` revela `/usr/bin/ruby` como `NOPASSWD` → `sudo ruby -e 'exec "/bin/sh"'` → root.
+<ol>
+  <li><strong>Recon web</strong> → la web está vacía, pero el código fuente filtra dos usuarios (<code>juan</code>, <code>camilo</code>) y menciona un correo.</li>
+  <li><strong>Fuerza bruta</strong> → <code>hydra</code> contra SSH con <code>camilo</code> y <code>rockyou.txt</code> → <code>camilo:password1</code>.</li>
+  <li><strong>Movimiento lateral</strong> → <code>/var/mail/camilo/correo.txt</code> contiene la contraseña de <code>juan</code>.</li>
+  <li><strong>Escalada</strong> → <code>sudo -l</code> revela <code>/usr/bin/ruby</code> como <code>NOPASSWD</code> → <code>sudo ruby -e 'exec "/bin/sh"'</code> → root.</li>
+</ol>
 
-## Mitigación
+<h2>Mitigación</h2>
 
-- No dejar comentarios de depuración ni notas internas en el HTML servido en producción.
-- Forzar contraseñas robustas y, si es posible, autenticación por clave pública en SSH para frenar la fuerza bruta.
-- Nunca guardar contraseñas en texto plano en correos, ficheros o `/var/mail` — ni siquiera "por si acaso".
-- Revisar `sudo -l` para cada usuario y evitar dar `NOPASSWD` a intérpretes genéricos (`ruby`, `python`, `perl`, `bash`...): casi todos permiten escapar a una shell con privilegios ([GTFOBins](https://gtfobins.github.io/)).
+<ul>
+  <li>No dejar comentarios de depuración ni notas internas en el HTML servido en producción.</li>
+  <li>Forzar contraseñas robustas y, si es posible, autenticación por clave pública en SSH para frenar la fuerza bruta.</li>
+  <li>Nunca guardar contraseñas en texto plano en correos, ficheros o <code>/var/mail</code> — ni siquiera "por si acaso".</li>
+  <li>Revisar <code>sudo -l</code> para cada usuario y evitar dar <code>NOPASSWD</code> a intérpretes genéricos (<code>ruby</code>, <code>python</code>, <code>perl</code>, <code>bash</code>...): casi todos permiten escapar a una shell con privilegios (<a href="https://gtfobins.github.io/" target="_blank" rel="noopener">GTFOBins</a>).</li>
+</ul>
 
----
+<hr>
