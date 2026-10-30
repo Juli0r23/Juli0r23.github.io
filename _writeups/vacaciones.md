@@ -12,7 +12,7 @@ source_url: https://dockerlabs.es/   # cambia esto por el enlace directo a la m�
 description: "Máquina fácil de DockerLabs: un comentario HTML filtra dos nombres de usuario, fuerza bruta por SSH con hydra da pie de entrada, un correo en /var/mail revela la contraseña del segundo usuario, y un permiso sudo sobre ruby permite escalar a root."
 ---
 
-**Vacaciones** es una máquina <span class="tag tag-green">fácil</span> con una cadena muy didáctica: una pista escondida en el código fuente, <span class="tag tag-yellow">fuerza bruta</span> a SSH, movimiento lateral leyendo el correo de otro usuario y una escalada clásica de <span class="tag tag-red">sudo mal configurado</span> sobre un intérprete.
+**Vacaciones** es una máquina <span class="tag tag-green">muy fácil</span> con una cadena muy didáctica: una pista escondida en el código fuente, <span class="tag tag-yellow">fuerza bruta</span> a SSH, movimiento lateral leyendo el correo de otro usuario y una escalada clásica de <span class="tag tag-red">sudo mal configurado</span> sobre un intérprete.
 
 ## Despliegue
 
