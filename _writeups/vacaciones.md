@@ -198,8 +198,6 @@ Root confirmado.
 
 <hr>
 
-<p><em>Nota: en estas capturas no quedó registrada la lectura de <code>user.txt</code> / <code>root.txt</code>. Si las tienes, pásamelas y las añado a la sección de flags.</em></p>
-
 <h2>Certificado</h2>
 
 <div class="glass-card" style="text-align:center; padding:1.5rem;">
