@@ -197,3 +197,16 @@ Root confirmado.
 </ul>
 
 <hr>
+
+<p><em>Nota: en estas capturas no quedó registrada la lectura de <code>user.txt</code> / <code>root.txt</code>. Si las tienes, pásamelas y las añado a la sección de flags.</em></p>
+
+<h2>Certificado</h2>
+
+<div class="glass-card" style="text-align:center; padding:1.5rem;">
+  <img src="/assets/img/writeups/dockerlabs/vacaciones-diploma.png" alt="Diploma de finalización del laboratorio Vacaciones — DockerLabs" style="border:none; margin:0 0 1.1rem; border-radius:10px; max-width:100%;">
+  <div class="wu-meta" style="justify-content:center;">
+    <span class="wu-meta-item">📅 30/10/2026</span>
+    <span class="wu-meta-item">🆔 DL-2AF813</span>
+    <span class="wu-meta-item"><a href="https://dockerlabs.es" target="_blank" rel="noopener">dockerlabs.es</a></span>
+  </div>
+</div>
